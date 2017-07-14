@@ -1,0 +1,24 @@
+div(class="contact-container")
+    div
+        div(class="box-header")
+            h2(id="title")
+                | Contact us
+        form(action="mailto:nightout@gmail.com" method="POST" enctype="text/plain")
+            label(for="email")
+                | E-mail:
+            br
+            input(name="email" type="email" autofocus="autofocus" id="email")
+            br
+            label(for="subject")
+                | Subject:
+            br
+            input(name="subject" type="subject" id="subject")
+            br
+            label(for="message")
+                | Message:
+            br
+            textarea(name="message" type="message" id="message")
+            br
+            input(id="button" type="submit" value="Send email" class="btn btn-default")
+            br
+

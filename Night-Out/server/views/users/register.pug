@@ -1,25 +1,25 @@
 //extends ../layouts/master
 h1
     | Login
-form(action='/home' method='post')
+form(action="/home" method="post")
     div
-        label(for='username') 
+        label(for="username") 
             | Username:
-        input.username(name='username', type='text', required='required')
+        input.username(name="username", type="text", required="required")
     div
-        label(for='email') 
+        label(for="email") 
             | Email:
-        input.email(name='email', type='email', required='required')
+        input.email(name="email", type="email", required="required")
     div
-        label(for='password') 
+        label(for="password") 
             | Password:
-        input.password(name='password', type='password', required='required')
+        input.password(name="password", type="password", required="required")
     div
-        label(for='password-confirm') 
+        label(for="password-confirm") 
             | Password Confirmation:
-        input.password(name='password-confirm', type='password', required='required')
+        input.password(name="password-confirm", type="password", required="required")
     div
-        input(type='submit', value='Register')
+        input(type="submit", value="Register")
     div
-        a(href='/login')
+        a(href="/login")
             | Already have an account?
