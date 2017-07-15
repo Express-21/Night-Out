@@ -1,13 +1,37 @@
+const passport = require('passport');
+
 const attach = (app) => {
     app.get('/users/login', (req, res) => {
         res.render('../server/views/users/login.pug');
     });
 
-    app.post('users/login', (req, res) => {
-        // data.users.getByObjectName(req.body.username)
-        // .then((user) => {
-        //         res.redirect('/users/' + user._id);
-        //     });
+    app.post('/users/login', (req, res, next) => {
+            passport.authenticate('local', (error, user) => {
+                if (error) {
+                    return next(error);
+                }
+                if (!user) {
+                    console.log('Incorrect username or password!');
+                    req.flash('error', 'Incorrect username or password!');
+                    return res.redirect('/users/login');
+                }
+                req.logIn(user, (err) => {
+                    if (err) {
+                        return next(err);
+                    }
+                    return res.redirect('/users/' + user.id);
+                });
+            })(req, res, next);
+        });
+    //temp for testing
+    app.get('/users/logout', (req, res) => {
+        req.logout();
+        res.redirect('/');
+    });
+
+    app.post('/users/logout', (req, res) => {
+        req.logout();
+        res.redirect('/');
     });
 
     app.get('/users/register', (req, res) => {
@@ -40,13 +64,15 @@ const attach = (app) => {
     });
 
     app.get('/users/:id', (req, res) => {
-        const id = parseInt(req.params.id, 10);
-        const user = users.find((u)=> u.id === id); // users will come as an array from teh db
-        if (!user) {
+        //const id = parseInt(req.params.id, 10);
+        //const user = users.find((u)=> u.id === id); // users will come as an array from teh db
+
+        //if a user is logged in it is attached to the req
+        if (!req.user) {
             return res.redirect('/404');
         }
         return res.render('../server/views/users/profile.pug', {
-            model: user,
+            model: req.user,
         });
     });
 

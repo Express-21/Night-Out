@@ -54,7 +54,7 @@ const attach = (app) => {
         });
     });
 
-    app.get('/users/:id', (req, res) => {
+    app.get('/places/:id', (req, res) => {
         const id = parseInt(req.params.id, 10);
         const place = places.find((p) => p.id === id); // users will come as an array from teh db
         if (!place) {
