@@ -1,6 +1,6 @@
 const passport = require('passport');
 
-const attach = (app) => {
+const attach = (app, data) => {
     app.get('/users/login', (req, res) => {
         res.render('../server/views/users/login.pug');
     });
@@ -19,7 +19,9 @@ const attach = (app) => {
                     if (err) {
                         return next(err);
                     }
-                    return res.redirect('/users/' + user.id);
+                    console.log('---------redirect--------')
+                    console.log('/users/' + user._id);
+                    return res.redirect('/users/' + user._id);
                 });
             })(req, res, next);
         });
@@ -38,14 +40,22 @@ const attach = (app) => {
         res.render('../server/views/users/register.pug');
     });
 
-    app.post('users/register', (req, res) => {
+    app.post('/users/register', (req, res, next) => {
         // validate
         const user = {
-            name: req.body.username,            // all the properties will be prop to the user model in the db
+            username: req.body.username,            // all the properties will be prop to the user model in the db
             email: req.body.email,
             password: req.body.password,
             stringProfilePicture: 'user.png',
         };
+        data.users.create( user ).then(() => {
+            req.logIn(user, (err) => {
+                if (err) {
+                    return next(err);
+                }
+                return res.redirect('/users/' + user._id);
+            });
+        });
     });
 
     // ONLY FOR TEST!
@@ -71,6 +81,11 @@ const attach = (app) => {
         if (!req.user) {
             return res.redirect('/404');
         }
+        console.log( 'Params:' + req.params.id);
+        console.log( req.user );
+        //if (req.params.id !== req.user._id) {
+        //    return res.redirect('/users/' + req.user._id);
+        //}
         return res.render('../server/views/users/profile.pug', {
             model: req.user,
         });

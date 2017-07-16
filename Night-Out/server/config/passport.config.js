@@ -4,16 +4,17 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
-const configPassport = (app, { User, sessionStoreName }) => {
+const configPassport = (app, data) => {
     passport.use(new Strategy(
         (username, password, done) => {
-            return User.findOne(username)
+            return data.users.findOne(username)
                 .then((user) => {
+                    user = user[0];
                     if (!user) {
                         return done(null, false,
                             { message: 'Incorrect username.' });
                     }
-                    if (!user.validatePassword(password)) {
+                    if (!data.users.validatePassword(user.password)) {
                         return done(null, false,
                             { message: 'Incorrect password.' });
                     }
@@ -29,7 +30,7 @@ const configPassport = (app, { User, sessionStoreName }) => {
         secret: 'Deus ex machina',
         maxAge: new Date(Date.now() + 60 * 60 * 1000),
         store: new MongoStore(
-            {url: sessionStoreName},
+            { url: data.sessionStoreName },
             (err) => {
                 console.log(err || 'connect-mongodb setup ok');
             })
@@ -39,17 +40,19 @@ const configPassport = (app, { User, sessionStoreName }) => {
     app.use(passport.session());
 
     passport.serializeUser((user, done) => {
-        done(null, user.id);
+        done(null, user._id);
     });
 
     passport.deserializeUser((id, done) => {
-        return User.findById(id)
+        return data.users.findById(id)
             .then((user) => {
+                //console.log(user);
+                user = user[0];
                 done(null, user);
             })
             .catch(done);
     });
-    console.log('passport initialized')
+    console.log('passport initialized');
 };
 
 module.exports = configPassport;

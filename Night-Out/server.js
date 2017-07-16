@@ -1,9 +1,15 @@
-const app = require('./server/app');
 const browser = require('openurl');
+const config = require('./server/config/app.config.js');
 
-require('./routes/general.routes')(app);
-require('./routes/users.routes')(app);
-require('./routes/places.routes')(app);
+const async = () => {
+    return Promise.resolve();
+}
 
-app.listen(3001, () => console.log('Server running at: 3001'));
-browser.open(`http://localhost:3001`);
+async()
+    .then( () => require('./server/db').init(config.connectionString) )
+    .then( (db) => require('./server/data').init(db) )
+    .then( (data) => require('./server/app').init(data))
+    .then( (app) => {
+        app.listen(config.port, () => console.log(`Server running at: ${config.port}`));
+        //browser.open(`http://localhost:3001`);
+    });

@@ -6,28 +6,35 @@ const bodyParser = require('body-parser');
 const flash = require('express-flash');
 const app = express();
 
-app.set('view engine', 'pug');
+const init = (data) => {
+    app.set('view engine', 'pug');
 
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(flash());
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({extended: true}));
+    app.use(flash());
 
-const data = require('./data');
-require('./config/passport.config.js')(app, data);
+    //const data = require('../data');
+    require('../config/passport.config.js')(app, data);
 
 // temp middleware for debugging
-app.use((req, res, next) => {
-    console.log('---current user---');
-    console.log(req.user);
-    next();
-});
+//    app.use((req, res, next) => {
+//        console.log('---current user---');
+//        console.log(req.user);
+//        next();
+//    });
 
-app.use('libs',
-    express.static(
-        path.join(__dirname, '../../node_modules/'))
-);
+    app.use('libs',
+        express.static(
+            path.join(__dirname, '../../node_modules/'))
+    );
 
-app.use(express.static(path.join(__dirname, '../../public/')));
+    app.use(express.static(path.join(__dirname, '../../public/')));
+    require('../../routes/general.routes')(app);
+    require('../../routes/users.routes')(app, data);
+    require('../../routes/places.routes')(app);
 
-module.exports = app;
+    return app;
+};
+
+module.exports = { init };
