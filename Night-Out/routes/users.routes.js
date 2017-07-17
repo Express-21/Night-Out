@@ -11,7 +11,6 @@ const attach = (app, data) => {
                     return next(error);
                 }
                 if (!user) {
-                    console.log('Incorrect username or password!');
                     req.flash('error', 'Incorrect username or password!');
                     return res.redirect('/users/login');
                 }
@@ -19,13 +18,11 @@ const attach = (app, data) => {
                     if (err) {
                         return next(err);
                     }
-                    console.log('---------redirect--------')
-                    console.log('/users/' + user._id);
                     return res.redirect('/users/' + user._id);
                 });
             })(req, res, next);
         });
-    //temp for testing
+    // temp for testing
     app.get('/users/logout', (req, res) => {
         req.logout();
         res.redirect('/');
@@ -81,11 +78,9 @@ const attach = (app, data) => {
         if (!req.user) {
             return res.redirect('/404');
         }
-        console.log( 'Params:' + req.params.id);
-        console.log( req.user );
-        //if (req.params.id !== req.user._id) {
-        //    return res.redirect('/users/' + req.user._id);
-        //}
+        if (req.params.id !== req.user._id.toString()) {
+            return res.redirect('/users/' + req.user._id);
+        }
         return res.render('../server/views/users/profile.pug', {
             model: req.user,
         });
