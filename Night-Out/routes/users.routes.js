@@ -49,7 +49,7 @@ const attach = (app, data) => {
             stringProfilePicture: 'user.png',
         };
         data.users.create( user ).then(() => {
-            req.logIn(user, (err) => {
+            req.logIn( user, (err) => {
                 if (err) {
                     return next(err);
                 }

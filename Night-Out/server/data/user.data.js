@@ -15,7 +15,7 @@ class User extends BaseData {
 
     create(model) {
         model.password = hashPassword(model.password);
-        super.create(model);
+        return super.create(model);
     }
 
     findOne(username) {
