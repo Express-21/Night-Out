@@ -18,7 +18,7 @@ const attach = (app, data) => {
                     if (err) {
                         return next(err);
                     }
-                    return res.redirect('/users/' + user._id);
+                    return res.redirect('/users/' + user.id);
                 });
             })(req, res, next);
         });
@@ -39,35 +39,38 @@ const attach = (app, data) => {
 
     app.post('/users/register', (req, res, next) => {
         // validate
-        const user = {
+        const model = {
             username: req.body.username,            // all the properties will be prop to the user model in the db
             email: req.body.email,
             password: req.body.password,
             stringProfilePicture: 'user.png',
         };
-        data.users.create( user ).then(() => {
+        data.users.create( model ).then((user) => {
             req.logIn( user, (err) => {
                 if (err) {
                     return next(err);
                 }
-                return res.redirect('/users/' + user._id);
+                return res.redirect('/users/' + user.id);
             });
         });
     });
 
     // ONLY FOR TEST!
-    const users = [
-        {
-            'id': 1,
-            'username': 'misha',
-            'email': 'some@mail.com',
-        },
-    ];
+    //const users = [
+    //    {
+    //        'id': 1,
+    //        'username': 'misha',
+    //        'email': 'some@mail.com',
+    //    },
+    //];
 //
     app.get('/users/all', (req, res) => {
-        res.render('../server/views/users/all.pug', {
-            model: users,
-        });
+        data.users.getAll()
+            .then((users) => {
+                res.render( '../server/views/users/all.pug', {
+                    model: users,
+                } );
+            });
     });
 
     app.get('/users/:id', (req, res) => {
@@ -79,7 +82,7 @@ const attach = (app, data) => {
             return res.redirect('/404');
         }
         if (req.params.id !== req.user._id.toString()) {
-            return res.redirect('/users/' + req.user._id);
+            return res.redirect('/users/' + req.user.id);
         }
         return res.render('../server/views/users/profile.pug', {
             model: req.user,

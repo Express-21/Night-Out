@@ -1,6 +1,6 @@
 const BaseData = require('./base.data.js');
 const crypto = require('crypto');
-const { ObjectID } = require('mongodb');
+const User = require ('../models/user.model.js');
 
 const hashPassword = (password) => {
     return crypto.createHmac('sha256', 'Deus ex machina')
@@ -8,9 +8,9 @@ const hashPassword = (password) => {
         .digest('hex');
 };
 
-class User extends BaseData {
+class Users extends BaseData {
     constructor( db ) {
-        super(db, User);
+        super(db, User, User);
     }
 
     create(model) {
@@ -18,16 +18,11 @@ class User extends BaseData {
         return super.create(model);
     }
 
-    findOne(username) {
+    findUser(username) {
         return this.getAll({
             username: { $eq: username },
-        });
-    }
-    findById(id) {
-        id = new ObjectID(id);
-        return this.getAll({
-            _id: { $eq: id },
-        });
+        })
+            .then((users) => users[0] );
     }
 
     validatePassword(user, password) {
@@ -35,4 +30,4 @@ class User extends BaseData {
     }
 }
 
-module.exports = User;
+module.exports = Users;

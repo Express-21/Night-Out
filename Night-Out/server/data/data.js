@@ -1,11 +1,11 @@
 const sessionStoreName = 'mongodb://localhost/sessions';
 
-const User = require('./user.data.js');
+const Users = require('./user.data.js');
 
 const init = (db) => {
     return {
         sessionStoreName,
-        users: new User(db),
+        users: new Users(db),
     };
 }
 

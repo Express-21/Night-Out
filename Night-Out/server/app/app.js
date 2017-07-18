@@ -30,6 +30,7 @@ const init = (data) => {
     );
 
     app.use(express.static(path.join(__dirname, '../../public/')));
+
     require('../../routes/general.routes')(app);
     require('../../routes/users.routes')(app, data);
     require('../../routes/places.routes')(app);

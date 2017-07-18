@@ -7,9 +7,8 @@ const MongoStore = require('connect-mongo')(session);
 const configPassport = (app, data) => {
     passport.use( new Strategy(
         ( username, password, done ) => {
-            return data.users.findOne( username )
+            return data.users.findUser( username )
                 .then( ( user ) => {
-                    user = user[0];
                     if ( !user ) {
                         return done( null, false,
                             { message: 'Incorrect username.' } );
@@ -40,7 +39,7 @@ const configPassport = (app, data) => {
     app.use( passport.session() );
 
     passport.serializeUser( ( user, done ) => {
-        done( null, user._id );
+        done( null, user.id );
     } );
 
     passport.deserializeUser( ( id, done ) => {
