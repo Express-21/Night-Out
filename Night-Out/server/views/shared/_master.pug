@@ -7,8 +7,13 @@ html(lang='en')
         meta(charset='UTF-8')
         meta(name="viewport" content="width=device-width, initial-scale=1")
         block css
+            link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
         block additionalCss
     body
         block navigation
-            +nav()
-        
+            +nav
+        block content
+        block footer
+            +footer
+    block scripts
+    block additionalScripts

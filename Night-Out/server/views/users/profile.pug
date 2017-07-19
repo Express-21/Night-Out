@@ -1,7 +1,11 @@
-div
-    img(src="../../../public/images/user.png", alt='Profile picture')
-h1 
-    =model.username
-h2 
-    | Email:
-    =model.email
+extends ../shared/_master
+
+block content
+    div
+
+        img(src="../../../public/images/user.png", alt='Profile picture')
+    h1 
+        =model.username
+    h2 
+        | Email:
+        =model.email

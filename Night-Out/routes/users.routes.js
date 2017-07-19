@@ -40,11 +40,12 @@ const attach = (app, data) => {
     app.post('/users/register', (req, res, next) => {
         // validate
         const model = {
-            username: req.body.username,            // all the properties will be prop to the user model in the db
+            username: req.body.username,
             email: req.body.email,
             password: req.body.password,
             stringProfilePicture: 'user.png',
         };
+
         data.users.create( model ).then((user) => {
             req.logIn( user, (err) => {
                 if (err) {
@@ -56,13 +57,13 @@ const attach = (app, data) => {
     });
 
     // ONLY FOR TEST!
-    //const users = [
+    // const users = [
     //    {
     //        'id': 1,
     //        'username': 'misha',
     //        'email': 'some@mail.com',
     //    },
-    //];
+    // ];
 //
     app.get('/users/all', (req, res) => {
         data.users.getAll()
@@ -74,10 +75,10 @@ const attach = (app, data) => {
     });
 
     app.get('/users/:id', (req, res) => {
-        //const id = parseInt(req.params.id, 10);
-        //const user = users.find((u)=> u.id === id); // users will come as an array from teh db
-
-        //if a user is logged in it is attached to the req
+        // const id = parseInt(req.params.id, 10);
+        // const user = users.find((u)=> u.id === id);
+        // users will come as an array from teh db
+        // if a user is logged in it is attached to the req
         if (!req.user) {
             return res.redirect('/404');
         }

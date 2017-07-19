@@ -1,27 +1,28 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+extends ../shared/_master
 
-div
-    input(type="search", name="searchField", placeholder = "Search...")
-    button
-        i(class="fa fa-search")
-    br
+block content
     div
-        | Choose your city
-        select(name="carlist" form="carform")
-            each town in location
-                option(value=town.id) #{town.name}
-h1
-    | Showing you the most popular 
-    =type 
-    | to include in your list!
-div
-    ul
-        each place in model
-            li
-                span
-                    a(href="")
-                        =place.name 
-                span                
-                    =place.type 
-                span
-                    =place.address
+        input(type="search", name="searchField", placeholder = "Search...")
+        button
+            i(class="fa fa-search")
+        br
+        div
+            | Choose your city
+            select(name="carlist" form="carform")
+                each town in location
+                    option(value=town.id) #{town.name}
+    h1
+        | Showing you the most popular 
+        =type 
+        | to include in your list!
+    div
+        ul
+            each place in model
+                li
+                    span
+                        a(href="")
+                            =place.name 
+                    span                
+                        =place.type 
+                    span
+                        =place.address

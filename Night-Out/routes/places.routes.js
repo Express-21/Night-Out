@@ -1,5 +1,4 @@
 const attach = (app) => {
-
     // ONLY FOR TEST!
     const places = [
         {
@@ -54,9 +53,28 @@ const attach = (app) => {
         });
     });
 
+    app.get('/places/create', (req, res) => {
+        // const type = req.params.type;
+        res.render('../server/views/places/create.pug');
+    });
+
+    app.post('/places/create', (req, res, next) => {
+        // validate
+        const model = {
+            title: req.body.title,
+            description: req.body.description,
+            address: req.body.address,
+            openongHours: req.body.openingHours,
+            email: req.body.email,
+            comment: [],
+        };
+
+        // create place here
+    });
+
     app.get('/places/:id', (req, res) => {
         const id = parseInt(req.params.id, 10);
-        const place = places.find((p) => p.id === id); // users will come as an array from teh db
+        const place = places.find((p) => p.id === id);
         if (!place) {
             return res.redirect('/404');
         }

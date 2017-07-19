@@ -1,25 +1,27 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-h1
-    | Registered users
-div
-    input(type="search", name="searchField", placeholder = "Search...")
-    button
-        i(class="fa fa-search")
-div
-    span 
-        | Username
-    span
-        | Email
-    span
-        | Registration date
-div
-    ul
-        each user in model
-            li
-                span
-                    a(href="")
-                        =user.username
-                span                
-                    =user.email
-                span
-                    =user.regDate
+extends ../shared/_master
+
+block content
+    h1
+        | Registered users
+    div
+        input(type="search", name="searchField", placeholder = "Search...")
+        button
+            i(class="fa fa-search")
+    div
+        span 
+            | Username
+        span
+            | Email
+        span
+            | Registration date
+    div
+        ul
+            each user in model
+                li
+                    span
+                        a(href="")
+                            =user.username
+                    span                
+                        =user.email
+                    span
+                        =user.regDate

@@ -1,29 +1,29 @@
 extends ../shared/_master
 
 block content
-        form( method='POST', action='/places/create')
-            div
-                label(for="Uploade image")
-                input(type="button" value="Choose File" name="upload-image")
-            div
-                label(for="title") 
-                    | Place Title:
-                input(name="title", type="text", required="required")
-            div
-                label(for="title") 
-                    | Description:
-                input(name="description", type="textarea", required="required")
-            div
-                label(for="address") 
-                    | Address:
-                input(name="address", type="text", required="required")
-            div
-                label(for="opening-hours") 
-                    | Opening hours:
-                input(name="opening-hours", type="text", required="required")
-            div
-                label(for="email") 
-                    | Contact e-mail address:
-                input(name="email", type="email", required="required")
-            input(type="submit", value="Create")
+    form( method='POST', action='/places/create')
+        div
+            label(for="Uploade image")
+            input(type="button" value="Choose File" name="upload-image")
+        div
+            label(for="title") 
+                | Place Title:
+            input(name="title", type="text", required="required")
+        div
+            label(for="title") 
+                | Description:
+            input(name="description", type="textarea", required="required")
+        div
+            label(for="address") 
+                | Address:
+            input(name="address", type="text", required="required")
+        div
+            label(for="openingHours") 
+                | Opening hours:
+            input(name="openingHours", type="text", required="required")
+        div
+            label(for="email") 
+                | Contact e-mail address:
+            input(name="email", type="email", required="required")
+        input(type="submit", value="Create")
         
