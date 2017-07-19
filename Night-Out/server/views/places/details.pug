@@ -1,0 +1,26 @@
+div
+    h1
+        =model.name
+    img(src="model.picUrl")
+    div
+        div
+            =model.description
+        div
+            =model.openingHours
+        div
+            =model.address
+        div
+            a(href="/places/"+model.id+"/contacts")
+        // check if user is Authenticated
+        div(class="comments")
+            each comment in model.comments
+                div(class="single-comment")
+                    p
+                        comment.author
+                    p
+                        comment.content
+        div(class="new-comment")
+            form(action="/places/"+model.id method="post")
+                input(type="textarea" placeholder="Add your comment here...")  
+                input(type="submit", value="Comment") 
+

@@ -1,6 +1,6 @@
 const BaseData = require('./base.data.js');
 const crypto = require('crypto');
-const User = require ('../models/user.model.js');
+const User = require('../models/user.model.js');
 
 const hashPassword = (password) => {
     return crypto.createHmac('sha256', 'Deus ex machina')

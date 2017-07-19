@@ -1,0 +1,14 @@
+include _nav
+include _footer
+
+doctype html
+html(lang='en')
+    head
+        meta(charset='UTF-8')
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        block css
+        block additionalCss
+    body
+        block navigation
+            +nav()
+        

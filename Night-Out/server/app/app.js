@@ -11,10 +11,10 @@ const init = (data) => {
 
 
     app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({extended: true}));
+    app.use(bodyParser.urlencoded({extended: true }));
     app.use(flash());
 
-    //const data = require('../data');
+    // const data = require('../data');
     require('../config/passport.config.js')(app, data);
 
 // temp middleware for debugging
