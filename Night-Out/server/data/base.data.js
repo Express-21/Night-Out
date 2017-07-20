@@ -29,10 +29,10 @@ class BaseData {
     }
 
     create(model) {
-        //console.log('<-------->');
-        //for (var key in model) {
-        //    console.log( key + ': ' + model[key]);
-        //}
+        // console.log('<-------->');
+        // for (var key in model) {
+        //     console.log( key + ': ' + model[key]);
+        // }
         if (!this._isModelValid(model)) {
             return Promise.reject( 'Invalid model!');
         }

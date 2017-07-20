@@ -28,8 +28,8 @@ const init = (data) => {
         express.static(
             path.join(__dirname, '../../node_modules/'))
     );
-
-    app.use(express.static(path.join(__dirname, '../../public/')));
+    const staticPath = path.join(__dirname, '../../public/');
+    app.use('/static', express.static(staticPath));
 
     require('../../routes/general.routes')(app);
     require('../../routes/users.routes')(app, data);
