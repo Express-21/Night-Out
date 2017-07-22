@@ -6,6 +6,7 @@ const attach = (app, data) => {
     });
 
     app.post('/users/login', (req, res, next) => {
+        // validate input
             passport.authenticate('local', (error, user) => {
                 if (error) {
                     return next(error);
@@ -98,6 +99,7 @@ const attach = (app, data) => {
 
     app.post('/users/edit/:id', (req, res) => {
         // res.render('users/edit');
+        // validate input
         res.send('OK');
     });
 };
