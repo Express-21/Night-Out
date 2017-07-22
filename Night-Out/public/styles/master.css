@@ -25,3 +25,14 @@ a.navbar-brand{
     padding-top:3px;
 }
 
+.dropdown-menu>li>a{
+    color:#9d9d9d;
+}
+
+.dropdown-menu>li:hover a{
+    background-color: black;
+    color:#9d9d9d;
+}
+
+
+
