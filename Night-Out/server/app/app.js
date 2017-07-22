@@ -35,6 +35,11 @@ const init = (data) => {
     require('../../routes/users.routes')(app, data);
     require('../../routes/places.routes')(app);
 
+
+    app.get('/*', (req, res) => {
+        res.redirect('/404');
+    });
+
     return app;
 };
 

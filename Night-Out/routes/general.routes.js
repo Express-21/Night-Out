@@ -25,6 +25,7 @@ const attach = (app) => {
     app.get('/footer', (req, res) => {
         res.render('../server/views/shared/_footer.pug');
     });
+
 };
 
 module.exports = attach;
