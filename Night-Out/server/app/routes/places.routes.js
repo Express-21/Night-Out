@@ -71,7 +71,7 @@ const attach = (app, data) => {
 
         data.places.create(model)
         .then( (place) => {
-                console.log(place.id)
+                console.log(place.id);
                 return res.redirect('/places/' + place.id);
             });
     });
@@ -80,17 +80,36 @@ const attach = (app, data) => {
         // const id = parseInt(req.params.id, 10);
         // const place = places.find((p) => p.id === id);
         const id = req.params.id;
-        console.log(id);
         data.places.findById( id )
         .then( (place) => {
                 if ( !place ) {
                     return res.redirect( '/404' );
                 }
+                console.log(place.comments);
                 return res.render( 'places/details.pug', {
                     model: place,
                 } );
             });
     });
+
+    app.post('/places/:id', (req, res) => {
+        // const id = parseInt(req.params.id, 10);
+        // const place = places.find((p) => p.id === id);
+        const id = req.params.id;
+        const model = {
+            placeId: id,
+            userId: req.user.id,
+            username: req.user.username,
+            content: req.body.content,
+        };
+        data.comments.create( model, data.places )
+            .then( (place) => {
+                console.log(place);
+                console.log(' redirecting /places/' + place.id)
+                return res.redirect('/places/' + place.id );
+            });
+    });
+
 };
 
 module.exports = attach;

@@ -21,6 +21,7 @@ const Favourite = {
 
 const Place = {
     title: '',
+    picUrl: '',
     description: '',
     town: '',
     address: '',

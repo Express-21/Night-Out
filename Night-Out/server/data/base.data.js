@@ -50,6 +50,14 @@ class BaseData {
             });
     }
 
+    updateById( model ) {
+        return this.collection
+            .updateOne( { _id: new ObjectID(model.id) }, model )
+            .then(() => {
+                return this.ModelClass.toViewModel(model);
+            });
+    }
+
     create(model) {
         // console.log('<-------->');
         // for (var key in model) {

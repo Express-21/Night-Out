@@ -9,17 +9,17 @@ class Comments extends BaseData {
     create( model, places ) {
         return super.create(model)
         .then( (comment) => {
-                return places.getById( comment.placeId );
+                return places.findById( comment.placeId );
             })
         .then( ( place ) => {
                 if (!place.comments) {
                     place.comments = [];
                 }
-                if (place.comments.length === 5) {
-                    place.comments.unshift();
+                while (place.comments.length >= 5) {
+                    place.comments.shift();
                 }
                 place.comments.push(model);
-                return places.collection.updateOne( { _id: place.id }, place );
+                return places.updateById(place);
             } );
     }
 }
