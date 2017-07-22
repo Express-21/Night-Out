@@ -1,4 +1,4 @@
-class Place {
+class Town {
     static isValid(model) {
         return true;
     }
@@ -8,7 +8,7 @@ class Place {
     }
 
     static toViewModel(model) {
-        const viewModel = new Place();
+        const viewModel = new Town();
         Object.keys(model)
             .forEach( (key) => {
                 viewModel[key] = model[key];
@@ -18,4 +18,4 @@ class Place {
     }
 }
 
-module.exports = Place;
+module.exports = Town;

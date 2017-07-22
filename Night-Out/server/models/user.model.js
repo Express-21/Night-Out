@@ -1,5 +1,5 @@
 class User {
-    static isValid(user) {
+    static isValid(model) {
         return true;
     }
 
@@ -13,7 +13,6 @@ class User {
             .forEach( (key) => {
                 viewModel[key] = model[key];
             });
-        viewModel.modeled = true;
         return viewModel;
     }
 }

@@ -19,10 +19,12 @@ class Users extends BaseData {
     }
 
     findUser(username) {
-        return this.getAll({
+        return this.collection.findOne({
             username: { $eq: username },
         })
-            .then((users) => users[0] );
+            .then((user) => {
+                return this.ModelClass.toViewModel(user);
+            } );
     }
 
     validatePassword(user, password) {

@@ -12,7 +12,7 @@ const User = {
 }
 
 const Favourite = {
-    userId:'',
+    userId: '',
     placeId: '',
     placeTitle: '',
     placeType: '',

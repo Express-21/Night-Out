@@ -1,3 +1,5 @@
+const DEFAULT_PAGE_SIZE = 10;
+
 const { ObjectID } = require('mongodb');
 
 class BaseData {
@@ -23,9 +25,29 @@ class BaseData {
 
     findById(id) {
         id = new ObjectID(id);
-        return this.getAll({
+        return this.collection.findOne({
             _id: { $eq: id },
-        });
+        })
+            .then( (model) => {
+                return this.ModelClass.toViewModel(model);
+            });
+    }
+
+    filter(filter, pageSize, pageNumber) {
+        filter = filter || {};
+        pageSize = pageSize || DEFAULT_PAGE_SIZE;
+        pageNumber = pageNumber || 1;
+
+        return this.collection.find( filter )
+            .skip( (pageNumber - 1) * pageSize )
+            .limit( pageSize )
+            .toArray()
+            .then( (models) => {
+                models = models.map( ( model ) => {
+                    return this.ModelClass.toViewModel( model );
+                } );
+                return models;
+            });
     }
 
     create(model) {

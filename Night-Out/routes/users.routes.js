@@ -44,6 +44,7 @@ const attach = (app, data) => {
             email: req.body.email,
             password: req.body.password,
             stringProfilePicture: 'user.png',
+            favourites: [],
         };
 
         data.users.create( model ).then((user) => {

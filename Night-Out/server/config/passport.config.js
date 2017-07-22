@@ -45,7 +45,6 @@ const configPassport = (app, data) => {
     passport.deserializeUser( ( id, done ) => {
         return data.users.findById( id )
             .then( ( user ) => {
-                user = user[0];
                 done( null, user );
             } )
             .catch( done );
