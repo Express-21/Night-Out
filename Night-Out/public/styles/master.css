@@ -1,0 +1,27 @@
+header, body, nav, ul, li, div, p, span, a, footer{
+    font-family: openSans !important;
+}
+
+@font-face {
+    font-family: openSans;
+    src: url('../fonts/OpenSans-Regular.ttf');
+}
+
+body{
+    background-image: url("../images/backgroung/20050214_10203692462309248_193386654_o.jpg")
+}
+
+div.transparent{
+    
+    background-color: black;
+    opacity: 0.6;
+}
+
+.navbar{
+    min-height: 75px;
+}
+
+a.navbar-brand{
+    padding-top:3px;
+}
+

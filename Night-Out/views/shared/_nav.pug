@@ -1,5 +1,18 @@
 mixin nav
-    ul
-        li
-            | something
+     nav.navbar.navbar-inverse
+        .container-fluid
+        .navbar-header
+            a.navbar-brand(href='/')
+                img(src="/static/images/logo.png" alt="NightOut logo")
+
+        ul.nav.navbar-nav
+            li.active
+                a(href='#') Home
+            li
+                a(href='#') Page 1
+            li
+                a(href='#') Page 2
+            li
+                a(href='#') Page 3
+
 

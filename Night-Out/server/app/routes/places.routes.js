@@ -105,11 +105,10 @@ const attach = (app, data) => {
         data.comments.create( model, data.places )
             .then( (place) => {
                 console.log(place);
-                console.log(' redirecting /places/' + place.id)
+                console.log(' redirecting /places/' + place.id);
                 return res.redirect('/places/' + place.id );
             });
     });
-
 };
 
 module.exports = attach;
