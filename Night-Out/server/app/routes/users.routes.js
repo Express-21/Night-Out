@@ -2,7 +2,7 @@ const passport = require('passport');
 
 const attach = (app, data) => {
     app.get('/users/login', (req, res) => {
-        res.render('../server/views/users/login.pug');
+        res.render('users/login.pug');
     });
 
     app.post('/users/login', (req, res, next) => {
@@ -34,7 +34,7 @@ const attach = (app, data) => {
     });
 
     app.get('/users/register', (req, res) => {
-        res.render('../server/views/users/register.pug');
+        res.render('users/register.pug');
     });
 
     app.post('/users/register', (req, res, next) => {
@@ -68,7 +68,7 @@ const attach = (app, data) => {
     app.get('/users/all', (req, res) => {
         data.users.getAll()
             .then((users) => {
-                res.render( '../server/views/users/all.pug', {
+                res.render( 'users/all.pug', {
                     model: users,
                 } );
             });
@@ -85,7 +85,7 @@ const attach = (app, data) => {
         if (req.params.id !== req.user._id.toString()) {
             return res.redirect('/users/' + req.user.id);
         }
-        return res.render('../server/views/users/profile.pug', {
+        return res.render('users/profile.pug', {
             model: req.user,
         });
     });

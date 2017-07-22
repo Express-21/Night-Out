@@ -15,7 +15,7 @@ const attach = (app) => {
         },
     ];
 
-    const towns =[
+    const towns = [
         {
             'id': 1,
             'name': 'London',
@@ -46,7 +46,7 @@ const attach = (app) => {
     app.get('/places/all', (req, res) => {
         // const type = req.params.type;
         const type = 'bar';
-        res.render('../server/views/places/all.pug', {
+        res.render('places/all.pug', {
             model: places,
             location: towns,
             type: type,
@@ -55,7 +55,7 @@ const attach = (app) => {
 
     app.get('/places/create', (req, res) => {
         // const type = req.params.type;
-        res.render('../server/views/places/create.pug');
+        res.render('places/create.pug');
     });
 
     app.post('/places/create', (req, res, next) => {
@@ -78,7 +78,7 @@ const attach = (app) => {
         if (!place) {
             return res.redirect('/404');
         }
-        return res.render('../server/views/places/details.pug', {
+        return res.render('places/details.pug', {
             model: place,
         });
     });

@@ -4,4 +4,4 @@ const connectionString = 'mongodb://localhost/night-out';
 module.exports = {
     port,
     connectionString,
-}
+};
