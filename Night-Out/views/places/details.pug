@@ -4,7 +4,7 @@ block content
     div
         h1
             =model.name
-        img(src="model.picUrl")
+        // img(src="model.picUrl")
         div
             div
                 =model.description
@@ -19,11 +19,11 @@ block content
                 each comment in model.comments
                     div(class="single-comment")
                         p
-                            comment.author
+                            =comment.username
                         p
-                            comment.content
+                            =comment.content
             div(class="new-comment")
                 form(action="/places/"+model.id method="post")
-                    input(type="textarea" placeholder="Add your comment here...")  
+                    input(type="textarea" name="content" placeholder="Add your comment here...")
                     input(type="submit", value="Comment") 
 
