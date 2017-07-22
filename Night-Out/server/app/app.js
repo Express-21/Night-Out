@@ -19,7 +19,7 @@ const init = (data) => {
     require('../config/passport.config.js')(app, data);
     require('../app/routes/general.routes')(app);
     require('../app/routes/users.routes')(app, data);
-    require('../app/routes/places.routes')(app);
+    require('../app/routes/places.routes')(app, data);
 
     const staticPath = path.join(__dirname, '../../public/');
     app.use('/static', express.static(staticPath));

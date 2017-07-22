@@ -1,4 +1,4 @@
-const attach = (app) => {
+const attach = (app, data) => {
     // ONLY FOR TEST!
     const places = [
         {
@@ -64,23 +64,32 @@ const attach = (app) => {
             title: req.body.title,
             description: req.body.description,
             address: req.body.address,
-            openongHours: req.body.openingHours,
+            openingHours: req.body.openingHours,
             email: req.body.email,
-            comment: [],
+            comments: [],
         };
 
-        // create place here
+        data.places.create(model)
+        .then( (place) => {
+                console.log(place.id)
+                return res.redirect('/places/' + place.id);
+            });
     });
 
     app.get('/places/:id', (req, res) => {
-        const id = parseInt(req.params.id, 10);
-        const place = places.find((p) => p.id === id);
-        if (!place) {
-            return res.redirect('/404');
-        }
-        return res.render('places/details.pug', {
-            model: place,
-        });
+        // const id = parseInt(req.params.id, 10);
+        // const place = places.find((p) => p.id === id);
+        const id = req.params.id;
+        console.log(id);
+        data.places.findById( id )
+        .then( (place) => {
+                if ( !place ) {
+                    return res.redirect( '/404' );
+                }
+                return res.render( 'places/details.pug', {
+                    model: place,
+                } );
+            });
     });
 };
 

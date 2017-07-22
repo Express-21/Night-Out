@@ -47,7 +47,8 @@ const attach = (app, data) => {
             favourites: [],
         };
 
-        data.users.create( model ).then((user) => {
+        data.users.create( model )
+            .then((user) => {
             req.logIn( user, (err) => {
                 if (err) {
                     return next(err);

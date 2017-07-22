@@ -27,9 +27,14 @@ class Users extends BaseData {
             } );
     }
 
+    updateUser() {
+
+    }
+
     validatePassword(user, password) {
         return hashPassword(password) === user.password;
     }
+
 }
 
 module.exports = Users;

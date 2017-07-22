@@ -55,12 +55,13 @@ class BaseData {
         // for (var key in model) {
         //     console.log( key + ': ' + model[key]);
         // }
+
         if (!this._isModelValid(model)) {
             return Promise.reject( 'Invalid model!');
         }
         return this.collection.insert(model)
-            .then(()=> {
-                return this.ModelClass.toViewModel(model);
+            .then((result)=> {
+                return this.ModelClass.toViewModel(result.ops[0]);
             });
     }
 
