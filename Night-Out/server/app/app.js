@@ -2,11 +2,10 @@ const express = require('express');
 const app = express();
 
 const init = (data) => {
-    require('./config/app.config').applyTo(app);
+    require('./config/app.config.js').configApp(app);
     require('../config/passport.config.js')(app, data);
-    require('../app/routes/general.routes')(app);
-    require('../app/routes/users.routes')(app, data);
-    require('../app/routes/places.routes')(app, data);
+
+    require('./routes').attachRoutes(app, data);
 
 // temp middleware for debugging
 //    app.use((req, res, next) => {

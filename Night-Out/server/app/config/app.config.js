@@ -6,7 +6,7 @@ const flash = require('express-flash');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
-const applyTo = (app) => {
+const configApp = (app) => {
     app.set('view engine', 'pug');
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
@@ -32,6 +32,6 @@ const applyTo = (app) => {
     return Promise.resolve(app);
 };
 
-module.exports = { applyTo };
+module.exports = { configApp };
 
 
