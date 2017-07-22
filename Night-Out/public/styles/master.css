@@ -7,18 +7,30 @@ header, body, nav, ul, li, div, p, span, a, footer{
     src: url('../fonts/OpenSans-Regular.ttf');
 }
 
-body{
-    background-image: url("../images/backgroung/20050214_10203692462309248_193386654_o.jpg")
+.backImage{
+    background-image: url("../images/backgroung/20050214_10203692462309248_193386654_o.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center top;
+    background-attachment: fixed;
+    height:800px;
+    margin-top:73px;
 }
 
 div.transparent{
-    
+    margin-top:73px;    
     background-color: black;
     opacity: 0.6;
 }
 
 .navbar{
     min-height: 75px;
+    margin:0;
+    padding:0;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    z-index: 10000;
 }
 
 a.navbar-brand{
@@ -32,6 +44,15 @@ a.navbar-brand{
 .dropdown-menu>li:hover a{
     background-color: black;
     color:#9d9d9d;
+}
+
+div.transparent{
+    height:inherit;
+}
+
+footer{
+    color:#9d9d9d;
+    background-color: #222222;
 }
 
 
