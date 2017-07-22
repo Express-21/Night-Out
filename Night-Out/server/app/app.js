@@ -7,6 +7,9 @@ const init = (data) => {
 
     require('./routes').attachRoutes(app, data);
 
+    app.get('/*', (req, res) => {
+        res.redirect('/404');
+    });
 // temp middleware for debugging
 //    app.use((req, res, next) => {
 //        console.log('---current user---');

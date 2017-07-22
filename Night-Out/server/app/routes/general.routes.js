@@ -21,10 +21,6 @@ const attach = (app) => {
         res.redirect('/home');
     });
 
-    app.get('/*', (req, res) => {
-        res.redirect('/404');
-    });
-
     // JUST FOR TESTING - not an actual route
     app.get('/footer', (req, res) => {
         res.render('/shared/_footer.pug');
