@@ -1,24 +1,31 @@
 extends ../shared/_master
 
 block content
-    h1
-        | Login
-    form(action="/users/login" method="post")
-        if (messages.error)
-            span
-                =messages.error
-        div
-            label(for="username") 
-                | Username:
-            input.username(name="username", type="text", required="required" autofocus="true")
-        div
-            label(for="password") 
-                | Password:
-            input.password(name="password", type="password", required="required")
-        div
-            input(type="submit", value="Login")
-        div
-            a(href="/register")
-                | Don"t have an account?
-            a(href="/lostpass")
-                | Forgot your password?
+    div(class="container")
+        div(class="row vertical-offset-100")
+            div(class="col-md-4 col-md-offset-4")
+                div(class="panel panel-default")
+                    div(class="panel-heading")
+                        h3(class="panel-title")
+                            | LOGIN
+                    div(class="panel-body")
+                        form(accept-charset="UTF-8" role="form")
+                        fieldset
+                            div(class="form-group")
+                                label(for="username")
+                                    | USERNAME:
+                                input(class="form-control" placeholder="Username" name="username" type="text")
+                            div(class="form-group")
+                                label(for="password")
+                                    | PASSWORD:
+                                input(class="form-control" placeholder="Password" name="password" type="password" value="")
+                            div(class="checkbox")
+                                label
+                                    input(name="remember" type="checkbox" value="Remember Me")
+                                    | Remember Me
+                                    div
+                                        a(href="/register")
+                                            | Don't have an account? 
+                                        a(href="/lostpass")
+                                            |  Forgot your password?
+                            input(class="btn btn-lg btn-success btn-block" type="submit" value="Login")

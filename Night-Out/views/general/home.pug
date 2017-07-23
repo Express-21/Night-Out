@@ -8,7 +8,7 @@ block content
         | Planning a Night Out?
     h2
         | This is your personal guide to the world of food, drinks and good music!
-    div.container
+    div(class="container")
         div(id="myCarousel" class="carousel slide" data-ride="carousel")
             <!-- Wrapper for slides -->
             ul(class="nav nav-pills nav-justified")
@@ -21,37 +21,40 @@ block content
                 li(data-target="#myCarousel" data-slide-to="2")
                     a(href="#")
                         | Clubs & Music
-            div(class="carousel-inner")
+            div(class="carousel-inner blur-box")
                 div(class="item active")
-                    a(href="")
+                    a(href="/palces/category/restaurants")
                         img(src="/static/images/slider/restaurant.jpg" alt="Restaurant")
                         div(class="carousel-caption")
                             h3
-                                | Headline
+                                | Restaurants
                             p
-                                | Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                                | tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem
-                                | ipsum dolor sit amet, consetetur sadipscing elitr.
+                                | Choose one of the hundreds delicious recomendations from all our friends. Enjoy the emotion
+                                | to be part of a worl wide range of top places selected from various enterior and kitchen types.
+                                | Let's make your experience fullfilling!
                 <!-- End Item -->
                 div(class="item")
-                    a(href="")
+                    a(href="/palces/category/bars")
                         img(src="/static/images/slider/bar.jpg" alt="Bar")
                         div(class="carousel-caption")
                             h3
-                                | Headline
+                                | Bars & Pubs
                             p
-                                | Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                                | tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem
-                                | ipsum dolor sit amet, consetetur sadipscing elitr.
+                                | Whether you want to have a casual chat with friends over a drink or you feel for a 
+                                | glamorous night out, here you can find the best place for your occasion. Our hundresd of
+                                | reccomendations will ensure you have a great experience!
                 <!-- End Item -->
                 div(class="item")
-                    a(href="")
+                    a(href="/palces/category/clubs")
                         img(src="/static/images/slider/club.jpg" alt="Club")                        
                         div(class="carousel-caption")
                             h3
-                                | Headline
+                                | Clubs & Music
                             p
-                                | Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                                | tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem
-                                | ipsum dolor sit amet, consetetur sadipscing elitr.
+                                | For all you dance and music lovers, we provide a wide range of all types of places to
+                                | spend your friday night, party hard or just have a different night out. Check out the latest
+                                | and most famous places in town and make your night remarkable!
                 <!-- End Item -->
+block additionalScripts
+    script(src="/static/scripts/home.js")
+    
