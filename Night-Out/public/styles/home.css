@@ -6,10 +6,7 @@ body
 {
     display: block;
 }
-#myCarousel .nav
-{
-    background: #eee;
-}
+
 .nav-justified > li > a
 {
     border-radius: 0px;
@@ -18,3 +15,65 @@ body
 .nav-pills>li[data-slide-to="1"].active a { background-color: #e67e22; }
 .nav-pills>li[data-slide-to="2"].active a { background-color: #2980b9; }
 .nav-pills>li[data-slide-to="3"].active a { background-color: #8e44ad; }
+
+.blur-box {
+    background-color: black;
+    box-shadow: 5px 5px 20px 5px black;
+}
+
+ul.nav.nav-pills.nav-justified{
+    background-color: #9d9d9d;
+}
+
+.nav-pills>li[data-slide-to="0"].active a {
+    background-color: rgba(161, 107, 14, 0.79)
+}
+
+
+.nav-pills>li[data-slide-to="1"].active a {
+    background-color:rgba(161, 107, 14, 0.79)
+}
+
+.nav-pills>li[data-slide-to="2"].active a {
+    background-color:rgba(161, 107, 14, 0.79)
+}
+
+.nav-pills>li>a{
+    color:white;
+}
+
+.nav-pills>li>a:focus, .nav-pills>li>a:hover {
+    color: black ;
+    background-color: #9d9d9d;
+}
+
+.nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+    color:black;
+}
+
+div.container.general div.container{
+    margin:0;
+    margin-top:50px;
+    padding-right:60px;
+}
+
+div.carousel-caption>p{
+    font-size:15px;
+    color:white;
+}
+
+div.carousel-caption>h3{
+    font-size:26px;
+    color:white;
+}
+
+h1{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+
+h2{
+    font-size: 26px;
+    text-align: center;
+}
