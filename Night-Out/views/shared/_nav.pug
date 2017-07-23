@@ -26,23 +26,24 @@ mixin nav
                         | CLUBS & MUSIC
     
                 ul(class="nav navbar-nav navbar-right")
-                    if loggedIn
+                    if user.loggedIn
                         li(class="dropdown")
                             a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false")
                                 i(class="fa fa-user" aria-hidden="true")
                                 span(class="caret")
+                                    | Hi #{user.username}
                             ul(class="dropdown-menu navbar-inverse")
                                 li
-                                    a(href="#")
+                                    a(href="/users/edit/#{user.userId}") //does not work
                                         | EDIT PROFILE
                                 li
-                                    a(href="#")
+                                    a(href="/users/logout")     //does not work
                                     | LOGOUT
                     else
                         li
                             a(href="/users/login")
                                 | LOGIN
                         li
-                            a(href="/users/login")
+                            a(href="/users/register")
                                 | REGISTER 
 

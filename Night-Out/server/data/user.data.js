@@ -28,19 +28,19 @@ class Users extends BaseData {
     }
 
 
-    validatePassword(username, password) {
-        return this.collection.findOne({
-            username,
-        })
-        .then((user)=>{
-            if (!user) {
-                throw new Error('Invalid user!');
-            }
-            if ((user.password) !== hashPassword(password)){
-                 throw new Error('Invalid password!');
-            }
-            return true;
-        });
+    validatePassword( user, password ) {
+        //return this.collection.findOne({
+        //    username,
+        //})
+        //.then((user)=>{
+        //    if (!user) {
+        //        throw new Error('Invalid user!');
+        //    }
+        //    if ((user.password) !== hashPassword(password)){
+        //         throw new Error('Invalid password!');
+        //    }
+        //    return true;
+        return (user.password) === hashPassword(password);
     }
 }
 module.exports = Users;

@@ -4,10 +4,13 @@ block content
     h1
         | Login
     form(action="/users/login" method="post")
+        if (messages.error)
+            span
+                =messages.error
         div
             label(for="username") 
                 | Username:
-            input.username(name="username", type="text", required="required")
+            input.username(name="username", type="text", required="required" autofocus="true")
         div
             label(for="password") 
                 | Password:
