@@ -1,48 +1,48 @@
 mixin nav
-    nav(class="navbar navbar-inverse")
-        div(class="container-fluid")
-          div(class="navbar-header")
-            button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar")
-              span(class="sr-only")
-                | Toggle navigation
-              span(class="icon-bar")
-              span(class="icon-bar")
-              span(class="icon-bar")
-            a(class="navbar-brand" href="/")
-                img(src="/static/images/logo.png" alt="NightOut logo")
-          div(id="navbar" class="navbar-collapse collapse")
-            ul(class="nav navbar-nav")
-              li(class="active")
-                a(href="/")
-                    | HOME
-              li
-                a(href="#")
-                    | RESTAURANTS
-              li
-                a(href="#")
-                    | BARS & PUBS
-              li
-                a(href="#")
-                    | CLUBS
-
-            ul(class="nav navbar-nav navbar-right")
-                if loggedIn
-                    li(class="dropdown")
-                        a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false")
-                            i(class="fa fa-user" aria-hidden="true")
-                            span(class="caret")
-                        ul(class="dropdown-menu navbar-inverse")
-                            li
-                                a(href="#")
-                                    | EDIT PROFILE
-                            li
-                                a(href="#")
-                                | LOGOUT
-                else
-                    li
-                        a(href="/users/login")
-                            | LOGIN
-                    li
-                        a(href="/users/login")
-                            | REGISTER 
+        nav(class="navbar navbar-inverse")
+            div(class="container-fluid container general")
+              div(class="navbar-header")
+                button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar")
+                  span(class="sr-only")
+                    | Toggle navigation
+                  span(class="icon-bar")
+                  span(class="icon-bar")
+                  span(class="icon-bar")
+                a(class="navbar-brand" href="/")
+                    img(src="/static/images/logo.png" alt="NightOut logo")
+              div(id="navbar" class="navbar-collapse collapse")
+                ul(class="nav navbar-nav")
+                  li(class="#")
+                    a(href="/")
+                        | HOME
+                  li
+                    a(href="#")
+                        | RESTAURANTS
+                  li
+                    a(href="#")
+                        | BARS & PUBS
+                  li
+                    a(href="#")
+                        | CLUBS & MUSIC
+    
+                ul(class="nav navbar-nav navbar-right")
+                    if loggedIn
+                        li(class="dropdown")
+                            a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false")
+                                i(class="fa fa-user" aria-hidden="true")
+                                span(class="caret")
+                            ul(class="dropdown-menu navbar-inverse")
+                                li
+                                    a(href="#")
+                                        | EDIT PROFILE
+                                li
+                                    a(href="#")
+                                    | LOGOUT
+                    else
+                        li
+                            a(href="/users/login")
+                                | LOGIN
+                        li
+                            a(href="/users/login")
+                                | REGISTER 
 

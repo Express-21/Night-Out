@@ -1,5 +1,8 @@
 extends ../shared/_master
 
+block additionalCss
+    link(rel="stylesheet" href="/static/styles/home.css")
+
 block content
     h1
         | Planning a Night Out?
@@ -21,7 +24,7 @@ block content
             div(class="carousel-inner")
                 div(class="item active")
                     a(href="")
-                        img(src="")
+                        img(src="/static/images/slider/restaurant.jpg" alt="Restaurant")
                         div(class="carousel-caption")
                             h3
                                 | Headline
@@ -32,7 +35,7 @@ block content
                 <!-- End Item -->
                 div(class="item")
                     a(href="")
-                        img(src="")
+                        img(src="/static/images/slider/bar.jpg" alt="Bar")
                         div(class="carousel-caption")
                             h3
                                 | Headline
@@ -43,7 +46,7 @@ block content
                 <!-- End Item -->
                 div(class="item")
                     a(href="")
-                        img(src="")
+                        img(src="/static/images/slider/club.jpg" alt="Club")                        
                         div(class="carousel-caption")
                             h3
                                 | Headline

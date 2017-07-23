@@ -1,6 +1,7 @@
 header, body, nav, ul, li, div, p, span, a, footer{
     font-family: openSans !important;
-    font-size:14px;
+    font-size:13px;
+    color:#9d9d9d;
 }
 
 @font-face {
@@ -15,19 +16,27 @@ header, body, nav, ul, li, div, p, span, a, footer{
     background-position: center top;
     background-attachment: fixed;
     height:700px;
-    margin-top:73px;
+    margin-top:55px;
+    z-index:-100;
 }
 
-div.transparent{
-    margin-top:73px;    
-    background-color: black;
-    opacity: 0.6;
+div.container{
+    padding-left:0px;
+    padding-right: 0px;
+}
+
+div.container.general{
+    z-index:200;
+    opacity: 1;
+    padding-left:30px;
+    padding-right: 30px;
 }
 
 .navbar{
     min-height: 75px;
     margin:0;
-    padding:0;
+    padding-left:30px;
+    padding-right:30px;
     position: fixed;
     top: 0;
     width: 100%;
@@ -36,10 +45,6 @@ div.transparent{
 
 a.navbar-brand{
     padding-top:3px;
-}
-
-.dropdown-menu>li>a{
-    color:#9d9d9d;
 }
 
 .dropdown-menu>li:hover a{
@@ -54,7 +59,6 @@ div.transparent{
 /*FOOTER*/
 
 footer{
-    color:#9d9d9d;
     background-color: #222222;
 }
 
@@ -97,6 +101,24 @@ footer{
 .fa-linkedin{
     background-color: #007BB5;
     color: white;
+}
+
+div.footer-right{
+    float:right;
+    padding-top:4px;
+    padding-right:15px;
+}
+
+p.footer-links>a{
+    padding-left:15px;
+    padding-right:20px;
+    color:#9d9d9d
+}
+
+p.footer-links>a:hover{
+    background-color: black;
+    color:white;
+    text-decoration: none;
 }
 
 
