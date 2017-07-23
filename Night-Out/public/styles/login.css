@@ -81,3 +81,7 @@ span.register>a:hover, span.forgotten-pass>a:hover{
 input[type="textarea"]{
     height: 100px;
 }
+
+.vertical-offset-100 {
+    padding-top: 50px;
+}
