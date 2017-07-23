@@ -27,9 +27,6 @@ class Users extends BaseData {
             } );
     }
 
-    updateUser() {
-
-    }
 
     validatePassword(username, password) {
         return this.collection.findOne({
