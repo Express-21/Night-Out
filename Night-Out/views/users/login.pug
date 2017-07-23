@@ -17,11 +17,11 @@ block content
                                 div(class="form-group")
                                     label(for="username")
                                         | USERNAME:
-                                    input(class="form-control" placeholder="Username" name="username" type="text")
+                                    input(class="form-control" placeholder="Username" name="username" type="text" required="required")
                                 div(class="form-group")
                                     label(for="password")
                                         | PASSWORD:
-                                    input(class="form-control" placeholder="Password" name="password" type="password" value="")
+                                    input(class="form-control" placeholder="Password" name="password" type="password" value="" required="required")
                                 div(class="help-links")
                                     span(class="register")
                                         a(href="/register")
@@ -41,4 +41,3 @@ block additionalCss
     link(rel="stylesheet" href="/static/styles/login.css")
 
 block additionalScripts
-    script(src="/static/scripts/login.js")
