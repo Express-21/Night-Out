@@ -63,13 +63,14 @@ const attach = (app, data) => {
         const model = {
             title: req.body.title,
             description: req.body.description,
+            town: req.body.town,
             address: req.body.address,
             openingHours: req.body.openingHours,
             email: req.body.email,
             comments: [],
         };
-
-        data.places.create(model)
+        console.log(model);
+        data.places.create(model, data.towns)
         .then( (place) => {
                 console.log(place.id);
                 return res.redirect('/places/' + place.id);

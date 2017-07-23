@@ -16,9 +16,9 @@ class Comments extends BaseData {
                     place.comments = [];
                 }
                 while (place.comments.length >= 5) {
-                    place.comments.shift();
+                    place.comments.pop();
                 }
-                place.comments.push(model);
+                place.comments.unshift(model);
                 return places.updateById(place);
             } );
     }
