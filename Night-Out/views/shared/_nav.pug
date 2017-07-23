@@ -34,11 +34,11 @@ mixin nav
                                     | Hi, #{user.username}
                             ul(class="dropdown-menu navbar-inverse")
                                 li
-                                    a(href="/users/edit/#{user.userId}") 
+                                    a(href="/users/edit/" + user.userId)
                                         | EDIT PROFILE
                                 li
                                     a(href="/users/logout")     
-                                    | LOGOUT
+                                        | LOGOUT
                     else
                         li
                             a(href="/users/login")
