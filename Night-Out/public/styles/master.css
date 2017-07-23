@@ -1,5 +1,6 @@
 header, body, nav, ul, li, div, p, span, a, footer{
     font-family: openSans !important;
+    font-size:14px;
 }
 
 @font-face {
@@ -8,12 +9,12 @@ header, body, nav, ul, li, div, p, span, a, footer{
 }
 
 .backImage{
-    background-image: url("../images/backgroung/20050214_10203692462309248_193386654_o.jpg");
-    background-repeat: no-repeat;
-    background-size: 100% auto;
+    background-image: url("../images/background.jpg");
+    background-repeat: repeat-y;
+    background-size: 100%;
     background-position: center top;
     background-attachment: fixed;
-    height:800px;
+    height:700px;
     margin-top:73px;
 }
 
@@ -27,9 +28,9 @@ div.transparent{
     min-height: 75px;
     margin:0;
     padding:0;
-    position: fixed; /* Set the navbar to fixed position */
-    top: 0; /* Position the navbar at the top of the page */
-    width: 100%; /* Full width */
+    position: fixed;
+    top: 0;
+    width: 100%;
     z-index: 10000;
 }
 
@@ -43,16 +44,59 @@ a.navbar-brand{
 
 .dropdown-menu>li:hover a{
     background-color: black;
-    color:#9d9d9d;
+    color:white;
 }
 
 div.transparent{
     height:inherit;
 }
 
+/*FOOTER*/
+
 footer{
     color:#9d9d9d;
     background-color: #222222;
+}
+
+/* Style all font awesome icons */
+.fa {
+    padding: 3px;
+    padding-top:7px;
+    font-size: 25px;
+    width: 40px;
+    height:40px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+}
+
+/* Add a hover effect if you want */
+.fa:hover {
+    opacity: 0.7;
+}
+
+/* Set a specific color for each brand */
+
+/* Facebook */
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+
+/* Twitter */
+.fa-twitter {
+    background: #55ACEE;
+    color: white;
+}
+
+.fa-google-plus{
+    background-color: #DD4B39;
+    color: white;    
+}
+
+.fa-linkedin{
+    background-color: #007BB5;
+    color: white;
 }
 
 
