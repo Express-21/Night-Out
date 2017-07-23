@@ -8,6 +8,7 @@ block content
                     div(class="panel-heading")
                         h3(class="panel-title")
                             | LOGIN
+<<<<<<< HEAD
                     div(class="panel-body blur-box")
                         form(accept-charset="UTF-8" role="form" action="/users/login" method="POST")
                         fieldset
@@ -39,3 +40,29 @@ block additionalCss
 
 block additionalScripts
     script(src="/static/scripts/login.js")
+=======
+                    div(class="panel-body")
+                        form(accept-charset="UTF-8" role="form" action="/users/login" method="POST")
+                            fieldset
+                                if (messages.error)
+                                    span
+                                        =messages.error
+                                div(class="form-group")
+                                    label(for="username")
+                                        | USERNAME:
+                                    input(class="form-control" placeholder="Username" name="username" type="text")
+                                div(class="form-group")
+                                    label(for="password")
+                                        | PASSWORD:
+                                    input(class="form-control" placeholder="Password" name="password" type="password" value="")
+                                div(class="checkbox")
+                                    label
+                                        input(name="remember" type="checkbox" value="Remember Me")
+                                        | Remember Me
+                                        div
+                                            a(href="/register")
+                                                | Don't have an account?
+                                            a(href="/lostpass")
+                                                |  Forgot your password?
+                                input(class="btn btn-lg btn-success btn-block" type="submit" value="Login")
+>>>>>>> efcebc66978204754b46c56a72427b434df11965
