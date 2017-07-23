@@ -11,6 +11,9 @@ block content
                     div(class="panel-body")
                         form(accept-charset="UTF-8" role="form")
                         fieldset
+                            if (messages.error)
+                                span
+                                    =messages.error
                             div(class="form-group")
                                 label(for="username")
                                     | USERNAME:
