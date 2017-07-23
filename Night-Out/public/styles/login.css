@@ -1,0 +1,79 @@
+.vertical-offset-100{
+    padding-top:100px;
+}
+
+div.panel.panel-default{
+    border-color: black;
+}
+
+div.panel-heading{
+    height: 60px;
+    background-color: #9d9d9d !important;
+    color:white !important;
+}
+
+h3.panel-title{
+    font-size: 20px;
+}
+
+.blur-box {
+    /*background-color: black;*/
+    box-shadow: 5px 5px 20px 5px black;
+}
+
+@media (min-width: 992px){
+    .col-md-offset-4 {
+        margin-left: 25%;
+    }
+    .col-md-4 {
+        width: 50%;
+    }
+}
+
+@media (max-width: 992px){
+    div.panel.panel-default.blur-box {
+        margin-left: 60px;
+        margin-right: 100px;
+    }
+}
+
+input{
+    background-color: black !important;
+    background-image: none;
+    color: #9d9d9d;
+}
+
+input[type="submit"]{
+    background-color: #9d9d9d !important;
+    color:white;
+    border-radius:2px;
+}
+
+input[type="submit"]:hover{
+    background-color:rgba(161, 107, 14, 0.79) !important;
+    color:black;
+}
+
+div.panel.panel-default.blur-box {
+    opacity: 0.80;
+}
+
+div.panel-body.blur-box{
+    background-color: black;
+    opacity: 0.80;
+    
+}
+
+div.help-links{
+    width:100%;
+}
+
+span.register, span.forgotten-pass, span.line{
+    display: inline-block;
+    margin-right:4%;
+}
+
+span.register>a:hover, span.forgotten-pass>a:hover{
+    color:white;
+    text-decoration: none;
+}

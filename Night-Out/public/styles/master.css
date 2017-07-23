@@ -32,6 +32,10 @@ div.container.general{
     padding-right: 30px;
 }
 
+div.backImage>div.container.general{
+    padding-top:20px;
+}
+
 .navbar{
     min-height: 75px;
     margin:0;

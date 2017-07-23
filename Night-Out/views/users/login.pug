@@ -4,12 +4,12 @@ block content
     div(class="container")
         div(class="row vertical-offset-100")
             div(class="col-md-4 col-md-offset-4")
-                div(class="panel panel-default")
+                div(class="panel panel-default blur-box")
                     div(class="panel-heading")
                         h3(class="panel-title")
                             | LOGIN
-                    div(class="panel-body")
-                        form(accept-charset="UTF-8" role="form")
+                    div(class="panel-body blur-box")
+                        form(accept-charset="UTF-8" role="form" action="/users/login" method="POST")
                         fieldset
                             div(class="form-group")
                                 label(for="username")
@@ -19,13 +19,23 @@ block content
                                 label(for="password")
                                     | PASSWORD:
                                 input(class="form-control" placeholder="Password" name="password" type="password" value="")
+                            div(class="help-links")
+                                span(class="register")
+                                    a(href="/register")
+                                        | Don't have an account? 
+                                span(class="line")
+                                    | |
+                                span(class="forgotten-pass")
+                                    a(href="/lostpass")
+                                        |  Forgot your password?
                             div(class="checkbox")
                                 label
                                     input(name="remember" type="checkbox" value="Remember Me")
                                     | Remember Me
-                                    div
-                                        a(href="/register")
-                                            | Don't have an account? 
-                                        a(href="/lostpass")
-                                            |  Forgot your password?
                             input(class="btn btn-lg btn-success btn-block" type="submit" value="Login")
+
+block additionalCss
+    link(rel="stylesheet" href="/static/styles/login.css")
+
+block additionalScripts
+    script(src="/static/scripts/login.js")
