@@ -9,33 +9,33 @@ block content
                         h3(class="panel-title")
                             | LOGIN
                     div(class="panel-body blur-box")
-                        form(accept-charset="UTF-8" role="form" action="/users/login" method="POST")
-                        fieldset
-                            if (messages.error)
- +                              span
- +                                  =messages.error
-                            div(class="form-group")
-                                label(for="username")
-                                    | USERNAME:
-                                input(class="form-control" placeholder="Username" name="username" type="text")
-                            div(class="form-group")
-                                label(for="password")
-                                    | PASSWORD:
-                                input(class="form-control" placeholder="Password" name="password" type="password" value="")
-                            div(class="help-links")
-                                span(class="register")
-                                    a(href="/register")
-                                        | Don't have an account? 
-                                span(class="line")
-                                    | |
-                                span(class="forgotten-pass")
-                                    a(href="/lostpass")
-                                        |  Forgot your password?
-                            div(class="checkbox")
-                                label
-                                    input(name="remember" type="checkbox" value="Remember Me")
-                                    | Remember Me
-                            input(class="btn btn-lg btn-success btn-block" type="submit" value="Login")
+                        form(action="/users/login" method="post")
+                            fieldset
+                                if (messages.error)
+                                    span
+                                        =messages.error
+                                div(class="form-group")
+                                    label(for="username")
+                                        | USERNAME:
+                                    input(class="form-control" placeholder="Username" name="username" type="text")
+                                div(class="form-group")
+                                    label(for="password")
+                                        | PASSWORD:
+                                    input(class="form-control" placeholder="Password" name="password" type="password" value="")
+                                div(class="help-links")
+                                    span(class="register")
+                                        a(href="/register")
+                                            | Don't have an account? 
+                                    span(class="line")
+                                        | |
+                                    span(class="forgotten-pass")
+                                        a(href="/lostpass")
+                                            |  Forgot your password?
+                                div(class="checkbox")
+                                    label
+                                        input(name="remember" type="checkbox" value="Remember Me")
+                                        | Remember Me
+                                input(class="btn btn-lg btn-success btn-block" type="submit" value="Login")
 
 block additionalCss
     link(rel="stylesheet" href="/static/styles/login.css")

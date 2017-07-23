@@ -38,7 +38,7 @@ h3.panel-title{
 }
 
 input{
-    background-color: black !important;
+    background-color: rgb(250, 255, 189) !important;
     background-image: none;
     color: #9d9d9d;
 }
