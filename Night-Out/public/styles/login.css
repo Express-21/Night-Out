@@ -77,3 +77,7 @@ span.register>a:hover, span.forgotten-pass>a:hover{
     color:white;
     text-decoration: none;
 }
+
+input[type="textarea"]{
+    height: 100px;
+}
