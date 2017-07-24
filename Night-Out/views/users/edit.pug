@@ -1,16 +1,16 @@
 extends ../shared/_master
 
 block content
-    != messages()
+    //!= messages()
 
     .container
         h1 Profile of:
         =model.username
         h2 Image:
-        img(src='/uploads/' + context.stringProfilePicture, alt='Profile picture')
-        if context._id.toString() === currentUserId
-            form(method='post', enctype='multipart/form-data')
-                input(type='file', name='imageupload')
+        img(src='/static/uploads/' + model.stringProfilePicture, alt='Profile picture')
+        if model.id === user.userId
+            form(action="/users/edit/" + user.userId, method='post', enctype='multipart/form-data')
+                input(type='file', name='imageUpload')
                 input(type='submit', name='uploadimage', value='Upload Image')
         h2 Email:
-        =context.email
+        =model.email

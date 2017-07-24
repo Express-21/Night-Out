@@ -1,4 +1,17 @@
 const passport = require('passport');
+const multer = require('multer');
+const path = require('path');
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './public/uploads');
+    },
+    filename: (req, file, cb) => {
+        cb(null, '' + req.user.id + path.extname(file.originalname));
+    },
+});
+
+const upload = multer({ storage }).single('imageUpload');
 
 const attach = (app, data) => {
     app.get('/users/login', (req, res) => {
@@ -23,16 +36,16 @@ const attach = (app, data) => {
                 });
             })(req, res, next);
         });
-    // temp for testing
     app.get('/users/logout', (req, res) => {
         req.logout();
         res.redirect('/');
     });
 
-    app.post('/users/logout', (req, res) => {
-        req.logout();
-        res.redirect('/');
-    });
+    // temp for testing
+    //app.post('/users/logout', (req, res) => {
+    //    req.logout();
+    //    res.redirect('/');
+    //});
 
     app.get('/users/register', (req, res) => {
         res.render('users/register.pug');
@@ -76,6 +89,36 @@ const attach = (app, data) => {
                 } );
             });
     });
+    app.get( '/users/edit/:id', ( req, res ) => {
+        if (!req.user) {
+            return res.redirect('/404');
+        }
+        if (req.params.id !== req.user._id.toString()) {
+            return res.redirect('/users/edit/' + req.user.id);
+        }
+        return res.render('users/edit.pug', {
+            model: req.user,
+        });
+    });
+
+    app.post('/users/edit/:id', (req, res) => {
+        upload(req, res, (err) => {
+            if (err) {
+                console.log(err);
+                return false;
+            }
+            data.users.findById( req.user.id )
+                .then((user) => {
+                    user.stringProfilePicture = req.file.filename;
+                    return data.users.updateById( user );
+                })
+                .then( (user) => {
+                    res.render('users/edit.pug', {
+                        model: user,
+                    });
+                });
+        });
+    });
 
     app.get('/users/:id', (req, res) => {
         // const id = parseInt(req.params.id, 10);
@@ -91,16 +134,6 @@ const attach = (app, data) => {
         return res.render('users/profile.pug', {
             model: req.user,
         });
-    });
-
-    app.get('/users/edit/:id', (req, res) => {
-        res.render('users/edit');
-    });
-
-    app.post('/users/edit/:id', (req, res) => {
-        // res.render('users/edit');
-        // validate input
-        res.send('OK');
     });
 };
 
