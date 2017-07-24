@@ -10,6 +10,10 @@ class Places extends BaseData {
         towns.append(model.town);
         return super.create(model);
     }
+
+    createEmpty() {
+        return super.create( {} );
+    }
 }
 
 module.exports = Places;

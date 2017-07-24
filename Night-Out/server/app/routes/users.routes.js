@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
 const limits = {
     fieldNameSize: 100,
     fileSize: 1024 * 1024,
-}
+};
 
 const upload = multer( { storage, limits } ).single( 'imageUpload' );
 
@@ -109,7 +109,6 @@ const attach = (app, data) => {
     app.post('/users/edit/:id', (req, res) => {
         upload(req, res, (err) => {
             if (err) {
-                console.log(err);
                 let message;
                 switch ( err.code ) {
                     case 'LIMIT_FILE_SIZE':
