@@ -77,22 +77,13 @@ const attach = (app, data) => {
         });
     });
 
-    app.get('/places/category/restaurants', (req, res) => {
+    app.get('/places/category/:category', (req, res) => {
         const category = getCategoryByUrl(req.url);
-        const placesCategory = data.places.getAll()
-                                    .filter(category);
+        const placesCategory = data.places.filter({ category });
 
         res.render('places/category.pug', {
             models: placesCategory,
         });
-    });
-
-    app.get('/places/category/bars', (req, res) => {
-        res.redirect('/places/category/restaurants');
-    });
-
-    app.get('/places/category/clubs', (req, res) => {
-        res.redirect('/places/category/restaurants');
     });
 
     app.get('/places/create', (req, res) => {

@@ -47,6 +47,10 @@ div.backImage>div.container.general{
     z-index: 10000;
 }
 
+.dropdown-menu>li>a{
+    color:#9d9d9d;
+}
+
 a.navbar-brand{
     padding-top:3px;
 }

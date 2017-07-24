@@ -21,7 +21,9 @@ block content
                 | City:
             input(name="town", type="text", required="required")
         div
-            select
+            label(for="category") 
+                | Category:
+            select(name="category")
                 option(value="restaurants")
                     | Restaurants
                 option(value="bars")
