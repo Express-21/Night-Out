@@ -85,3 +85,7 @@ input[type="textarea"]{
 .vertical-offset-100 {
     padding-top: 50px;
 }
+
+#username.alert-text {
+    color: rgb(200, 50, 50) !important;
+}

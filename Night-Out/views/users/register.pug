@@ -17,7 +17,7 @@ block content
                                 div(class="form-group")
                                     label(for="username")
                                         | USERNAME:
-                                    input(class="form-control" placeholder="Username" name="username" type="text" required="required")
+                                    input#username(class="form-control" placeholder="Username" name="username" type="text" required="required")
                                 div(class="form-group")
                                     label(for="email")
                                         | E-MAIL:
@@ -44,5 +44,5 @@ block additionalCss
     link(rel="stylesheet" href="/static/styles/login.css")
 
 block additionalScripts
-
+    script(src='/static/scripts/register.js')
 
