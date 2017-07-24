@@ -11,7 +11,12 @@ const storage = multer.diskStorage({
     },
 });
 
-const upload = multer({ storage }).single('imageUpload');
+const limits = {
+    fieldNameSize: 100,
+    fileSize: 1024 * 1024,
+}
+
+const upload = multer( { storage, limits } ).single( 'imageUpload' );
 
 const attach = (app, data) => {
     app.get('/users/login', (req, res) => {
@@ -105,7 +110,20 @@ const attach = (app, data) => {
         upload(req, res, (err) => {
             if (err) {
                 console.log(err);
-                return false;
+                let message;
+                switch ( err.code ) {
+                    case 'LIMIT_FILE_SIZE':
+                    {
+                        message = 'File too large! Max size is 1MB.';
+                        break;
+                    }
+                    default:
+                    {
+                        message = err.code;
+                    }
+                }
+                req.flash( 'error', message );
+                return res.redirect( '/users/edit/' + req.user.id );
             }
             data.users.findById( req.user.id )
                 .then((user) => {
@@ -114,7 +132,7 @@ const attach = (app, data) => {
                 })
                 .then( (user) => {
                     res.render('users/edit.pug', {
-                        model: user,
+                        model: req.user,
                     });
                 });
         });

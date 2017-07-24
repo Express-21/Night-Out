@@ -12,7 +12,7 @@ block content
                         form(action="/users/login" method="post")
                             fieldset
                                 if (messages.error)
-                                    span
+                                    span(class='alert alert-danger')
                                         =messages.error
                                 div(class="form-group")
                                     label(for="username")
