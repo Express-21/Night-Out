@@ -21,6 +21,14 @@ block content
                 | City:
             input(name="town", type="text", required="required")
         div
+            select
+                option(value="restaurants")
+                    | Restaurants
+                option(value="bars")
+                    | Bars & Pubs
+                option(value="clubs")
+                    | Clubs & Music
+        div
             label(for="address") 
                 | Address:
             input(name="address", type="text", required="required")

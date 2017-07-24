@@ -10,6 +10,11 @@ const storage = multer.diskStorage( {
     },
 } );
 
+const getCategoryByUrl = (url) => {
+    const urlParts = url.split('/');
+    return urlParts[urlParts.length - 1];
+};
+
 const limits = {
     fieldNameSize: 100,
     fileSize: 1024 * 1024,
@@ -70,6 +75,24 @@ const attach = (app, data) => {
             location: towns,
             type: type,
         });
+    });
+
+    app.get('/places/category/restaurants', (req, res) => {
+        const category = getCategoryByUrl(req.url);
+        const placesCategory = data.places.getAll()
+                                    .filter(category);
+
+        res.render('places/category.pug', {
+            models: placesCategory,
+        });
+    });
+
+    app.get('/places/category/bars', (req, res) => {
+        res.redirect('/places/category/restaurants');
+    });
+
+    app.get('/places/category/clubs', (req, res) => {
+        res.redirect('/places/category/restaurants');
     });
 
     app.get('/places/create', (req, res) => {
