@@ -1,27 +1,32 @@
 extends ../shared/_master
 
+block additionalCss
+    link(rel="stylesheet" href="/static/styles/usersAll.css")
+
 block content
-    h1
-        | Registered users
-    div
-        input(type="search", name="searchField", placeholder = "Search...")
-        button
-            i(class="fa fa-search")
-    div
-        span 
-            | Username
-        span
-            | Email
-        span
-            | Registration date
-    div
-        ul
-            each user in model
-                li
-                    span
-                        a(href="")
-                            =user.username
-                    span                
-                        =user.email
-                    span
-                        =user.regDate
+    div(class="container")
+        h1
+            | Registered users
+        div
+            input(type="search", name="searchField", placeholder = "Search...")
+            button
+                i(class="fa fa-search")
+        div
+            span 
+                | Username
+            span
+                | Nationality
+        div
+            ul
+                each user in model
+                    li
+                        span
+                            a(href="/users/"+user.id)
+                                img(src="/static/uploads/" + user.stringProfilePicture)
+    
+                        span
+                            a(href="/users/"+user.id)
+                                =user.username
+                        span
+                            =user.nationality
+    
