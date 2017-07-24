@@ -1,46 +1,64 @@
 extends ../shared/_master
 
 block content
-    form( method='POST', action='/places/create' enctype='multipart/form-data')
-        div
-            if (messages.error)
-                span(class='alert alert-danger')
-                    =messages.error
-            label(for="Upload image")
-            input(type="file" value="Choose File" name="imageUpload" accept='image/*')
-        div
-            label(for="title") 
-                | Place Title:
-            input(name="title", type="text", required="required")
-        div
-            label(for="description") 
-                | Description:
-            input(name="description", type="textarea", required="required")
-        div
-            label(for="town") 
-                | City:
-            input(name="town", type="text", required="required")
-        div
-            label(for="category") 
-                | Category:
-            select(name="category")
-                option(value="restaurants")
-                    | Restaurants
-                option(value="bars")
-                    | Bars & Pubs
-                option(value="clubs")
-                    | Clubs & Music
-        div
-            label(for="address") 
-                | Address:
-            input(name="address", type="text", required="required")
-        div
-            label(for="openingHours") 
-                | Opening hours:
-            input(name="openingHours", type="text", required="required")
-        div
-            label(for="email") 
-                | Contact e-mail address:
-            input(name="email", type="email", required="required")
-        input(type="submit", value="Create")
+    div(class="container")
+        div(class="row vertical-offset-100")
+            div(class="col-md-4 col-md-offset-4")
+                div(class="panel panel-default blur-box")
+                    div(class="panel-heading")
+                        h3(class="panel-title")
+                            | ADD NEW PLACE
+                    div(class="panel-body blur-box")
+                        form(action="/places/create" method="post")
+                            fieldset
+                                if (messages.error)
+                                    span
+                                        =messages.error
+                                div(class="form-group")
+                                    label(for="Upload image")
+                                        | 
+                                    input( class="form-control" type="file" value="Choose File" name="imageUpload" accept='image/*')
+                                div(class="form-group")
+                                    label(for="title")
+                                        | TITLE:
+                                    input#title(class="form-control" placeholder="Title" name="title" type="text" pattern=".{3,100}" title="Please provide a title between 2 and 100 symbols long." required="required")
+                                div(class="form-group")
+                                    label(for="description")
+                                        | DESCRIPTION:
+                                    input(class="form-control" placeholder="Description" name="description" type="textarea" )
+                                div(class="form-group")
+                                    label(for="city")
+                                        | CITY:
+                                    input(class="form-control" id="city" placeholder="City" name="city" type="text" required="required")
+                                div(class="form-group")
+                                    label(for="category")
+                                        | CATEGORY:
+                                    select(class="form-control" id="select"  name="select" required="required")
+                                        option(value="restaurants")
+                                            | Restaurants
+                                        option(value="bars")
+                                            | Bars & Pubs
+                                        option(value="clubs")
+                                            | Clubs & Music
+                                div(class="form-group")
+                                    label(for="address")
+                                        | ADDRESS:
+                                    input(class="form-control" placeholder="Address" name="address" type="text")
+                                div(class="form-group")
+                                    label(for="openHours")
+                                        | OPENING HOURS:
+                                    input(class="form-control" placeholder="Opening Hours" name="openHours" type="text" )
+                                div(class="form-group")
+                                    label(for="email")
+                                        | CONTACT E-MAIL ADDRESS:
+                                    input(class="form-control" placeholder="E-mail Address" name="email" type="email")
+                                input(class="btn btn-lg btn-success btn-block" type="submit" value="CREATE")
+block additionalCss
+    link(rel="stylesheet" href="/static/styles/login.css")
+
+block additionalScripts
+    script(src='/static/scripts/register.js')
+
+
+
         

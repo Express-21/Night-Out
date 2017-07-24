@@ -12,6 +12,10 @@ const attach = (app) => {
         res.render('general/contacts.pug');
     });
 
+    app.get('/about', (req, res) => {
+        res.render('general/about.pug');
+    });
+
     app.get('/404', (req, res) => {
         res.render('general/error404.pug');
     });

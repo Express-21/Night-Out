@@ -15,7 +15,7 @@ header, body, nav, ul, li, div, p, span, a, footer{
     background-size: 100%;
     background-position: center top;
     background-attachment: fixed;
-    height:630px;
+    min-height:650px;
     margin-top:55px;
     z-index:-100;
 }
