@@ -24,33 +24,27 @@ const attach = (app, data) => {
     });
 
     app.post('/users/login', (req, res, next) => {
-        // validate input
-            passport.authenticate('local', (error, user) => {
-                if (error) {
-                    return next(error);
+        passport.authenticate( 'local', ( error, user ) => {
+            if ( error ) {
+                return next( error );
+            }
+            if ( !user ) {
+                req.flash( 'error', 'Incorrect username or password!' );
+                return res.status( 401 ).redirect( '/users/login' );
+            }
+            req.logIn( user, ( err ) => {
+                if ( err ) {
+                    return next( err );
                 }
-                if (!user) {
-                    req.flash('error', 'Incorrect username or password!');
-                    return res.redirect('/users/login');
-                }
-                req.logIn(user, (err) => {
-                    if (err) {
-                        return next(err);
-                    }
-                    return res.redirect('/users/' + user.id);
-                });
-            })(req, res, next);
-        });
+                return res.redirect( '/users/' + user.id );
+            } );
+        } )( req, res, next );
+    } );
+
     app.get('/users/logout', (req, res) => {
         req.logout();
         res.redirect('/');
     });
-
-    // temp for testing
-    //app.post('/users/logout', (req, res) => {
-    //    req.logout();
-    //    res.redirect('/');
-    //});
 
     app.get('/users/register', (req, res) => {
         res.render('users/register.pug');
@@ -67,26 +61,43 @@ const attach = (app, data) => {
             favourites: [],
         };
 
-        data.users.create( model )
-            .then((user) => {
-            req.logIn( user, (err) => {
-                if (err) {
-                    return next(err);
+        if ( !data.users.validator.isValid( model ) ) {
+            req.flash( 'error', 'Data does not meet requirements!' );
+            return res.status( 400 ).redirect( '/users/register' );
+        }
+
+        data.users.findUser( model.username )
+            .then( ( user ) => {
+                if ( user ) {
+                    console.log( 'Username already exists!' );
+                    return Promise.reject( 'Username already exists!' );
                 }
-                return res.redirect('/users/' + user.id);
+                return data.users.filter( { email: model.email } );
+            } )
+            .then( ( users ) => {
+                console.log( users );
+                if ( users.length ) {
+                    console.log( 'Email already used!' );
+                    return Promise.reject( 'Email already used!' );
+                }
+                return data.users.create( model );
+            } )
+            .then((user) => {
+                req.logIn( user, ( err ) => {
+                    if ( err ) {
+                        return next( err );
+                    }
+                    return res.redirect( '/users/' + user.id );
+                } );
+            } )
+            .catch( ( err ) => {
+                console.log( err );
+                req.flash( 'error', err );
+                return res.status( 400 ).redirect( '/users/register' );
             });
-        });
     });
 
-    // ONLY FOR TEST!
-    // const users = [
-    //    {
-    //        'id': 1,
-    //        'username': 'misha',
-    //        'email': 'some@mail.com',
-    //    },
-    // ];
-//
+    // continue ->
     app.get('/users/all', (req, res) => {
         data.users.getAll()
             .then((users) => {
@@ -95,6 +106,7 @@ const attach = (app, data) => {
                 } );
             });
     });
+
     app.get( '/users/edit/:id', ( req, res ) => {
         if (!req.user) {
             return res.redirect('/404');

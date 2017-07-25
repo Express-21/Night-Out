@@ -89,3 +89,7 @@ input[type="textarea"]{
 #username.alert-text {
     color: rgb(200, 50, 50) !important;
 }
+
+#usernameError.alert-text {
+    color: rgb(200, 50, 50);
+}

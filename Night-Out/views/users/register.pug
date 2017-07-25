@@ -10,10 +10,10 @@ block content
                             | REGISTER
                     div(class="panel-body blur-box")
                         form(action="/users/register" method="post")
+                            if (messages.error)
+                                span(class="alert alert-danger")
+                                    =messages.error
                             fieldset
-                                if (messages.error)
-                                    span
-                                        =messages.error
                                 div(class="form-group")
                                     label(for="username")
                                         | USERNAME:

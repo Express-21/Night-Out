@@ -1,5 +1,10 @@
+const Validator = require( '../utils/validator' );
+
 class User {
     static isValid(model) {
+        if ( !Validator.validateUser( model ) ) {
+            return false;
+        }
         return true;
     }
 

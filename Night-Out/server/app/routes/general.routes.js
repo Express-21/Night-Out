@@ -20,6 +20,10 @@ const attach = (app) => {
         res.render('general/error404.pug');
     });
 
+    app.get( '/error', ( req, res ) => {
+        res.render( 'general/general-error.pug' );
+    } );
+
     app.get('/logout', (req, res) => {
         // req.logout();
         res.redirect('/home');

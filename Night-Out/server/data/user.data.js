@@ -23,23 +23,12 @@ class Users extends BaseData {
             username: { $eq: username },
         })
             .then((user) => {
+                if ( !user ) return user;
                 return this.ModelClass.toViewModel(user);
             } );
     }
 
-
     validatePassword( user, password ) {
-        //return this.collection.findOne({
-        //    username,
-        //})
-        //.then((user)=>{
-        //    if (!user) {
-        //        throw new Error('Invalid user!');
-        //    }
-        //    if ((user.password) !== hashPassword(password)){
-        //         throw new Error('Invalid password!');
-        //    }
-        //    return true;
         return (user.password) === hashPassword(password);
     }
 }
