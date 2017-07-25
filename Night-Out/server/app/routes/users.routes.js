@@ -63,6 +63,7 @@ const attach = (app, data) => {
             email: req.body.email,
             password: req.body.password,
             stringProfilePicture: 'user.png',
+            nationality: req.body.nationality,
             favourites: [],
         };
 

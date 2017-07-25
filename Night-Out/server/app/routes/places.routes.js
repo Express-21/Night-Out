@@ -25,12 +25,15 @@ const upload = multer( { storage, limits } ).single( 'imageUpload' );
 const attach = (app, data) => {
     app.get('/places/all', (req, res) => {
         // const type = req.params.type;
-        const type = 'bar';
-        res.render('places/all.pug', {
-            model: places,
-            location: towns,
-            type: type,
-        });
+        // const type = 'bar';
+        Promise.all( [data.places.getAll(), data.towns.getAll()] )
+            .then( ( [places, towns] ) => {
+                res.render( 'places/all.pug', {
+                    model: places,
+                    location: towns,
+                    //type: type,
+                } );
+            } );
     });
 
     app.get('/places/category/:category', (req, res) => {
@@ -72,11 +75,12 @@ const attach = (app, data) => {
                     }
                     emptyPlace.title = req.body.title;
                     emptyPlace.description = req.body.description;
-                    emptyPlace.town = req.body.town;
+                    emptyPlace.town = req.body.city;
                     emptyPlace.address = req.body.address;
-                    emptyPlace.openingHours = req.body.openingHours;
+                    emptyPlace.openingHours = req.body.openHours;
                     emptyPlace.email = req.body.email;
                     emptyPlace.picUrl = req.file.filename;
+                    emptyPlace.category = req.body.select;
                     emptyPlace.comments = [];
                     return data.places.updateById( emptyPlace )
                         .then( ( place ) => {

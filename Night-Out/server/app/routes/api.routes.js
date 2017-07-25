@@ -17,6 +17,11 @@ const attach = (app, data) => {
                 return res.send( towns );
             } );
     } );
+    app.get( '/api/places/names', ( req, res ) => {
+        data.places.getAll()
+            .then( ( places ) => places.map( ( place ) => place.title ) )
+            .then( ( places ) => res.send( places ) );
+    } );
 };
 
 module.exports = attach;

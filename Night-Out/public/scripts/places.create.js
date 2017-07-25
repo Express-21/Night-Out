@@ -1,4 +1,3 @@
-console.log( 'here' )
 fetch( '/api/towns' )
     .then( ( res ) => {
         return res.json( {} );
