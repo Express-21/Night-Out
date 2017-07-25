@@ -16,6 +16,22 @@ class Comment {
 
         return viewModel;
     }
+
+    static escapeComment( comment ) {
+        const filter = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            '\'': '&#x27;',
+            '/': '&#x2F;',
+        };
+        let retStr = comment;
+        for ( let char in filter ) {
+            retStr = retStr.replace( new RegExp( char, 'g' ), filter[char] );
+        }
+        return retStr;
+    }
 }
 
 module.exports = Comment;

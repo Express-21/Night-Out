@@ -98,7 +98,6 @@ const attach = (app, data) => {
                 if ( !place ) {
                     return res.redirect( '/404' );
                 }
-                console.log(place.comments);
                 return res.render( 'places/details.pug', {
                     model: place,
                 } );

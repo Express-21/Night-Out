@@ -14,7 +14,7 @@ block content
                 =model.address
             div
                 a(href="/places/"+model.id+"/contacts")
-            // check if user is Authenticated
+
             div(class="comments")
                 each comment in model.comments
                     div(class="single-comment")
@@ -22,8 +22,12 @@ block content
                             =comment.username
                         p
                             =comment.content
+
             div(class="new-comment")
+            if (user.loggedIn)
                 form(action="/places/"+model.id method="post")
                     input(type="textarea" name="content" placeholder="Add your comment here...")
-                    input(type="submit", value="Comment") 
-
+                    input(type="submit", value="Comment")
+            else
+                a(href='/users/login')
+                    |Please login if you want to comment!

@@ -7,6 +7,8 @@ class Comments extends BaseData {
     }
 
     create( model, places ) {
+        // model.content = this.ModelClass.escapeComment( model.content );
+        // unnecessary --> Pug escapes automatically :D
         return super.create(model)
         .then( (comment) => {
                 return places.findById( comment.placeId );
