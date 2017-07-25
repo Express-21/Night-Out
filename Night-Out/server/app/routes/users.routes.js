@@ -100,7 +100,12 @@ const attach = (app, data) => {
     // continue ->
     app.get('/users/all', (req, res) => {
         if (req.user) {
-            res.render('users/all.pug');
+            data.users.getAll()
+            .then((users) => {
+                res.render('users/all.pug', {
+                    model: users,
+                });
+            });
         } else {
             const message = 'You need to be logged to reach the page!';
             req.flash('error', message);
