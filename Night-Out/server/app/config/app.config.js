@@ -15,7 +15,7 @@ const configApp = (app) => {
     const staticPath = path.join(__dirname, '../../../public/');
     app.use('/static', express.static(staticPath));
 
-    app.use('libs',
+    app.use( '/libs',
         express.static(
             path.join(__dirname, '../../../node_modules/'))
     );

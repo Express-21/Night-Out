@@ -10,6 +10,13 @@ const attach = (app, data) => {
                 return res.send( users );
             } );
     } );
+    app.get( '/api/towns', ( req, res ) => {
+        data.towns.getAll()
+            .then( ( towns ) => towns.map( ( town ) => town.name ) )
+            .then( ( towns ) => {
+                return res.send( towns );
+            } );
+    } );
 };
 
 module.exports = attach;

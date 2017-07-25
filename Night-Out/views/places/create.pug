@@ -9,7 +9,7 @@ block content
                         h3(class="panel-title")
                             | ADD NEW PLACE
                     div(class="panel-body blur-box")
-                        form(action="/places/create" method="post")
+                        form(action="/places/create" method="post" enctype='multipart/form-data')
                             fieldset
                                 if (messages.error)
                                     span
@@ -29,7 +29,7 @@ block content
                                 div(class="form-group")
                                     label(for="city")
                                         | CITY:
-                                    input(class="form-control" id="city" placeholder="City" name="city" type="text" required="required")
+                                    input(class="form-control" id="city" placeholder="City" name="city" type="text" required="required" data-provide="typeahead" autocomplete="off")
                                 div(class="form-group")
                                     label(for="category")
                                         | CATEGORY:
@@ -57,8 +57,9 @@ block additionalCss
     link(rel="stylesheet" href="/static/styles/login.css")
 
 block additionalScripts
-    script(src='/static/scripts/register.js')
-
+    //script(src='/static/scripts/user.register.js')
+    script(src='/libs/bootstrap-3-typeahead/bootstrap3-typeahead.js')
+    script(src='/static/scripts/places.create.js')
 
 
         
