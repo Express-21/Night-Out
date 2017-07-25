@@ -25,7 +25,7 @@ block content
                                 div(class="form-group")
                                     label(for="password")
                                         | PASSWORD:
-                                    input(class="form-control" id="password" placeholder="Password" name="password" type="password" value="" pattern="((?=.*\d)[a-zA-Z0-9-].{6,20})" title="The password must be at least 6 characters long, containing at least 1 numeric type symbol" required="required")
+                                    input(class="form-control" id="password" placeholder="Password" name="password" type="password" value="" pattern="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$" title="The password must be at least 6 characters long, containing at least 1 numeric type symbol" required="required")
                                 div(class="form-group")
                                     label(for="password-confirm")
                                         | PASSWORD CONFIRMATION:
