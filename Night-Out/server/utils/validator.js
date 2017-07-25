@@ -3,7 +3,7 @@ class Validator {
         if ( !s ) {
             return false;
         }
-        return ( min < s.length ) && ( s.length <= max );
+        return ( min <= s.length ) && ( s.length <= max );
     }
 
     static username( username ) {
@@ -12,7 +12,7 @@ class Validator {
 
     static password( password ) {
         return Validator.stringLength( password, 6, 100 ) &&
-            password.match( /[0-9]/g ).length;
+            (password.match( /[0-9]/g ).length > 0);
     }
 
     static email( email ) {
