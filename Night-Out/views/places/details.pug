@@ -4,7 +4,7 @@ block content
     div
         h1
             =model.name
-        // img(src="model.picUrl")
+        img(src="/static/uploads/"+model.picUrl)
         div
             div
                 =model.description
@@ -30,4 +30,4 @@ block content
                     input(type="submit", value="Comment")
             else
                 a(href='/users/login')
-                    |Please login if you want to comment!
+                    | You need to login to leave a comment.

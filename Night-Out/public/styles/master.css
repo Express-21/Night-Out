@@ -70,6 +70,13 @@ footer{
     background-color: #222222;
 }
 
+
+/*img {
+    width:300px;
+    height:auto;
+    max-height:300px;
+}*/
+
 /* Style all font awesome icons */
 .fa {
     padding: 3px;

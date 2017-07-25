@@ -29,7 +29,7 @@ block content
                                 div(class="form-group")
                                     label(for="city")
                                         | CITY:
-                                    input(class="form-control" id="city" placeholder="City" name="city" type="text" required="required" data-provide="typeahead" autocomplete="off")
+                                    input(class="form-control" id="city" placeholder="City" name="city" type="text" pattern=".{3,}" title="City name must be at least 3 symbols long." required="required" data-provide="typeahead" autocomplete="off")
                                 div(class="form-group")
                                     label(for="category")
                                         | CATEGORY:

@@ -46,8 +46,14 @@ const attach = (app, data) => {
     });
 
     app.get('/places/create', (req, res) => {
+        if (req.user) {
+            res.render('places/create.pug');
+        } else {
+            const message = 'You need to be logged to reach the page!';
+            req.flash('error', message);
+            res.redirect('/users/login');
+        }
         // const type = req.params.type;
-        res.render('places/create.pug');
     });
 
     app.post('/places/create', (req, res, next) => {

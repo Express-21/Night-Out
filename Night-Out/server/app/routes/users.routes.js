@@ -99,12 +99,13 @@ const attach = (app, data) => {
 
     // continue ->
     app.get('/users/all', (req, res) => {
-        data.users.getAll()
-            .then((users) => {
-                res.render( 'users/all.pug', {
-                    model: users,
-                } );
-            });
+        if (req.user) {
+            res.render('users/all.pug');
+        } else {
+            const message = 'You need to be logged to reach the page!';
+            req.flash('error', message);
+            res.redirect('/users/login');
+        }
     });
 
     app.get( '/users/edit/:id', ( req, res ) => {

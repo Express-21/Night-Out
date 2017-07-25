@@ -20,4 +20,14 @@ block content
         div
             intput(class="password-change" type="button")
                 | Change Password
-        input(type="password")
+        div(class="pass-container")
+            label(for="pass")
+                | NEW PASSWORD
+            input(class="form-control" type="password" name="pass" pattern="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$" title="The password must be at least 6 characters long, containing at least 1 numeric type symbol" required="required")
+            label(for="pass-confirm")
+                | PASSWORD CONFIRMATION
+            input(class="form-control" id="confirm_password" name="password-confirm" type="password" value="" required="required")
+
+
+block additionalScripts
+    script(src='/static/scripts/validations.js')
