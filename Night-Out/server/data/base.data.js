@@ -62,6 +62,10 @@ class BaseData {
             });
     }
 
+    removeById( model ) {
+        return this.collection.deleteOne( { _id: new ObjectID( model.id ) } );
+    }
+
     create(model) {
         if (!this._isModelValid(model)) {
             return Promise.reject( 'Invalid model!');

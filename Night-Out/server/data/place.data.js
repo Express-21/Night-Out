@@ -12,7 +12,10 @@ class Places extends BaseData {
     }
 
     createEmpty() {
-        return super.create( {} );
+        return this.collection.insert( {} )
+            .then( ( result )=> {
+                return this.ModelClass.toViewModel( result.ops[0] );
+            } );
     }
 }
 

@@ -97,6 +97,11 @@ const attach = (app, data) => {
                     emptyPlace.picUrl = req.file.filename;
                     emptyPlace.category = req.body.select;
                     emptyPlace.comments = [];
+                    if ( !data.places.validator.isValid( emptyPlace ) ) {
+                        data.places.removeById( emptyPlace );
+                        req.flash( 'error', 'Data does not meet requirements!' );
+                        return res.redirect( '/places/create/' );
+                    }
                     return data.places.updateById( emptyPlace )
                         .then( ( place ) => {
                             data.towns.append( place.town );
@@ -128,6 +133,10 @@ const attach = (app, data) => {
     });
 
     app.post('/places/:id', (req, res) => {
+        if ( !req.user ) {
+            req.flash( 'error', UNAUTHORIZED_MESSAGE );
+            res.status( 403 ).redirect( '/users/login' );
+        }
         const id = req.params.id;
         const model = {
             placeId: id,
@@ -136,9 +145,13 @@ const attach = (app, data) => {
             content: req.body.content,
         };
         data.comments.create( model, data.places )
-            .then( (place) => {
-                return res.redirect('/places/' + place.id );
-            });
+            .then( ( place ) => {
+                return res.redirect( '/places/' + place.id );
+            } )
+            .catch( ( err ) => {
+                req.flash( 'error', 'Something went wrong while retrieving data!<br>' + err );
+                req.status( 500 ).render( 'general/general-error.pug' );
+            } );
     });
 };
 

@@ -1,13 +1,15 @@
+const DEFAULT_MIN_LENGTH = 3,
+    DEFAULT_MAX_LENGTH = 100,
+    DEFAULT_CATEGORIES = ['restaurants', 'bars', 'clubs'];
+
 class Validator {
     static stringLength( s, min, max ) {
+        min = min || DEFAULT_MIN_LENGTH;
+        max = max || DEFAULT_MAX_LENGTH;
         if ( !s ) {
             return false;
         }
         return ( min <= s.length ) && ( s.length <= max );
-    }
-
-    static username( username ) {
-        return Validator.stringLength( username, 3, 100 );
     }
 
     static password( password ) {
@@ -20,8 +22,38 @@ class Validator {
         return template.test( email );
     }
 
+    // <-----user validations----->
+    static username( username ) {
+        return Validator.stringLength( username );
+    }
+
     static nationality( nationality ) {
-        return Validator.stringLength( nationality, 3, 100 );
+        return Validator.stringLength( nationality );
+    }
+
+    // <-----user validations----->
+    static placeName( name ) {
+        return Validator.stringLength( name );
+    }
+
+    static placeDescription( descr ) {
+        return Validator.stringLength( descr, 0, 1000 );
+    }
+
+    static townName( town ) {
+        return Validator.stringLength( town );
+    }
+
+    static category( cat ) {
+        return ( DEFAULT_CATEGORIES.indexOf( cat ) === -1 );
+    }
+
+    static address( addr ) {
+        return Validator.stringLength( addr, 0, 1000 );
+    }
+
+    static openingHours( hrs ) {
+        return Validator.stringLength( hrs, 0, 1000 );
     }
 
     static validateUser( { username, email, password, nationality } ) {
@@ -29,6 +61,16 @@ class Validator {
             Validator.password( password ) &&
             Validator.email( email ) &&
             Validator.nationality( nationality );
+    }
+
+    static validatePlace( { title, description, town, category, address, openingHours, email } ) {
+        return Validator.placeName( title ) &&
+            Validator.placeDescription( description ) &&
+            Validator.townName( town ) &&
+            Validator.category( category ) &&
+            Validator.address( address ) &&
+            Validator.openingHours( openingHours ) &&
+            Validator.email( email );
     }
 }
 

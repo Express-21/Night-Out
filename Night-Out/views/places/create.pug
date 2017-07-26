@@ -25,11 +25,11 @@ block content
                                 div(class="form-group")
                                     label(for="description")
                                         | DESCRIPTION:
-                                    input(class="form-control" placeholder="Description" name="description" type="textarea" )
+                                    input(class="form-control" placeholder="Description" name="description" type="textarea" pattern=".{0,1000}")
                                 div(class="form-group")
                                     label(for="city")
                                         | CITY:
-                                    input(class="form-control" id="city" placeholder="City" name="city" type="text" pattern=".{3,}" title="City name must be at least 3 symbols long." required="required" data-provide="typeahead" autocomplete="off")
+                                    input(class="form-control" id="city" placeholder="City" name="city" type="text" pattern=".{3,100}" title="City name must be at least 3 symbols long." required="required" data-provide="typeahead" autocomplete="off")
                                 div(class="form-group")
                                     label(for="category")
                                         | CATEGORY:
@@ -43,11 +43,11 @@ block content
                                 div(class="form-group")
                                     label(for="address")
                                         | ADDRESS:
-                                    input(class="form-control" placeholder="Address" name="address" type="text")
+                                    input(class="form-control" placeholder="Address" name="address" type="text" pattern=".{0,1000})
                                 div(class="form-group")
                                     label(for="openHours")
                                         | OPENING HOURS:
-                                    input(class="form-control" placeholder="Opening Hours" name="openHours" type="text" )
+                                    input(class="form-control" placeholder="Opening Hours" name="openHours" type="text" pattern=".{0,1000}")
                                 div(class="form-group")
                                     label(for="email")
                                         | CONTACT E-MAIL ADDRESS:
