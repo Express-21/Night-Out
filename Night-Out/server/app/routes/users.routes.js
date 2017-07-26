@@ -17,6 +17,7 @@ const limits = {
 };
 
 const upload = multer( { storage, limits } ).single( 'imageUpload' );
+const UNAUTHORIZED_MESSAGE = 'You need to be logged to reach the page!';
 
 const attach = (app, data) => {
     app.get('/users/login', (req, res) => {
@@ -97,25 +98,28 @@ const attach = (app, data) => {
             });
     });
 
-    // continue ->
     app.get('/users/all', (req, res) => {
-        if (req.user) {
-            data.users.getAll()
-            .then((users) => {
-                res.render('users/all.pug', {
-                    model: users,
-                });
-            });
-        } else {
-            const message = 'You need to be logged to reach the page!';
-            req.flash('error', message);
-            res.redirect('/users/login');
+        if ( !req.user ) {
+            req.flash( 'error', UNAUTHORIZED_MESSAGE );
+            res.status( 403 ).redirect( '/users/login' );
         }
+
+        data.users.getAll()
+            .then( ( users ) => {
+                res.render( 'users/all.pug', {
+                    model: users,
+                } );
+            } )
+            .catch( ( err ) => {
+                req.flash( 'error', 'Something went wrong while retrieving data!<br>' + err );
+                req.status( 500 ).render( 'general/general-error.pug' );
+            });
     });
 
     app.get( '/users/edit/:id', ( req, res ) => {
         if (!req.user) {
-            return res.redirect('/404');
+            req.flash( 'error', UNAUTHORIZED_MESSAGE );
+            res.status( 403 ).redirect( '/users/login' );
         }
         if (req.params.id !== req.user._id.toString()) {
             return res.redirect('/users/edit/' + req.user.id);
@@ -126,6 +130,11 @@ const attach = (app, data) => {
     });
 
     app.post('/users/edit/:id', (req, res) => {
+        if ( !req.user ) {
+            const message = 'You need to be logged to reach the page!';
+            req.flash( 'error', message );
+            res.redirect( '/users/login' );
+        }
         upload(req, res, (err) => {
             if (err) {
                 let message;
@@ -152,21 +161,15 @@ const attach = (app, data) => {
                     res.render('users/edit.pug', {
                         model: req.user,
                     });
+                } )
+                .catch( ( error ) => {
+                    req.flash( 'error', 'Something went wrong while updating data!<br>' + error );
+                    res.status( 500 ).redirect( '/users/edit/' + req.user.id );
                 });
         });
     });
 
     app.get('/users/:id', (req, res) => {
-        // const id = parseInt(req.params.id, 10);
-        // const user = users.find((u)=> u.id === id);
-        // users will come as an array from teh db
-        // if a user is logged in it is attached to the req
-        if (!req.user) {
-            return res.redirect('/404');
-        }
-        if (req.params.id !== req.user._id.toString()) {
-            return res.redirect('/users/' + req.user.id);
-        }
         return res.render('users/profile.pug', {
             model: req.user,
         });

@@ -29,6 +29,7 @@ class BaseData {
             _id: { $eq: id },
         })
             .then( (model) => {
+                if ( !model ) return model;
                 return this.ModelClass.toViewModel(model);
             });
     }
@@ -51,6 +52,9 @@ class BaseData {
     }
 
     updateById( model ) {
+        if ( !this._isModelValid( model ) ) {
+            return Promise.reject( 'Invalid model!' );
+        }
         return this.collection
             .updateOne( { _id: new ObjectID(model.id) }, model )
             .then(() => {
@@ -59,11 +63,6 @@ class BaseData {
     }
 
     create(model) {
-        // console.log('<-------->');
-        // for (var key in model) {
-        //     console.log( key + ': ' + model[key]);
-        // }
-
         if (!this._isModelValid(model)) {
             return Promise.reject( 'Invalid model!');
         }
