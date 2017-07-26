@@ -22,6 +22,10 @@ class Validator {
         return template.test( email );
     }
 
+    static id( id ) {
+        return Validator.stringLength( '' + id, 24, 24 );
+    }
+
     // <-----user validations----->
     static username( username ) {
         return Validator.stringLength( username );
@@ -31,7 +35,7 @@ class Validator {
         return Validator.stringLength( nationality );
     }
 
-    // <-----user validations----->
+    // <-----places validations----->
     static placeName( name ) {
         return Validator.stringLength( name );
     }
@@ -45,7 +49,7 @@ class Validator {
     }
 
     static category( cat ) {
-        return ( DEFAULT_CATEGORIES.indexOf( cat ) === -1 );
+        return ( DEFAULT_CATEGORIES.indexOf( cat ) !== -1 );
     }
 
     static address( addr ) {
@@ -56,6 +60,12 @@ class Validator {
         return Validator.stringLength( hrs, 0, 1000 );
     }
 
+    // <-----comment validations----->
+    static comment( comment ) {
+        return Validator.stringLength( comment, 0, 1000 );
+    }
+
+    // <-----bulk validations----->
     static validateUser( { username, email, password, nationality } ) {
         return Validator.username( username ) &&
             Validator.password( password ) &&
@@ -71,6 +81,13 @@ class Validator {
             Validator.address( address ) &&
             Validator.openingHours( openingHours ) &&
             Validator.email( email );
+    }
+
+    static validateComment( { placeId, userId, username, content } ) {
+        return Validator.id( placeId ) &&
+            Validator.id( userId ) &&
+            Validator.username( username ) &&
+            Validator.comment( content );
     }
 }
 

@@ -1,5 +1,11 @@
+const Validator = require( '../utils/validator' );
+
 class Comment {
     static isValid(model) {
+//        console.log('comment: ' + Validator.validateComment( model ));
+        if ( !Validator.validateComment( model ) ) {
+            return false;
+        }
         return true;
     }
 

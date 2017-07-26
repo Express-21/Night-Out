@@ -111,8 +111,8 @@ const attach = (app, data) => {
                 } );
             } )
             .catch( ( err ) => {
-                req.flash( 'error', 'Something went wrong while retrieving data!<br>' + err );
-                req.status( 500 ).render( 'general/general-error.pug' );
+                req.flash( 'error', 'Something went wrong while retrieving data! ' + err );
+                res.status( 500 ).render( 'general/general-error.pug' );
             });
     });
 
@@ -163,7 +163,7 @@ const attach = (app, data) => {
                     });
                 } )
                 .catch( ( error ) => {
-                    req.flash( 'error', 'Something went wrong while updating data!<br>' + error );
+                    req.flash( 'error', 'Something went wrong while updating data! ' + error );
                     res.status( 500 ).redirect( '/users/edit/' + req.user.id );
                 });
         });

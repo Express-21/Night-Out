@@ -26,7 +26,7 @@ block content
             div(class="new-comment")
             if (user.loggedIn)
                 form(action="/places/"+model.id method="post")
-                    input(type="textarea" name="content" placeholder="Add your comment here..." pattern=".{0,1000})
+                    input(type="textarea" name="content" placeholder="Add your comment here..." pattern=".{0,1000}")
                     input(type="submit", value="Comment")
             else
                 a(href='/users/login')

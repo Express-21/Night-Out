@@ -34,8 +34,8 @@ const attach = (app, data) => {
                 } );
             } )
             .catch( ( err ) => {
-                req.flash( 'error', 'Something went wrong while retrieving data!<br>' + err );
-                req.status( 500 ).render( 'general/general-error.pug' );
+                req.flash( 'error', 'Something went wrong while retrieving data! ' + err );
+                res.status( 500 ).render( 'general/general-error.pug' );
             } );
     });
 
@@ -48,8 +48,8 @@ const attach = (app, data) => {
                 } );
             } )
             .catch( ( err ) => {
-                req.flash( 'error', 'Something went wrong while retrieving data!<br>' + err );
-                req.status( 500 ).render( 'general/general-error.pug' );
+                req.flash( 'error', 'Something went wrong while retrieving data! ' + err );
+                res.status( 500 ).render( 'general/general-error.pug' );
             } );
     });
 
@@ -110,8 +110,8 @@ const attach = (app, data) => {
                 } );
             } )
             .catch( ( err ) => {
-                req.flash( 'error', 'Something went wrong while updating data!<br>' + err );
-                req.status( 500 ).render( 'general/general-error.pug' );
+                req.flash( 'error', 'Something went wrong while updating data! ' + err );
+                res.status( 500 ).render( 'general/general-error.pug' );
             } );
     });
 
@@ -127,8 +127,8 @@ const attach = (app, data) => {
                 } );
             } )
             .catch( ( err ) => {
-                req.flash( 'error', 'Something went wrong while retrieving data!<br>' + err );
-                req.status( 500 ).render( 'general/general-error.pug' );
+                req.flash( 'error', 'Something went wrong while retrieving data! ' + err );
+                res.status( 500 ).render( 'general/general-error.pug' );
             } );
     });
 
@@ -144,13 +144,23 @@ const attach = (app, data) => {
             username: req.user.username,
             content: req.body.content,
         };
-        data.comments.create( model, data.places )
+        if ( !data.comments.validator.isValid( model ) ) {
+            req.flash( 'error', 'Data does not meet requirements!' );
+            return res.redirect( '/places/' + id );
+        }
+        data.places.findById( model.placeId )
+            .then( ( place ) => {
+                if ( !place ) {
+                    return Promise.reject( 'No such place!' );
+                }
+                return data.comments.create( model, data.places );
+            } )
             .then( ( place ) => {
                 return res.redirect( '/places/' + place.id );
             } )
             .catch( ( err ) => {
-                req.flash( 'error', 'Something went wrong while retrieving data!<br>' + err );
-                req.status( 500 ).render( 'general/general-error.pug' );
+                req.flash( 'error', 'Something went wrong while retrieving data! ' + err );
+                res.status( 500 ).render( 'general/general-error.pug' );
             } );
     });
 };
