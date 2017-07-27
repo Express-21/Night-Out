@@ -1,12 +1,12 @@
 extends ../shared/_master
 
 block content
-    div
-        input#search(type="search", name="searchField", placeholder = "Search..." data-provide="typeahead", autocomplete="off")
-        button
+    div(class="filter")
+        input(id="search" class="form-control" type="search" name="searchField" placeholder = "Search..." data-provide="typeahead" autocomplete="off")
+        button(class="btn-search")
             i(class="fa fa-search")
         br
-        div
+        div(class="town-select")
             | Choose your city
             select(name="carlist" form="carform")
                 option(value='') All
@@ -27,7 +27,14 @@ block content
                         =place.type 
                     span
                         =place.address
-
+block additionalCss
+    link(rel="stylesheet" href="/static/styles/search.css")
+    link(rel="stylesheet" href="/static/styles/nice-select.css")
+    
 block additionalScripts
+    script(src='/static/scripts/jquery.nice-select.js')
+    script(src='/static/scripts/nice-initialize.js')
+
     script(src='/libs/bootstrap-3-typeahead/bootstrap3-typeahead.js')
     script(src='/static/scripts/searchByPlace.js')
+

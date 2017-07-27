@@ -1,0 +1,28 @@
+.btn-search{
+    padding-top:2px;
+    box-shadow: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: rgba(36,41,46,0.7);
+}
+
+div.filter input{
+    background-color: rgba(36,41,46,0.7);
+    width:88%;
+    display:inline-block;
+    margin-right:10px;
+}
+
+div.nice-select, .nice-select .list{
+    background-color: rgba(36,41,46,0.7) !important;
+    
+}
+
+.nice-select .option:hover, .nice-select .option.focus, .nice-select .option.selected.focus {
+    background-color: rgba(36,41,46,0.7) !important;
+    color:white;    
+}
+
+div.town-select{
+    margin-top:20px;
+}

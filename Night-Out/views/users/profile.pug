@@ -8,3 +8,18 @@ block content
     h2 
         | Email:
         =model.email
+    h2
+        | My Favourite Places:
+    div
+        each place in model.favourites
+            li
+                img(src="/static/uploads/"+place.picUrl)
+                span
+                    =place.placeTitle
+                span
+                    =place.placeDescr
+                
+
+
+
+    

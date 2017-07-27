@@ -1,8 +1,8 @@
 extends ../shared/_master
 
 block content
-    div
-        input#search(type="search", name="searchField", placeholder = "Search..." data-provide="typeahead", autocomplete="off")
+    div(class="filter")
+        input(id="search" class="form-control" type="search" name="searchField" placeholder = "Search..." data-provide="typeahead" autocomplete="off")
         button
             i(class="fa fa-search")
         br
@@ -20,6 +20,8 @@ block content
         ul
             each place in model
                 li
+                    div
+                        img(src="/static/uploads/"+place.picUrl)
                     span
                         a(href="")
                             =place.title 
