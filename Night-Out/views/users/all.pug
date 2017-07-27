@@ -2,13 +2,16 @@ extends ../shared/_master
 
 block additionalCss
     link(rel="stylesheet" href="/static/styles/usersAll.css")
+block additionalScripts
+    script(src="/static/scripts/searchByName.js")
+    script(src='/libs/bootstrap-3-typeahead/bootstrap3-typeahead.js')
 
 block content
     div(class="container")
         h1
             | Registered users
         div
-            input(type="search", name="searchField", placeholder = "Search...")
+            input#search(type="search", name="searchField", placeholder = "Search...", data-provide="typeahead", autocomplete="off")
             button
                 i(class="fa fa-search")
         div

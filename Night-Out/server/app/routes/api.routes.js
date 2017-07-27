@@ -3,8 +3,8 @@ const passport = require( 'passport' );
 const attach = (app, data) => {
     app.get( '/api/v1/towns', ( req, res ) => {
         data.towns.getAll()
-            .then( ( towns ) => towns.map( ( town ) => town.name ) )
             .then( ( towns ) => {
+                towns = towns.map( ( town ) => town.name );
                 return res.send( towns );
             } )
             .catch( ( err ) => {
@@ -54,8 +54,8 @@ const attach = (app, data) => {
 
     app.get( '/api/v1/users', ( req, res ) => {
         data.users.getAll()
-            .then( ( users ) => users.map( ( user ) => user.username ) )
             .then( ( users ) => {
+                users = users.map( ( user ) => user.username );
                 return res.send( users );
             } )
             .catch( ( err ) => {
@@ -90,7 +90,7 @@ const attach = (app, data) => {
                 }
                 return data.users.create( model );
             } )
-            .then( ( user ) => {
+            .then( () => {
                 return res.status( 200 ).send( 'User successfully added!' );
             } )
             .catch( ( err ) => {
@@ -101,8 +101,8 @@ const attach = (app, data) => {
     app.get( '/api/v1/places', ( req, res ) => {
         if ( Object.keys( req.query ).length === 0 ) {
             data.places.getAll()
-                .then( ( places ) => places.map( ( place ) => place.title ) )
                 .then( ( places ) => {
+                    places = places.map( ( place ) => place.title );
                     return res.status( 200 ).send( places );
                 } )
                 .catch( ( err ) => {
