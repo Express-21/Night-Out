@@ -27,7 +27,7 @@ const attach = (app, data) => {
     app.get('/places/all', (req, res) => {
         Promise.all( [data.places.getAll(), data.towns.getAll()] )
             .then( ( [places, towns] ) => {
-                res.render( 'places/all.pug', {
+                return res.render( 'places/all.pug', {
                     model: places,
                     location: towns,
                     //type: type,
@@ -35,7 +35,7 @@ const attach = (app, data) => {
             } )
             .catch( ( err ) => {
                 req.flash( 'error', 'Something went wrong while retrieving data! ' + err );
-                res.status( 500 ).render( 'general/general-error.pug' );
+                return res.status( 500 ).render( 'general/general-error.pug' );
             } );
     });
 
@@ -43,28 +43,28 @@ const attach = (app, data) => {
         const category = getCategoryByUrl( req.url );
         data.places.filter( { category } )
             .then( ( placesCategory ) => {
-                res.render( 'places/category.pug', {
+                return res.render( 'places/category.pug', {
                     models: placesCategory,
                 } );
             } )
             .catch( ( err ) => {
                 req.flash( 'error', 'Something went wrong while retrieving data! ' + err );
-                res.status( 500 ).render( 'general/general-error.pug' );
+                return res.status( 500 ).render( 'general/general-error.pug' );
             } );
     });
 
     app.get('/places/create', (req, res) => {
         if ( !req.user ) {
             req.flash( 'error', UNAUTHORIZED_MESSAGE );
-            res.status( 403 ).redirect( '/users/login' );
+            return res.status( 403 ).redirect( '/users/login' );
         }
-        res.render( 'places/create.pug' );
+        return res.render( 'places/create.pug' );
     });
 
     app.post('/places/create', (req, res, next) => {
         if ( !req.user ) {
             req.flash( 'error', UNAUTHORIZED_MESSAGE );
-            res.status( 403 ).redirect( '/users/login' );
+            return res.status( 403 ).redirect( '/users/login' );
         }
         let emptyPlace = null;
         data.places.createEmpty()
@@ -111,7 +111,7 @@ const attach = (app, data) => {
             } )
             .catch( ( err ) => {
                 req.flash( 'error', 'Something went wrong while updating data! ' + err );
-                res.status( 500 ).render( 'general/general-error.pug' );
+                return res.status( 500 ).render( 'general/general-error.pug' );
             } );
     });
 
@@ -128,14 +128,14 @@ const attach = (app, data) => {
             } )
             .catch( ( err ) => {
                 req.flash( 'error', 'Something went wrong while retrieving data! ' + err );
-                res.status( 500 ).render( 'general/general-error.pug' );
+                return res.status( 500 ).render( 'general/general-error.pug' );
             } );
     });
 
     app.post('/places/:id', (req, res) => {
         if ( !req.user ) {
             req.flash( 'error', UNAUTHORIZED_MESSAGE );
-            res.status( 403 ).redirect( '/users/login' );
+            return res.status( 403 ).redirect( '/users/login' );
         }
         const id = req.params.id;
         const model = {
@@ -160,7 +160,7 @@ const attach = (app, data) => {
             } )
             .catch( ( err ) => {
                 req.flash( 'error', 'Something went wrong while retrieving data! ' + err );
-                res.status( 500 ).render( 'general/general-error.pug' );
+                return res.status( 500 ).render( 'general/general-error.pug' );
             } );
     });
 };

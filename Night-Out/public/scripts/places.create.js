@@ -1,4 +1,4 @@
-fetch( '/api/towns' )
+fetch( '/api/v1/towns' )
     .then( ( res ) => {
         return res.json( {} );
     } )

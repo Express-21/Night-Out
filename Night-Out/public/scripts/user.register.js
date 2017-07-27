@@ -1,5 +1,5 @@
 const checkUserName = ( event ) => {
-    fetch( '/api/usernames' )
+    fetch( '/api/v1/users' )
         .then( ( res ) => {
             return res.json( {} );
         } )

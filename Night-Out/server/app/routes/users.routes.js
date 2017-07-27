@@ -21,7 +21,7 @@ const UNAUTHORIZED_MESSAGE = 'You need to be logged to reach the page!';
 
 const attach = (app, data) => {
     app.get('/users/login', (req, res) => {
-        res.render('users/login.pug');
+        return res.render( 'users/login.pug' );
     });
 
     app.post('/users/login', (req, res, next) => {
@@ -44,11 +44,11 @@ const attach = (app, data) => {
 
     app.get('/users/logout', (req, res) => {
         req.logout();
-        res.redirect('/');
+        return res.redirect( '/' );
     });
 
     app.get('/users/register', (req, res) => {
-        res.render('users/register.pug');
+        return res.render( 'users/register.pug' );
     });
 
     app.post('/users/register', (req, res, next) => {
@@ -70,15 +70,12 @@ const attach = (app, data) => {
         data.users.findUser( model.username )
             .then( ( user ) => {
                 if ( user ) {
-                    console.log( 'Username already exists!' );
                     return Promise.reject( 'Username already exists!' );
                 }
                 return data.users.filter( { email: model.email } );
             } )
             .then( ( users ) => {
-                console.log( users );
                 if ( users.length ) {
-                    console.log( 'Email already used!' );
                     return Promise.reject( 'Email already used!' );
                 }
                 return data.users.create( model );
@@ -101,25 +98,25 @@ const attach = (app, data) => {
     app.get('/users/all', (req, res) => {
         if ( !req.user ) {
             req.flash( 'error', UNAUTHORIZED_MESSAGE );
-            res.status( 403 ).redirect( '/users/login' );
+            return res.status( 403 ).redirect( '/users/login' );
         }
 
         data.users.getAll()
             .then( ( users ) => {
-                res.render( 'users/all.pug', {
+                return res.render( 'users/all.pug', {
                     model: users,
                 } );
             } )
             .catch( ( err ) => {
                 req.flash( 'error', 'Something went wrong while retrieving data! ' + err );
-                res.status( 500 ).render( 'general/general-error.pug' );
+                return res.status( 500 ).render( 'general/general-error.pug' );
             });
     });
 
     app.get( '/users/edit/:id', ( req, res ) => {
         if (!req.user) {
             req.flash( 'error', UNAUTHORIZED_MESSAGE );
-            res.status( 403 ).redirect( '/users/login' );
+            return res.status( 403 ).redirect( '/users/login' );
         }
         if (req.params.id !== req.user._id.toString()) {
             return res.redirect('/users/edit/' + req.user.id);
@@ -133,7 +130,7 @@ const attach = (app, data) => {
         if ( !req.user ) {
             const message = 'You need to be logged to reach the page!';
             req.flash( 'error', message );
-            res.redirect( '/users/login' );
+            return res.redirect( '/users/login' );
         }
         upload(req, res, (err) => {
             if (err) {
@@ -158,13 +155,13 @@ const attach = (app, data) => {
                     return data.users.updateById( user );
                 })
                 .then( (user) => {
-                    res.render('users/edit.pug', {
+                    return res.render( 'users/edit.pug', {
                         model: req.user,
                     });
                 } )
                 .catch( ( error ) => {
                     req.flash( 'error', 'Something went wrong while updating data! ' + error );
-                    res.status( 500 ).redirect( '/users/edit/' + req.user.id );
+                    return res.status( 500 ).redirect( '/users/edit/' + req.user.id );
                 });
         });
     });
