@@ -41,12 +41,14 @@ const attach = (app, data) => {
 
     app.get('/places/category/:category', (req, res) => {
         const category = getCategoryByUrl( req.url );
-        data.places.filter( { category } )
-            .then( ( placesCategory ) => {
-                return res.render( 'places/category.pug', {
-                    models: placesCategory,
-                } );
-            } )
+        Promise.all([data.places.filter({ category }), data.towns.getAll()])
+            .then(([placesCategory, towns]) => {
+                return res.render('places/category.pug', {
+                    model: placesCategory,
+                    location: towns,
+                    // type: type,
+                });
+            })
             .catch( ( err ) => {
                 req.flash( 'error', 'Something went wrong while retrieving data! ' + err );
                 return res.status( 500 ).render( 'general/general-error.pug' );

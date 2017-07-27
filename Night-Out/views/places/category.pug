@@ -1,0 +1,35 @@
+extends ../shared/_master
+
+block content
+    div
+        input#search(type="search", name="searchField", placeholder = "Search..." data-provide="typeahead", autocomplete="off")
+        button
+            i(class="fa fa-search")
+        br
+        div
+            | Choose your city
+            select(name="carlist" form="carform")
+                option(value='') All
+                each town in location
+                    option(value=town.name) #{town.name}
+    h1
+        | Showing you the most popular 
+        =model.type 
+        | to include in your list!
+    div
+        ul
+            each place in model
+                li
+                    span
+                        a(href="")
+                            =place.title 
+                    span                
+                        =place.type 
+                    span
+                        =place.address
+                    span
+                        =place.description
+
+block additionalScripts
+    script(src='/libs/bootstrap-3-typeahead/bootstrap3-typeahead.js')
+    script(src='/static/scripts/searchByPlace.js')
