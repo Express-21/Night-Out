@@ -1,44 +1,51 @@
 extends ../shared/_master
 
+block additionalCss
+    link(rel="stylesheet" href="/static/styles/about.css")
+
 block content
 
     div(class="container")
         div(class="row")
-            div(class="col-sm-2 col-md-2")
-                img(src="http://thetransformedmale.files.wordpress.com/2011/06/bruce-wayne-armani.jpg" alt="" class="img-rounded img-responsive")
-            div(class="col-sm-4 col-md-4")
-                blockquote
-                    p
-                        | Bruce Wayne
-                    small
-                        cite(title="Source Title")
-                            | Gotham, United Kingdom  
-                            i(class="glyphicon glyphicon-map-marker")
-                p 
-                    i(class="glyphicon glyphicon-envelope")
-                    |  masterwayne@batman.com
-                    br 
-                    i(class="glyphicon glyphicon-globe") 
-                    |  www.bootsnipp.com
-                    br 
-                    i(class="glyphicon glyphicon-gift")
-                    |  January 30, 1974
-            div(class="col-sm-2 col-md-2")
-                img(src="http://thetransformedmale.files.wordpress.com/2011/06/bruce-wayne-armani.jpg" alt="" class="img-rounded img-responsive")
-            div(class="col-sm-4 col-md-4")
-                blockquote
-                    p
-                        | Bruce Wayne
-                    small
-                        cite(title="Source Title")
-                            | Gotham, United Kingdom  
-                            i(class="glyphicon glyphicon-map-marker")
-                p 
-                    i(class="glyphicon glyphicon-envelope")
-                    |  masterwayne@batman.com
-                    br 
-                    i(class="glyphicon glyphicon-globe") 
-                    |  www.bootsnipp.com
-                    br 
-                    i(class="glyphicon glyphicon-gift")
-                    |  January 30, 1974
+            div(class="profile-block")
+                div(class="col-sm-2 col-md-2")
+                    img(src="/static/images/misha.jpg" alt="Mihaela" class="img-rounded img-responsive")
+                div(class="col-sm-4 col-md-4")
+                    blockquote
+                        p
+                            strong
+                                | Mihaela Ivanova
+                        small
+                            cite(title="Source Title")
+                                | Varna, Bulgaria  
+                                i(class="glyphicon glyphicon-map-marker")
+                    p 
+                        i(class="glyphicon glyphicon-envelope")
+                        |  misha.ivanov@catwoman.com
+                        br 
+                        i(class="glyphicon glyphicon-globe") 
+                        |  www.night-out.com
+                        br 
+                        i(class="glyphicon glyphicon-gift")
+                        |  December 5, 1990
+            div(class="profile-block")
+                div(class="col-sm-2 col-md-2")
+                    img(src="/static/images/nikolay.jpg" alt="Nikolay" class="img-rounded img-responsive")
+                div(class="col-sm-4 col-md-4")
+                    blockquote
+                        p
+                            strong
+                                | Nikolay Nanchev
+                        small
+                            cite(title="Source Title")
+                                | Burgas, Bulgaria  
+                                i(class="glyphicon glyphicon-map-marker")
+                    p 
+                        i(class="glyphicon glyphicon-envelope")
+                        |  niki.nanchev@batman.com
+                        br 
+                        i(class="glyphicon glyphicon-globe") 
+                        |  www.night-out.com
+                        br 
+                        i(class="glyphicon glyphicon-gift")
+                        |  January 30, 1984

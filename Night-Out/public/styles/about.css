@@ -1,0 +1,44 @@
+.row{
+    margin-top:20%;
+    margin-left:0 important!
+}
+.img-rounded{
+    margin:auto;
+    margin-bottom:40px;
+    width:80% !important;
+}
+
+div.profile-block div.col-sm-2{
+    padding:0;
+}
+
+@media (min-width: 768px){
+    div.profile-block div.col-sm-2 {
+        width: 20%;
+    }
+    div.profile-block div.col-sm-4 {
+        width: 30%;
+    }  
+}
+
+
+@media (min-width: 992px){
+    div.profile-block div.col-sm-2 {
+        width: 20%;
+    }
+    div.profile-block div.col-sm-4 {
+        width: 30%;
+    }
+}
+
+@media (max-width: 768px){
+    blockquote, div.col-sm-4.col-md-4>p{
+        margin-left:40px;
+        margin-right:40px;
+    }   
+}
+
+i.glyphicon{
+    margin-bottom: 10px;
+}
+
