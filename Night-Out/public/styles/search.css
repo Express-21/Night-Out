@@ -1,21 +1,31 @@
+div.filter{
+    margin-top:50px;
+    margin-bottom:70px;
+}
+
 .btn-search{
     padding-top:2px;
     box-shadow: none;
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: rgba(36,41,46,0.7);
+    float:right;
+    width:5%;
+    height:40px;
 }
 
 div.filter input{
     background-color: rgba(36,41,46,0.7);
-    width:88%;
+    width:93%;
     display:inline-block;
     margin-right:10px;
+    height: 40px;
 }
 
 div.nice-select, .nice-select .list{
     background-color: rgba(36,41,46,0.7) !important;
-    
+    width:84%;
+    float:right;
 }
 
 .nice-select .option:hover, .nice-select .option.focus, .nice-select .option.selected.focus {
@@ -25,4 +35,62 @@ div.nice-select, .nice-select .list{
 
 div.town-select{
     margin-top:20px;
+}
+
+span.town-label{
+    /*font-size:1.2em;*/
+    display:inline-block;
+    padding-top:13px;
+    width:15%;
+}
+
+@media (min-width: 768px){
+    div.profile-block div.col-sm-2 {
+        width: 20%;
+    }
+    div.profile-block div.col-sm-4 {
+        width: 30%;
+    } 
+}
+
+
+@media (max-width: 992px){
+    div.filter input {
+        width: 90%;
+    }
+    .btn-search {
+        width: 8%;
+    }
+    div.nice-select, .nice-select .list{
+        width: 79%
+    }
+
+    span.town-label{
+        width: 19%
+    } 
+}
+
+@media (max-width: 768px){
+    div.filter input {
+        width: 88%;
+    }
+    .btn-search {
+        width: 8%;
+    }
+    div.nice-select, .nice-select .list{
+        width: 75%
+    }
+
+    span.town-label{
+        width: 23%
+    }  
+}
+
+@media (max-width: 425px){
+    div.filter input {
+        width: 80%;
+    }
+    .btn-search {
+        width: 12%;
+    }  
 }
