@@ -24,7 +24,11 @@ class BaseData {
     }
 
     findById(id) {
-        id = new ObjectID(id);
+        try {
+            id = new ObjectID( id );
+        } catch ( e ) {
+            return Promise.reject( e );
+        }
         return this.collection.findOne({
             _id: { $eq: id },
         })
@@ -55,15 +59,27 @@ class BaseData {
         if ( !this._isModelValid( model ) ) {
             return Promise.reject( 'Invalid model!' );
         }
+        let id;
+        try {
+            id = new ObjectID( model.id );
+        } catch ( e ) {
+            return Promise.reject( e );
+        }
         return this.collection
-            .updateOne( { _id: new ObjectID(model.id) }, model )
+            .updateOne( { _id: id }, model )
             .then(() => {
                 return this.ModelClass.toViewModel(model);
             });
     }
 
     removeById( model ) {
-        return this.collection.deleteOne( { _id: new ObjectID( model.id ) } );
+        let id;
+        try {
+            id = new ObjectID( model.id );
+        } catch ( e ) {
+            return Promise.reject( e );
+        }
+        return this.collection.deleteOne( { _id: id } );
     }
 
     create(model) {

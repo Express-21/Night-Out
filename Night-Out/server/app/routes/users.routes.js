@@ -167,9 +167,19 @@ const attach = (app, data) => {
     });
 
     app.get('/users/:id', (req, res) => {
-        return res.render('users/profile.pug', {
-            model: req.user,
-        });
+        const id = req.params.id;
+        data.users.findById( id )
+            .then( ( user ) => {
+                if ( !user ) {
+                    return Promise.reject( 'No such user!' );
+                }
+                return res.render( 'users/profile.pug', {
+                    model: user,
+                } );
+            } )
+            .catch( () => {
+                return res.status( 404 ).redirect( '/404' );
+            } );
     });
 };
 

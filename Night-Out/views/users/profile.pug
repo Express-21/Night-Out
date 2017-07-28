@@ -11,13 +11,14 @@ block content
     h2
         | My Favourite Places:
     div
-        each place in model.favourites
-            li
-                img(src="/static/uploads/"+place.picUrl)
-                span
-                    =place.placeTitle
-                span
-                    =place.placeDescr
+        if (model.favourites)
+            each place in model.favourites
+                li
+                    img(src="/static/uploads/"+place.picUrl)
+                    span
+                        =place.placeTitle
+                    span
+                        =place.placeDescr
                 
 
 

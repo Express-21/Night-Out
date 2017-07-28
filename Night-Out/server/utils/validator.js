@@ -41,7 +41,7 @@ class Validator {
     }
 
     static placeDescription( descr ) {
-        return Validator.stringLength( descr, 0, 1000 );
+        return Validator.stringLength( descr, 0, 10000 );
     }
 
     static townName( town ) {
