@@ -2,6 +2,32 @@ const gulp = require('gulp');
 const nodemon = require('gulp-nodemon');
 const browser = require('openurl');
 const config = require('./server/config/app.config.js');
+const istanbul = require( 'gulp-istanbul' );
+const mocha = require( 'gulp-mocha' );
+
+gulp.task( 'pre-test', () => {
+    return gulp.src( ['./server/**/*.js'] )
+        .pipe( istanbul( {
+            includeUntested: true,
+        } ) )
+        .pipe( istanbul.hookRequire() );
+} );
+
+gulp.task( 'tests:unit', ['pre-test'], () => {
+    return gulp.src( './tests/unit/**/*.js' )
+        .pipe( mocha( {
+            reporter: 'dot',
+        } ) )
+        .pipe( istanbul.writeReports() );
+} );
+
+//gulp.task('tests:app', ['pre-test'], () => {
+//    return gulp.src('./tests/app/**/*.js')
+//        .pipe( mocha( {
+//            reporter: 'dot',
+//        }))
+//        .pipe(istanbul.writeReports());
+//});
 
 gulp.task('server', ()=>{
     const async = () => {

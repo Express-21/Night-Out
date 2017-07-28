@@ -10,7 +10,7 @@ const attachRoutes = (app, data) => {
         // });
 
     fs.readdirSync(__dirname)
-        .filter((file) => file.includes('.routes.js'))
+        .filter( ( file ) => file.includes( '.routes' ) )
         .map((file)=>path.join(__dirname, file))
         .forEach((modulePath) => {
             require(modulePath)(app, data);

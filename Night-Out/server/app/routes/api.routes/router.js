@@ -1,15 +1,9 @@
 const passport = require( 'passport' );
 
 const attach = (app, data) => {
+    const controller = require( './controller' ).init( data );
     app.get( '/api/v1/towns', ( req, res ) => {
-        data.towns.getAll()
-            .then( ( towns ) => {
-                towns = towns.map( ( town ) => town.name );
-                return res.send( towns );
-            } )
-            .catch( ( err ) => {
-                return res.status( 500 ).send( 'Could not retrieve data! ' + err );
-            } );
+        return controller.getTowns( req, res );
     } );
 
     app.get( '/api/v1/auth', ( req, res ) => {
@@ -53,14 +47,7 @@ const attach = (app, data) => {
     } );
 
     app.get( '/api/v1/users', ( req, res ) => {
-        data.users.getAll()
-            .then( ( users ) => {
-                users = users.map( ( user ) => user.username );
-                return res.send( users );
-            } )
-            .catch( ( err ) => {
-                return res.status( 500 ).send( 'Could not retrieve data! ' + err );
-            } );
+        return controller.getNames( req, res );
     } );
 
     app.post( '/api/v1/users', ( req, res ) => {
