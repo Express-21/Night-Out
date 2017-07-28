@@ -7,28 +7,35 @@ block content
             i(class="fa fa-search")
         br
         div(class="town-select")
-            | Choose your city
+            span(class="town-label")
+                | CHOOSE YOUR CITY:
             select(name="carlist" form="carform")
                 option(value='') All
                 each town in location
                     option(value=town.name) #{town.name}
-    h1
-        | Showing you the most popular 
-        =type 
+    h2
+        | Showing you the most popular places
         | to include in your list!
     div
-        ul
+        ul(class="all")
             each place in model
-                li
-                    span
+                li(class="place-container col-sm-4" )
+                    div(class="title")
                         a(href="")
-                            =place.title 
-                    span                
-                        =place.type 
-                    span
-                        =place.address
+                            =place.title
+                    div(class="place-location")
+                        i(class="glyphicon glyphicon-map-marker")
+                        | 
+                        =place.town
+                    div(class="image")
+                        a(href="")
+                            img(class="place-small-pic" src="/static/uploads/"+place.picUrl) 
+                    div(class="place-description")                
+                        =place.description 
+
 block additionalCss
     link(rel="stylesheet" href="/static/styles/search.css")
+    link(rel="stylesheet" href="/static/styles/places-all.css")
     link(rel="stylesheet" href="/static/styles/nice-select.css")
     
 block additionalScripts
