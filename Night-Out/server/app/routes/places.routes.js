@@ -46,6 +46,7 @@ const attach = (app, data) => {
                 return res.render('places/category.pug', {
                     model: placesCategory,
                     location: towns,
+                    category: category,
                     // type: type,
                 });
             })
