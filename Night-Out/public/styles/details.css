@@ -1,0 +1,98 @@
+img.main-pic{
+    width:670px;
+    height:300px;
+    margin:auto;
+}
+
+div.main-info{
+    margin:auto;
+    margin-top:50px;
+    margin-bottom:50px;
+    width:670px;
+    border: 1px solid  rgb(88,82,60);
+    border-radius:10px;
+    background-color: rgba(88,82,60,0.55 );
+}
+
+input.fav{
+    border-radius:10px;
+    background: rgba(0,0,0,0);
+    border:none;
+    background-image: url("/static/images/fav-white.png");
+    width:30px;
+    height:23px;
+    margin-left:20px;
+}
+
+@media (max-width: 768px){
+    img.main-pic{
+        width:400px;
+        height:185px;
+}
+
+    div.main-info{
+        margin:auto;
+        width:400px;
+    }
+}
+
+@media (max-width: 425px){
+    img.main-pic{
+        width:200px;
+        height:90px;
+}
+
+    div.main-info{
+        margin:auto;
+        width:200px;
+    }
+}
+
+.main-info h1, div.place-location{
+    padding-left:15px;
+    margin-bottom:10px;
+}
+
+div.place-location {
+    font-size:1.1em;
+}
+
+div.place-info>div{
+    padding-left:15px;
+    padding-right:15px;
+    margin-top: 20px;
+    font-size:1.1em;
+}
+
+div.description, div.openning-hours, div.contacts, div.address{
+    margin-bottom:20px;
+}
+
+span.labels{
+    font-weight:bold;
+    display:inline-block;
+    width:200px;
+}
+
+div.comment-title{
+    font-size:1.1em;
+    font-weight: bold;
+    margin-bottom:15px;
+}
+
+div.comments{
+    width:95%;
+}
+
+div.single-comment{
+    background-color: rgba(153,153,153,0.2);
+    border-radius:5px;
+    padding:10px;
+    margin-bottom:5px;
+}
+
+div.single-comment p.author{
+    color:white;
+    font-weight: bold;
+}
+
