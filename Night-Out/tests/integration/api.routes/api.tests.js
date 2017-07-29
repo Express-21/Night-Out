@@ -9,7 +9,7 @@ describe( '/items tests', () => {
         return Promise.resolve()
             .then( () => {
                 return require( '../../../server/config/app.config.js' )
-                    .init( testIp, 3010, '(test' );
+                    .init( testIp, 3010, '(test)' );
             } )
             .then( ( _config ) => {
                 config = _config;
