@@ -1,10 +1,13 @@
-const port = 3001;
-const mongoIp = '127.0.0.1';
-const connectionString = `mongodb://${mongoIp}/night-out`;
-const sessionStoreName = `mongodb://${mongoIp}/sessions`;
+const init = ( mongoIp, port, suffix ) => {
+    suffix = suffix || '';
+    const connectionString = `mongodb://${mongoIp}/night-out${suffix}`;
+    const sessionStoreName = `mongodb://${mongoIp}/sessions${suffix}`;
+    const config = {
+        port,
+        connectionString,
+        sessionStoreName,
+    };
+    return Promise.resolve( config );
+}
 
-module.exports = {
-    port,
-    connectionString,
-    sessionStoreName,
-};
+module.exports = { init };
