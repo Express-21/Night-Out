@@ -1,0 +1,83 @@
+ul.all{
+    padding:0px;
+    margin-top:30px;
+}
+
+li{
+    list-style-type: none;
+}
+
+img.user-pic-small{
+    width:40px;
+    height:40px;
+}
+
+span.username-h, span.nationality-h, span.favourites-h{
+    display:inline-block;
+    font-weight: bold;
+    font-size:1.1em;
+    color:white;
+}
+
+span.username-h{
+    margin-left:15%;
+    width:25%;
+    margin-right:5%;
+}
+
+span.nationality-h{
+    width:25%;
+    margin-right:5%;
+}
+
+li.grey{
+    padding:5px;
+    background-color:  rgba(153,153,153,0.3);
+    border-radius:5px;
+}
+
+li.black{
+    padding:5px;
+    background-color:  rgba(0,0,0,0.3);
+    border-radius:5px;
+}
+
+span.username, span.nationality, span.favourites{
+    display: inline-block;
+}
+
+span.username{
+    margin-left:11%;
+    width:25%;
+    margin-right:6%;
+}
+
+span.nationality{
+    width:25%;
+    margin-right:6%;
+}
+
+@media (max-width: 768px){
+    div.users-content-wrap{
+    overflow-x: scroll;
+    }
+    div.users-content{
+        width:685px;
+    }
+
+}
+
+h1{
+    font-size:24px;
+    margin-bottom:20px;
+}
+
+a:hover{
+    text-decoration:none;
+    color:white;
+}
+
+
+
+
+

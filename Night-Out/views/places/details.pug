@@ -1,33 +1,67 @@
 extends ../shared/_master
 
 block content
-    div
+    div(class="main-info")
         h1
-            =model.name
-        img(src="/static/uploads/"+model.picUrl)
-        div
-            div
+            =model.title
+        div(class="place-location")
+            i(class="glyphicon glyphicon-map-marker")
+            | 
+            =model.town
+        img(class="main-pic" src="/static/uploads/"+model.picUrl)
+        div(class="place-info")
+            div(class="description")
                 =model.description
-            div
-                =model.openingHours
-            div
-                =model.address
-            div
-                a(href="/places/"+model.id+"/contacts")
-
+                input(type="button" class="fav")
+            div(class="openning-hours")
+                span(class="labels")
+                    | Opening hours: 
+                span(class="value")
+                    =model.openingHours
+            div(class="address")
+                span(class="labels")
+                    | Address:
+                span(class="value")
+                    =model.address
+            div(class="contacts")
+                span(class="labels")
+                    | Contacts:
+                span(class="value")
+                    =model.email
             div(class="comments")
-                each comment in model.comments
-                    div(class="single-comment")
-                        p
-                            =comment.username
-                        p
-                            =comment.content
-
-            div(class="new-comment")
-            if (user.loggedIn)
-                form(action="/places/"+model.id method="post")
-                    input(type="textarea" name="content" placeholder="Add your comment here..." pattern=".{0,1000}")
-                    input(type="submit", value="Comment")
-            else
-                a(href='/users/login')
-                    | You need to login to leave a comment.
+                div(class="comment-title")
+                    | Comments:
+                - var length =model.comments.length;
+                - var lessThanFive=length<4;
+                if lessThanFive
+                    each comment in model.comments
+                        div(class="single-comment")
+                            p(class="author")
+                                =comment.username
+                            p(class="content")
+                                =comment.content
+                else
+                    - var n = 0;
+                    while n < 5
+                        div(class="single-comment")
+                            p(class="author")
+                                -var username=model.comments[n].username;
+                                |
+                                =username
+                            p(class="content")
+                               -var content=model.comments[n].content;
+                                |
+                                =content
+                        - n++;
+                    if (user.loggedIn)
+                        input(type="button" class="load-comments" value="Load more comments")
+                if (user.loggedIn)
+                    div(class="new-comment")
+                        form(action="/places/"+model.id method="post")
+                            input(class="form-control" type="textarea" name="content" placeholder="Add your comment here..." pattern=".{0,1000}")
+                            input( class="add-comment" type="submit", value="Comment")
+                else
+                    a(class="log" href='/users/login')
+                        | You need to login to leave a comment.
+block additionalCss
+    link(rel="stylesheet" href="/static/styles/details.css")

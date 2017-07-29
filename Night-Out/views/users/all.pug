@@ -8,28 +8,55 @@ block additionalScripts
 
 block content
     div(class="container")
+        div(class="filter")
+            input(id="search" class="form-control" type="search" name="searchField" placeholder = "Search..." data-provide="typeahead" autocomplete="off")
+            button(class="btn-search")
+                i(class="fa fa-search")
         h1
             | Registered users
-        div
-            input#search(type="search", name="searchField", placeholder = "Search...", data-provide="typeahead", autocomplete="off")
-            button
-                i(class="fa fa-search")
-        div
-            span 
-                | Username
-            span
-                | Nationality
-        div
-            ul
-                each user in model
-                    li
-                        span
-                            a(href="/users/"+user.id)
-                                img(src="/static/uploads/" + user.stringProfilePicture)
+        div(class="users-content-wrap")
+            div(class="users-content")
+                div(class="col-title")
+                    span(class="username-h")
+                        | Username
+                    span(class="nationality-h")
+                        | Nationality
+                    span(class="favourites-h")
+                        | Favourites
+                    ul(class="all")
+                        -let count=1;
+                        each user in model
+                            -let odd=count%2;
+                            if odd
+                                li(class="grey")
+                                    span
+                                        a(href="/users/"+user.id)
+                                            img(class="user-pic-small" src="/static/uploads/" + user.stringProfilePicture)
+                                    span(class="username")
+                                        a(href="/users/"+user.id)
+                                            =user.username
+                                    span(class="nationality")
+                                        =user.nationality
+                                    span(class="favourites")
+                                        // -const fav=user.favourites.length
+                                        | 5
+                                        //=fav
+                            else
+                                li(class="black")
+                                    span
+                                        a(href="/users/"+user.id)
+                                            img(class="user-pic-small" src="/static/uploads/" + user.stringProfilePicture)
+                                    span(class="username")
+                                        a(href="/users/"+user.id)
+                                            =user.username
+                                    span(class="nationality")
+                                        =user.nationality
+                                    span(class="favourites")
+                                        -const fav=user.favourites.length
+                                        =fav
+                            -count++;
+block additionalCss
+    link(rel="stylesheet" href="/static/styles/search.css")
+    link(rel="stylesheet" href="/static/styles/users-all.css")
     
-                        span
-                            a(href="/users/"+user.id)
-                                =user.username
-                        span
-                            =user.nationality
     
