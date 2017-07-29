@@ -55,13 +55,13 @@ block content
                         - n++;
                     if (user.loggedIn)
                         input(type="button" class="load-comments" value="Load more comments")
-            if (user.loggedIn)
-                div(class="new-comment")
-                    form(action="/places/"+model.id method="post")
-                        input(type="textarea" name="content" placeholder="Add your comment here..." pattern=".{0,1000}")
-                        input(type="submit", value="Comment")
-            else
-                a(class="log" href='/users/login')
-                    | You need to login to leave a comment.
+                if (user.loggedIn)
+                    div(class="new-comment")
+                        form(action="/places/"+model.id method="post")
+                            input(class="form-control" type="textarea" name="content" placeholder="Add your comment here..." pattern=".{0,1000}")
+                            input( class="add-comment" type="submit", value="Comment")
+                else
+                    a(class="log" href='/users/login')
+                        | You need to login to leave a comment.
 block additionalCss
     link(rel="stylesheet" href="/static/styles/details.css")

@@ -96,3 +96,73 @@ div.single-comment p.author{
     font-weight: bold;
 }
 
+input.load-comments{
+    background:none!important;
+    color:inherit;
+    border:none; 
+    padding:0!important;
+    font: inherit;
+    margin:auto;
+    cursor: pointer;
+    width:100%;
+    margin-bottom:15px;
+}
+
+input.load-comments:hover{
+    font-weight: bold;
+}
+
+input[type="textarea"]{
+    background-color: rgba(153,153,153,0.2);
+    color:white;
+    border:none;
+    display:inline-block;
+    width:82%;
+}
+
+input.add-comment{
+    padding-top:2px;
+    box-shadow: none;
+    border: 1px solid  rgba(153,153,153,0.3);
+    border-radius: 4px;
+    background-color:  rgba(153,153,153,0.3);
+    float:right;
+    width:15%;
+    height:34px;
+}
+
+input.add-comment:hover{
+    background-color:  rgba(153,153,153,0.5);
+    color:white;
+}
+
+div.new-comment{
+    margin-bottom:20px;
+}
+
+@media (max-width: 768px){
+    input[type="textarea"]{
+        width: 70%;
+    }
+    input.add-comment {
+        width: 25%;
+    }
+ 
+}
+
+@media (max-width: 425px){
+    input[type="textarea"]{
+        display:block;
+        width: 100%;
+        margin-bottom:10px;
+    }
+    input.add-comment {
+        display:block;
+        width: 100%;
+    }
+
+    div.new-comment{
+    margin-bottom:60px;
+}
+}
+
