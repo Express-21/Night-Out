@@ -3,6 +3,7 @@ const { Strategy } = require('passport-local');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const config = require( './app.config.js' );
 
 const configPassport = (app, data) => {
     passport.use( new Strategy(
@@ -29,7 +30,7 @@ const configPassport = (app, data) => {
         secret: 'Deus ex machina',
         maxAge: new Date( Date.now() + 60 * 60 * 1000 ),
         store: new MongoStore(
-            { url: data.sessionStoreName },
+            { url: config.sessionStoreName },
             ( err ) => {
                 console.log( err || 'connect-mongodb setup ok' );
             } ),
