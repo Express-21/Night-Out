@@ -8,16 +8,16 @@ block additionalScripts
 
 block content
     div(class="container")
+        div(class="filter")
+            input(id="search" class="form-control" type="search" name="searchField" placeholder = "Search..." data-provide="typeahead" autocomplete="off")
+            button(class="btn-search")
+                i(class="fa fa-search")
         h1
             | Registered users
-        div
-            input#search(type="search", name="searchField", placeholder = "Search...", data-provide="typeahead", autocomplete="off")
-            button
-                i(class="fa fa-search")
-        div
-            span 
+        div(class="col-title")
+            span(class="username-h")
                 | Username
-            span
+            span(class="nationality-h")
                 | Nationality
         div
             ul
@@ -25,11 +25,14 @@ block content
                     li
                         span
                             a(href="/users/"+user.id)
-                                img(src="/static/uploads/" + user.stringProfilePicture)
-    
-                        span
+                                img(class="user-pic-small" src="/static/uploads/" + user.stringProfilePicture)
+                        span(class="username-h")
                             a(href="/users/"+user.id)
                                 =user.username
-                        span
+                        span(class="nationality-h")
                             =user.nationality
+block additionalCss
+    link(rel="stylesheet" href="/static/styles/search.css")
+    link(rel="stylesheet" href="/static/styles/users-all.css")
+    
     

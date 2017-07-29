@@ -1,19 +1,29 @@
 extends ../shared/_master
 
 block content
-    div
+    div(class="main-info")
         h1
-            =model.name
-        img(src="/static/uploads/"+model.picUrl)
-        div
+            =model.title
+        div(class="place-location")
+            i(class="glyphicon glyphicon-map-marker")
+                | 
+                =model.town
+        img(class="main-pic" src="/static/uploads/"+model.picUrl)
+        div(class="place-info")
             div
                 =model.description
             div
-                =model.openingHours
+                span    
+                    | Opening hoours: 
+                    =model.openingHours
             div
-                =model.address
+                span
+                    | Address: 
+                    =model.address
             div
-                a(href="/places/"+model.id+"/contacts")
+                span
+                    | Contacts: 
+                    =model.email
 
             div(class="comments")
                 each comment in model.comments
@@ -22,7 +32,7 @@ block content
                             =comment.username
                         p
                             =comment.content
-
+            input(type="button" class="fav")
             div(class="new-comment")
             if (user.loggedIn)
                 form(action="/places/"+model.id method="post")
@@ -31,3 +41,5 @@ block content
             else
                 a(href='/users/login')
                     | You need to login to leave a comment.
+block additionalCss
+    link(rel="stylesheet" href="/static/styles/details.css")
