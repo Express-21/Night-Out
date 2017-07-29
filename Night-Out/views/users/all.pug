@@ -19,18 +19,41 @@ block content
                 | Username
             span(class="nationality-h")
                 | Nationality
+            span(class="favourites-h")
+                | Favourites
         div
-            ul
+            ul(class="all")
+                -let count=1;
                 each user in model
-                    li
-                        span
-                            a(href="/users/"+user.id)
-                                img(class="user-pic-small" src="/static/uploads/" + user.stringProfilePicture)
-                        span(class="username-h")
-                            a(href="/users/"+user.id)
-                                =user.username
-                        span(class="nationality-h")
-                            =user.nationality
+                    -let odd=count%2;
+                    if odd
+                        li(class="grey")
+                            span
+                                a(href="/users/"+user.id)
+                                    img(class="user-pic-small" src="/static/uploads/" + user.stringProfilePicture)
+                            span(class="username")
+                                a(href="/users/"+user.id)
+                                    =user.username
+                            span(class="nationality")
+                                =user.nationality
+                            span(class="favourites")
+                                // -const fav=user.favourites.length
+                                | 5
+                                //=fav
+                    else
+                        li(class="black")
+                            span
+                                a(href="/users/"+user.id)
+                                    img(class="user-pic-small" src="/static/uploads/" + user.stringProfilePicture)
+                            span(class="username")
+                                a(href="/users/"+user.id)
+                                    =user.username
+                            span(class="nationality")
+                                =user.nationality
+                            span(class="favourites")
+                                -const fav=user.favourites.length
+                                =fav
+                    -count++;
 block additionalCss
     link(rel="stylesheet" href="/static/styles/search.css")
     link(rel="stylesheet" href="/static/styles/users-all.css")
