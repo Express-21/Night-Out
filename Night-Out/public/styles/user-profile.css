@@ -1,0 +1,67 @@
+div.user-profile{
+    margin-top:50px;
+}
+
+img.user-pic{
+    display:inline-block;
+    width:200px;
+    height:200px;
+    margin-right:50px;
+}
+
+h1{
+    padding-left:20px;
+    margin-bottom:30px;
+}
+
+div.wrapper-profile{
+    height:100%;
+}
+
+div.right{
+    position: absolute;
+    display: inline-block;
+    font-style:italic;
+    top:20px;
+    width:450px;
+}
+
+div.email, div.nationality{
+    margin-bottom:20px;
+}
+
+span.labels{
+    font-style:normal;
+    display:inline-block;
+    width:200px;
+    font-weight: bold;
+}
+
+div.email, div.nationality, div.edit, span.labels, div.edit a{
+    font-size:1.2em !important;
+}
+
+div.edit a:hover{
+    text-decoration: none;
+    color:white;
+}
+
+div.inside-info{
+    position:absolute;
+}
+
+div.favourites{
+    position: absolute;
+    top:450px;
+    font-size: 1.6em;
+    font-weight: bold;
+}
+
+.fa-2{
+    font-size: 1.2em;  
+    margin-right:5px;  
+}
+
+
+
+

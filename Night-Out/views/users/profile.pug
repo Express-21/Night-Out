@@ -1,25 +1,47 @@
 extends ../shared/_master
 
 block content
-    div
-        img(src="/static/uploads/" + model.stringProfilePicture, alt='Profile picture')
-    h1 
-        =model.username
-    h2 
-        | Email:
-        =model.email
-    h2
-        | My Favourite Places:
-    div
-        if (model.favourites)
-            each place in model.favourites
-                li
-                    img(src="/static/uploads/"+place.picUrl)
-                    span
-                        =place.placeTitle
-                    span
-                        =place.placeDescr
-                
+    div(class="user-profile")
+        div(class="wrapper-profile")
+            h1 
+                =model.username
+            div(class="inside-info")
+                img(class="user-pic" src="/static/uploads/" + model.stringProfilePicture, alt='Profile picture')
+                div(class="right")
+                    div(class="email")
+                        span(class="labels") 
+                            | Email: 
+                        =model.email
+                    div(class="nationality")
+                        span(class="labels")                     
+                            | Nationality: 
+                        =model.nationality
+                    div(class="edit")
+                        a(href="/users/edit/" + model.userId)
+                            i(class="fa fa-pencil-square-o" aria-hidden="true")
+                            | Edit Profile
+        div(class="favourites")
+            <i class="fa fa-star-o fa-2" aria-hidden="true"></i>
+            | My Favourite Places:
+            if (model.favourites)
+                ul(class="all")
+                each place in model.favourites
+                    li(class="place-container col-sm-4" )
+                        div(class="title")
+                            a(href="/places/"+place.id)
+                                =place.title
+                        div(class="place-location")
+                            i(class="glyphicon glyphicon-map-marker")
+                            | 
+                            =place.town
+                        div(class="image")
+                            a(href="/places/"+place.id)
+                                img(class="place-small-pic" src="/static/uploads/"+place.picUrl) 
+                        div(class="place-description")                
+                            =place.description 
+block additionalCss
+    link(rel="stylesheet" href="/static/styles/user-profile.css")
+    link(rel="stylesheet" href="/static/styles/places-all.css")
 
 
 
