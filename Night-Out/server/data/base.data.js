@@ -40,7 +40,7 @@ class BaseData {
 
     filter(filter, pageSize, pageNumber) {
         filter = filter || {};
-        pageSize = pageSize || DEFAULT_PAGE_SIZE;
+        pageSize = parseInt( pageSize || DEFAULT_PAGE_SIZE, 10 );
         pageNumber = pageNumber || 1;
 
         return this.collection.find( filter )

@@ -59,64 +59,11 @@ const attach = (app, data) => {
             nationality: req.body.nationality,
             favourites: [],
         };
-
-        if ( !data.users.validator.isValid( model ) ) {
-            return res.status( 400 ).send( 'Data does not meet requirements!' );
-        }
-
-        data.users.findUser( model.username )
-            .then( ( user ) => {
-                if ( user ) {
-                    return Promise.reject( 'Username already exists!' );
-                }
-                return data.users.filter( { email: model.email } );
-            } )
-            .then( ( users ) => {
-                if ( users.length ) {
-                    return Promise.reject( 'Email already used!' );
-                }
-                return data.users.create( model );
-            } )
-            .then( () => {
-                return res.status( 200 ).send( 'User successfully added!' );
-            } )
-            .catch( ( err ) => {
-                return res.status( 400 ).send( err );
-            } );
+        return controller.addUser( req, res, model );
     } );
 
     app.get( '/api/v1/places', ( req, res ) => {
-        if ( Object.keys( req.query ).length === 0 ) {
-            data.places.getAll()
-                .then( ( places ) => {
-                    places = places.map( ( place ) => place.title );
-                    return res.status( 200 ).send( places );
-                } )
-                .catch( ( err ) => {
-                    return res.status( 500 ).send( 'Could not retrieve data! ' + err );
-                } );
-        }
-        const filter = {};
-        if ( req.query.name ) {
-            if ( req.query.strict === 'true' ) {
-                filter.title = req.query.name;
-            } else {
-                filter.title = { $regex: `.*${req.query.name}.*` };
-            }
-        }
-        if ( req.query.category ) {
-            filter.category = req.query.category;
-        }
-        if ( req.query.town ) {
-            filter.town = req.query.town;
-        }
-        data.places.filter( filter )
-            .then( ( places ) => {
-                return res.status( 200 ).send( places );
-            } )
-            .catch( ( err ) => {
-                return res.status( 500 ).send( 'Could not retrieve data! ' + err );
-            } );
+        return controller.getPlaces( req, res );
     } );
 };
 

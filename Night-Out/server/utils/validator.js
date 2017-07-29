@@ -1,20 +1,33 @@
-const DEFAULT_MIN_LENGTH = 3,
-    DEFAULT_MAX_LENGTH = 100,
-    DEFAULT_CATEGORIES = ['restaurants', 'bars', 'clubs'];
-
 class Validator {
+    static default() {
+        return {
+            MIN_LENGTH: 3,
+            MAX_LENGTH: 100,
+            CATEGORIES: ['restaurants', 'bars', 'clubs'],
+        };
+    }
+
+
     static stringLength( s, min, max ) {
-        min = min || DEFAULT_MIN_LENGTH;
-        max = max || DEFAULT_MAX_LENGTH;
+        if ( min === undefined ) {
+            min = Validator.default().MIN_LENGTH;
+        }
+        if ( max === undefined ) {
+            max = Validator.default().MAX_LENGTH;
+        }
         if ( !s ) {
+            if ( min === 0 ) {
+                return true;
+            }
             return false;
         }
         return ( min <= s.length ) && ( s.length <= max );
     }
 
     static password( password ) {
+        const numbers = password.match( /[0-9]/g ) || [];
         return Validator.stringLength( password, 6, 100 ) &&
-            (password.match( /[0-9]/g ).length > 0);
+            (numbers.length > 0);
     }
 
     static email( email ) {
@@ -49,7 +62,7 @@ class Validator {
     }
 
     static category( cat ) {
-        return ( DEFAULT_CATEGORIES.indexOf( cat ) !== -1 );
+        return ( Validator.default().CATEGORIES.indexOf( cat ) !== -1 );
     }
 
     static address( addr ) {
