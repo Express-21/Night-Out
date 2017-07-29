@@ -49,13 +49,35 @@ span.username, span.nationality, span.favourites{
 span.username{
     margin-left:11%;
     width:25%;
-    margin-right:5%;
+    margin-right:6%;
 }
 
-span.username{
+span.nationality{
     width:25%;
-    margin-right:5%;
+    margin-right:6%;
 }
+
+@media (max-width: 768px){
+    div.users-content-wrap{
+    overflow-x: scroll;
+    }
+    div.users-content{
+        width:685px;
+    }
+
+}
+
+h1{
+    font-size:24px;
+    margin-bottom:20px;
+}
+
+a:hover{
+    text-decoration:none;
+    color:white;
+}
+
+
 
 
 
