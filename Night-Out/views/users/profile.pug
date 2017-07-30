@@ -29,20 +29,20 @@ block content
             | Favourite Places:
             if (model.favourites)
                 ul(class="all")
-                each place in model.favourites
+                each fav in model.favourites
                     li(class="place-container col-sm-4" )
                         div(class="title")
-                            a(href="/places/"+place.id)
-                                =place.title
+                            a(href="/places/"+fav.placeId)
+                                =placeTitle
                         div(class="place-location")
                             i(class="glyphicon glyphicon-map-marker")
                             | 
-                            =place.town
+                            =fav.placeTown
                         div(class="image")
-                            a(href="/places/"+place.id)
-                                img(class="place-small-pic" src="/static/uploads/"+place.picUrl) 
+                            a(href="/places/"+fav.placeId)
+                                img(class="place-small-pic" src="/static/uploads/"+fav.placePicUrl)
                         div(class="place-description")                
-                            =place.description 
+                            =fav.placeDescription
 block additionalCss
     link(rel="stylesheet" href="/static/styles/user-profile.css")
     link(rel="stylesheet" href="/static/styles/places-all.css")
