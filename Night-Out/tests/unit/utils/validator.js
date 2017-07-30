@@ -1,8 +1,8 @@
 const { expect } = require( 'chai' );
 
 const randomElement = ( arr ) => {
-    return arr[Math.floor( Math.random() * arr.length )]
-}
+    return arr[Math.floor( Math.random() * arr.length )];
+};
 
 describe( 'Validator tests', () => {
     const validShortStrings = [

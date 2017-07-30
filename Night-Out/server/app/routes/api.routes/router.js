@@ -65,6 +65,15 @@ const attach = (app, data) => {
     app.get( '/api/v1/places', ( req, res ) => {
         return controller.getPlaces( req, res );
     } );
+
+    app.get( '/api/v1/favourites', ( req, res ) => {
+        return controller.getFavourites( req, res );
+    } );
+
+    app.post( '/api/v1/favourites', ( req, res ) => {
+        return controller.addFavourite( req, res );
+    } );
+
 };
 
 module.exports = attach;

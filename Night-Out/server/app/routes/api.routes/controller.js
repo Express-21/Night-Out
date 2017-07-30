@@ -84,6 +84,65 @@ const init = ( data ) => {
                         .send( 'Could not retrieve data! ' + err );
                 } );
         },
+        getFavourites( req, res ) {
+            if ( !req.user ) {
+                return res.status( 400 ).send( 'You need to be logged in!' );
+            }
+            const filter = {
+                userId: req.user.id,
+            };
+            if ( Object.keys( req.query ).length === 0 ) {
+                return data.favourites.getAll( filter )
+                    .then( ( favourites ) => {
+                        favourites = favourites.map( ( fav ) => fav.placeId );
+                        return res.status( 200 ).send( favourites );
+                    } )
+                    .catch( ( err ) => {
+                        return res.status( 500 )
+                            .send( 'Could not retrieve data! ' + err );
+                    } );
+            }
+
+            const pageSize = req.query.pagesize;
+            const pageNumber = req.query.pagenumber;
+            return data.favourites.filter( filter, pageSize, pageNumber )
+                .then( ( favourites ) => {
+                    return res.status( 200 ).send( favourites );
+                } )
+                .catch( ( err ) => {
+                    return res.status( 500 )
+                        .send( 'Could not retrieve data! ' + err );
+                } );
+        },
+        addFavourite( req, res ) {
+            if ( !req.user ) {
+                return res.status( 400 ).send( 'You need to be logged in!' );
+            }
+
+            return data.places.findById( req.body.placeId )
+                .then( ( place ) => {
+                    if ( !place ) {
+                        return Promise.reject( 'Place not found!' );
+                    }
+                    const fav = {
+                        placeId: req.body.placeId,
+                        placeTitle: place.title,
+                        placeTown: place.town,
+                        placePicUrl: place.picUrl,
+                        placeDescription: place.description,
+                        userId: req.user.id,
+                    };
+                    return data.favourites
+                        .create( fav, data.places, data.users );
+                } )
+                .then( () => {
+                    return res.status( 200 ).send( 'Successfully added!' );
+                } )
+                .catch( ( err ) => {
+                    return res.status( 500 )
+                        .send( 'Could not retrieve data! ' + err );
+                } );
+        },
     };
 
     return controller;
