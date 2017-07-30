@@ -30,7 +30,7 @@ div.email, div.nationality{
     margin-bottom:20px;
 }
 
-span.labels{
+span.labels, label.labels{
     font-style:normal;
     display:inline-block;
     width:200px;

@@ -4,6 +4,10 @@ header, body, nav, ul, li, div, p, span, a, footer{
     color:#9d9d9d;
 }
 
+main{
+    height:100%
+}
+
 @font-face {
     font-family: openSans;
     src: url('../fonts/OpenSans-Regular.ttf');
@@ -15,7 +19,7 @@ header, body, nav, ul, li, div, p, span, a, footer{
     background-size: 100%;
     background-position: center top;
     background-attachment: fixed;
-    min-height:650px;
+    min-height:750px;
     margin-top:55px;
     z-index:-100;
 }
@@ -142,6 +146,18 @@ p.footer-links>a:hover{
 
 p.coppy-right{
     padding-left: 15px;
+}
+
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(/static/images/loading.gif) center no-repeat black;
 }
 
 

@@ -1,33 +1,45 @@
 extends ../shared/_master
 
 block content
-    .container
+    div(class="container")
         if (messages.error)
             span(class='alert alert-danger')
                 =messages.error
-        h1 Profile of:
-        =model.username
-        h2 Image:
-        img(src='/static/uploads/' + model.stringProfilePicture, alt='Profile picture')
-        if model.id === user.userId
-            form(action="/users/edit/" + user.userId, method='post', enctype='multipart/form-data')
-                input(type='file', name='imageUpload', accept='image/*')
-                input(type='submit', name='uploadimage', value='Upload Image')
-        h2 Email:
-        =model.email
-        h2
-        | Nationality
-        div
-            intput(class="password-change" type="button")
-                | Change Password
-        div(class="pass-container")
-            label(for="pass")
-                | NEW PASSWORD
-            input(class="form-control" type="password" name="pass" pattern="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$" title="The password must be at least 6 characters long, containing at least 1 numeric type symbol" required="required")
-            label(for="pass-confirm")
-                | PASSWORD CONFIRMATION
-            input(class="form-control" id="confirm_password" name="password-confirm" type="password" value="" required="required")
-
+        div(class="wrapper-profile")
+            h1 
+                =model.username
+            div(class="inside-info")
+                img(class="user-pic" src="/static/uploads/" + model.stringProfilePicture, alt='Profile picture')
+                form( class="container" action="/users/edit/" + user.userId, method='post', enctype='multipart/form-data')
+                    div(class="right")
+                        input(type='file', name='imageUpload', accept='image/*')
+                        input(type='submit', name='uploadimage', value='Upload Image')
+                        div(class="email")
+                            span(class="labels") 
+                                | Email:
+                            -let email=model.email
+                            input(type="email" name="email" value=email ) 
+                        div(class="nationality")
+                            span(class="labels")                     
+                                | Nationality: 
+                            -let nat=model.nationality
+                            input(type="text" name="nationality" value=nat )
+                            input(class="save" type="submit" value="Save Changes")
+                        input(class="password-change" type="button" value="Change Password")
+                        div(class="pass-container")
+                            form(action="/users/edit/" + user.userId, method='post', enctype='multipart/form-data')
+                                div
+                                    label(class="labels" for="pass")
+                                        | New Password:
+                                    input(class="" type="password" name="pass" pattern="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$" title="The password must be at least 6 characters long, containing at least 1 numeric type symbol" required="required")
+                                div
+                                    label(class="labels" for="pass-confirm")
+                                        | Password Confirmation:
+                                    input(class="" id="confirm_password" name="password-confirm" type="password" value="" required="required")
+                                input(class="save-pass" type="submit" value="Save Password")
+                    
+block additionalCss
+    link(rel="stylesheet" href="/static/styles/edit-profile.css")
 
 block additionalScripts
     script(src='/static/scripts/validations.js')

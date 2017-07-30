@@ -1,0 +1,117 @@
+div.user-profile{
+    margin-top:50px;
+}
+
+img.user-pic{
+    display:inline-block;
+    width:200px;
+    height:200px;
+    margin-right:50px;
+    margin-bottom:20px;
+    position: relative;
+}
+
+h1{
+    padding-left:20px;
+    margin-bottom:30px;
+}
+
+input[type="file"], input[type="submit"], input[type="button"]{
+    padding:15px;
+    box-shadow: 0;
+    border-radius:5px;
+    border:none;
+}
+
+.btn-search{
+    padding-top:2px;
+    box-shadow: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: rgba(36,41,46,0.7);
+    float:right;
+    width:5%;
+    height:40px;
+}
+
+input{
+    background-color: rgba(36,41,46,0.7);
+    display:inline-block;
+    margin-right:10px;
+    height: 40px;
+    border-radius:5px;
+    border:1px solid #9d9d9d
+}
+
+input[type="file"]{
+    background-color: rgba(36,41,46,0.7);
+    padding-top:10px;
+    height:40px;
+    width:100%;
+    margin-bottom:5px;
+}
+
+div.right{
+    position: absolute;
+    left:30%;
+    bottom:120px;
+    width:51%
+}
+
+input[type="text"], input[type="password"], input[type="email"]{
+    padding-left:15px;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover{
+    background-color: rgba(36,41,46,0.85);
+    color:white;
+}
+
+span.labels, label.labels{
+    font-style:normal;
+    display:inline-block;
+    width:172px;
+    font-weight: bold;
+    margin-bottom:14px;
+    padding-left:15px;
+}
+
+input.save{
+    display:block;
+}
+
+input[type="text"], input[type="email"], input[type="password"]{
+    width:70%;
+}
+
+input[type="submit"], input[type="button"]{
+    border-radius:5px;
+    border:1px solid #9d9d9d;
+    padding-top:10px;
+    height:40px;
+    margin-bottom:10px;
+}
+
+@media (max-width: 1198px){
+    div.right{
+        top:180px;
+        height:100%;
+        bottom:0;
+    }
+    input{
+        margin-bottom:15px;
+    }
+}
+
+@media (max-width: 992px){
+    div.right{
+        position: absolute;
+        left:40%;
+        bottom:120px;
+        width:51%
+    }
+    input{
+        margin-bottom:15px;
+    }
+}
+
