@@ -12,7 +12,7 @@ block content
         div(class="place-info")
             div(class="description")
                 =model.description
-                input(type="button" class="fav")
+                input(type="button" id="fav" class="")
             div(class="openning-hours")
                 span(class="labels")
                     | Opening hours: 
@@ -65,3 +65,5 @@ block content
                         | You need to login to leave a comment.
 block additionalCss
     link(rel="stylesheet" href="/static/styles/details.css")
+block additionalScripts
+    script(src='/static/scripts/favButton.js')

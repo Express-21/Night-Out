@@ -14,7 +14,7 @@ div.main-info{
     background-color: rgba(88,82,60,0.55 );
 }
 
-input.fav{
+input#fav{
     border-radius:10px;
     background: rgba(0,0,0,0);
     border:none;
@@ -22,6 +22,10 @@ input.fav{
     width:30px;
     height:23px;
     margin-left:20px;
+}
+
+input.added{
+    background-image: url("/static/images/fav-pink.png") !important;
 }
 
 @media (max-width: 768px){
