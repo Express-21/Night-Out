@@ -20,12 +20,22 @@ gulp.task( 'tests:unit', ['pre-test'], () => {
         .pipe( istanbul.writeReports() );
 } );
 
+gulp.task( 'tests:integration', ['pre-test'], () => {
+    return gulp.src( './tests/integration/**/*.js' )
+        .pipe( mocha( {
+            reporter: 'dot',
+        } ) )
+        .pipe( istanbul.writeReports() );
+} );
+
 gulp.task( 'tests:all', ['pre-test'], () => {
     return gulp.src( './tests/**/*.js' )
         .pipe( mocha( {
             reporter: 'dot',
         } ) )
-        .pipe( istanbul.writeReports() );
+        .pipe( istanbul.writeReports( {
+            reporters: ['lcov', 'json', 'text', 'text-summary'],
+        } ) );
 } );
 
 //gulp.task('tests:app', ['pre-test'], () => {

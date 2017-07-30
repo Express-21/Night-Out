@@ -1,7 +1,7 @@
 const request = require( 'supertest' );
 const { expect } = require( 'chai' );
 
-describe( '/items tests', () => {
+describe( '/users tests', () => {
     const testIp = '127.0.0.1';
     let app = null;
     let db = null;
@@ -45,64 +45,63 @@ describe( '/items tests', () => {
     } );
 
     describe( 'GET /users/register', () => {
-        it( 'expect to return 200', ( done ) => {
-            request( app )
+        it( 'expect to return 200', () => {
+            return request( app )
                 .get( '/users/register' )
-                .expect( 200, done );
+                .expect( 200 );
         } );
     } );
 
     describe( 'POST /users/register', () => {
-        it( 'expect to add and redirect', ( done ) => {
-            request( app )
+        it( 'expect to add and redirect', () => {
+            return request( app )
                 .post( '/users/register' )
                 .send( validUser )
                 .expect( 302 )
-                .end( ( err, res ) => {
-                    if ( err ) {
-                        return done( err );
-                    }
+                .then( ( res ) => {
                     validUser.id = res.header.location.split( '/' ).pop();
                     expect( [12, 24] ).to.contain( validUser.id.length );
-                    done();
                 } );
         } );
     } );
 
     describe( '/api/v1/auth', () => {
-        it( 'expect to be logged in and GET to return the user', ( done ) => {
-            request( app )
-                .get( '/api/v1/auth' )
-                .expect( 200 )
-                .end( ( err, res ) => {
-                    if ( err ) {
-                        return done( err );
-                    }
-                    expect( res.body.username ).to.equal( validUser.username );
-                    done();
-                } );
-        } );
-        it( 'expect DELETE to logout', ( done ) => {
-            request( app )
+        it( 'expect DELETE to logout', () => {
+            return request( app )
                 .delete( '/api/v1/auth' )
-                .expect( 200, done );
+                .expect( 200 );
         } );
-        it( 'expect to be logged out and GET to return 401', ( done ) => {
-            request( app )
-                .get( '/api/v1/auth' )
-                .expect( 401, done );
-        } );
-        it( 'expect POST to login', ( done ) => {
 
+        it( 'expect to be logged out and GET to return 401', () => {
+            return request( app )
+                .get( '/api/v1/auth' )
+                .expect( 401 );
+        } );
+
+        it( 'expect POST to fail with invalidUser', () => {
+            const invalidUser = {};
+            Object.assign( invalidUser, validUser );
+            invalidUser.password = '';
+            return request( app )
+                .post( '/api/v1/auth' )
+                .send( invalidUser )
+                .expect( 401 );
+        } );
+
+        it( 'expect POST to login with validUser', () => {
+            return request( app )
+                .post( '/api/v1/auth' )
+                .send( validUser )
+                .expect( 200 );
         } );
     } );
 
 
     describe( 'GET /users/login', () => {
-        it( 'expect to return 200', ( done ) => {
-            request( app )
+        it( 'expect to return 200', () => {
+            return request( app )
                 .get( '/users/login' )
-                .expect( 200, done );
+                .expect( 200 );
         } );
     } );
 
