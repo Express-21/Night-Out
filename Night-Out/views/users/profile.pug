@@ -16,13 +16,17 @@ block content
                         span(class="labels")                     
                             | Nationality: 
                         =model.nationality
-                    div(class="edit")
-                        a(href="/users/edit/" + model.userId)
-                            i(class="fa fa-pencil-square-o" aria-hidden="true")
-                            | Edit Profile
+                    - let modelId=String(model.id)
+                    - let userId=String(user.userId)
+                    - let sameUser=(modelId==userId)               
+                    if sameUser
+                        div(class="edit")
+                            a(href="/users/edit/" + model.userId)
+                                i(class="fa fa-pencil-square-o" aria-hidden="true")
+                                | Edit Profile
         div(class="favourites")
             <i class="fa fa-star-o fa-2" aria-hidden="true"></i>
-            | My Favourite Places:
+            | Favourite Places:
             if (model.favourites)
                 ul(class="all")
                 each place in model.favourites
