@@ -118,13 +118,13 @@ const init = ( data ) => {
             if ( !req.user ) {
                 return res.status( 400 ).send( 'You need to be logged in!' );
             }
-
+            let fav = {};
             return data.places.findById( req.body.placeId )
                 .then( ( place ) => {
                     if ( !place ) {
                         return Promise.reject( 'Place not found!' );
                     }
-                    const fav = {
+                    fav = {
                         placeId: req.body.placeId,
                         placeTitle: place.title,
                         placeTown: place.town,
@@ -132,15 +132,25 @@ const init = ( data ) => {
                         placeDescription: place.description,
                         userId: req.user.id,
                     };
-                    return data.favourites
-                        .create( fav, data.places, data.users );
+                    return data.favourites.getAll( {
+                        userId: fav.userId,
+                        placeId: fav.placeId,
+                    } );
+                } )
+                .then( ( favourite ) => {
+                    if ( !favourite ) {
+                        return data.favourites
+                            .create( fav, data.places, data.users );
+                    } else {
+                        return Promise.resolve();
+                    }
                 } )
                 .then( () => {
                     return res.status( 200 ).send( 'Successfully added!' );
                 } )
                 .catch( ( err ) => {
                     return res.status( 500 )
-                        .send( 'Could not retrieve data! ' + err );
+                        .send( 'Could not create favourite! ' + err );
                 } );
         },
     };
