@@ -19,7 +19,6 @@ class Favourites extends BaseData {
                     user.favourites.pop();
                 }
                 user.favourites.unshift(model);
-                console.log( user );
                 return users.updateById(user);
             } );
     }

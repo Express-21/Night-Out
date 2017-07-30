@@ -137,16 +137,51 @@ const init = ( data ) => {
                         placeId: fav.placeId,
                     } );
                 } )
-                .then( ( favourite ) => {
-                    if ( !favourite ) {
+                .then( ( favourites ) => {
+                    if ( !favourites[0] ) {
                         return data.favourites
                             .create( fav, data.places, data.users );
-                    } else {
-                        return Promise.resolve();
                     }
+                    return Promise.resolve();
                 } )
                 .then( () => {
                     return res.status( 200 ).send( 'Successfully added!' );
+                } )
+                .catch( ( err ) => {
+                    return res.status( 500 )
+                        .send( 'Could not create favourite! ' + err );
+                } );
+        },
+        removeFavourite( req, res ) {
+            if ( !req.user ) {
+                return res.status( 400 ).send( 'You need to be logged in!' );
+            }
+            const filter = {
+                userId: req.user.id,
+                placeId: req.body.placeId,
+            }
+            console.log( filter );
+            return data.places.findById( req.body.placeId )
+                .then( ( place ) => {
+                    if ( !place ) {
+                        return Promise.reject( 'Place not found!' );
+                    }
+                    return data.favourites.filter( filter );
+                } )
+                .then( ( fav ) => {
+                    return data.favourites.removeById( fav[0] );
+                } )
+                .then( () => {
+                    return Promise.all( [
+                        data.users.findUser( req.user.username ),
+                        data.favourites.filter( filter, 1, 5 ),] );
+                } )
+                .then( ( [user, favourites] ) => {
+                    user.favourites = favourites;
+                    return data.users.updateById( user );
+                } )
+                .then( () => {
+                    return res.status( 200 ).send( 'Updated successfully!' );
                 } )
                 .catch( ( err ) => {
                     return res.status( 500 )

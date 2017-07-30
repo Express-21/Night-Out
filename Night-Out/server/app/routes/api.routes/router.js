@@ -74,6 +74,9 @@ const attach = (app, data) => {
         return controller.addFavourite( req, res );
     } );
 
+    app.delete( '/api/v1/favourites', ( req, res ) => {
+        return controller.removeFavourite( req, res );
+    } );
 };
 
 module.exports = attach;
