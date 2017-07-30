@@ -73,6 +73,10 @@ const attach = (app, data) => {
     app.post( '/api/v1/favourites', ( req, res ) => {
         return controller.addFavourite( req, res );
     } );
+
+    app.delete( '/api/v1/favourites', ( req, res ) => {
+        return controller.removeFavourite( req, res );
+    } );
 };
 
 module.exports = attach;
