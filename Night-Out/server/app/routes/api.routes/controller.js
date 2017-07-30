@@ -188,6 +188,13 @@ const init = ( data ) => {
                         .send( 'Could not create favourite! ' + err );
                 } );
         },
+
+        getComments(req, res) {
+            if (!req.user) {
+                return res.status(400).send('You need to be logged in!');
+            }
+            // load more comments logic here
+        },
     };
 
     return controller;
