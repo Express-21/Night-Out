@@ -51,15 +51,14 @@ const attach = (app, data) => {
     } );
 
     app.post( '/api/v1/users', ( req, res ) => {
-        const model = {
-            username: req.body.username,
-            email: req.body.email,
-            password: req.body.password,
-            stringProfilePicture: 'user.png',
-            nationality: req.body.nationality,
-            favourites: [],
-        };
-        return controller.addUser( req, res, model );
+        return controller.addUser( req, res );
+    } );
+
+    app.put( '/api/v1/users', ( req, res ) => {
+        if ( !req.user ) {
+            return res.status( 400 ).send( 'You need to be logged in!' );
+        }
+        return controller.updateUser( req, res );
     } );
 
     app.get( '/api/v1/places', ( req, res ) => {
@@ -67,14 +66,23 @@ const attach = (app, data) => {
     } );
 
     app.get( '/api/v1/favourites', ( req, res ) => {
+        if ( !req.user ) {
+            return res.status( 400 ).send( 'You need to be logged in!' );
+        }
         return controller.getFavourites( req, res );
     } );
 
     app.post( '/api/v1/favourites', ( req, res ) => {
+        if ( !req.user ) {
+            return res.status( 400 ).send( 'You need to be logged in!' );
+        }
         return controller.addFavourite( req, res );
     } );
 
     app.delete( '/api/v1/favourites', ( req, res ) => {
+        if ( !req.user ) {
+            return res.status( 400 ).send( 'You need to be logged in!' );
+        }
         return controller.removeFavourite( req, res );
     } );
 };

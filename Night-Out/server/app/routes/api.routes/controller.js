@@ -22,7 +22,16 @@ const init = ( data ) => {
                         .send( 'Could not retrieve data! ' + err );
                 } );
         },
-        addUser( req, res, model ) {
+        addUser( req, res ) {
+            const model = {
+                username: req.body.username,
+                email: req.body.email,
+                password: req.body.password,
+                stringProfilePicture: 'user.png',
+                nationality: req.body.nationality,
+                favourites: [],
+            };
+
             if ( !data.users.validator.isValid( model ) ) {
                 return Promise.reject( res.status( 400 )
                     .send( 'Data does not meet requirements!' ) );
@@ -43,6 +52,38 @@ const init = ( data ) => {
                 } )
                 .then( () => {
                     return res.status( 200 ).send( 'User successfully added!' );
+                } )
+                .catch( ( err ) => {
+                    return res.status( 400 ).send( err );
+                } );
+        },
+        updateUser( req, res ) {
+            return data.users.findById( req.user.id )
+                .then( ( user ) => {
+                    user.username = req.user.username;
+                    user.email = req.body.email || user.email;
+                    user.password = req.body.password || user.password;
+                    user.nationality = req.body.nationality || user.nationality;
+                    if ( req.file ) {
+                        user.stringProfilePicture = req.file.filename;
+                    }
+                    if ( !data.users.validator.isValid( user ) ) {
+                        return Promise.reject( 'Data does not meet requirements!' );
+                    }
+                    return Promise.all( [user, data.users.filter( {
+                        email: user.email,
+                    } )] );
+                } )
+                .then( ( [validUser, users] ) => {
+                    const index = users
+                        .findIndex( ( user ) => user.id.toString() !== validUser.id.toString() );
+                    if ( index !== -1 ) {
+                        return Promise.reject( 'E-mail already in use!' );
+                    }
+                    return data.users.updateById( validUser, req.body.password );
+                } )
+                .then( ( user ) => {
+                    return res.status( 200 ).send( 'User successfully updated!' );
                 } )
                 .catch( ( err ) => {
                     return res.status( 400 ).send( err );
@@ -85,9 +126,6 @@ const init = ( data ) => {
                 } );
         },
         getFavourites( req, res ) {
-            if ( !req.user ) {
-                return res.status( 400 ).send( 'You need to be logged in!' );
-            }
             const filter = {
                 userId: req.user.id,
             };
@@ -115,9 +153,6 @@ const init = ( data ) => {
                 } );
         },
         addFavourite( req, res ) {
-            if ( !req.user ) {
-                return res.status( 400 ).send( 'You need to be logged in!' );
-            }
             let fav = {};
             return data.places.findById( req.body.placeId )
                 .then( ( place ) => {
@@ -153,13 +188,10 @@ const init = ( data ) => {
                 } );
         },
         removeFavourite( req, res ) {
-            if ( !req.user ) {
-                return res.status( 400 ).send( 'You need to be logged in!' );
-            }
             const filter = {
                 userId: req.user.id,
                 placeId: req.body.placeId,
-            }
+            };
             console.log( filter );
             return data.places.findById( req.body.placeId )
                 .then( ( place ) => {
@@ -188,7 +220,6 @@ const init = ( data ) => {
                         .send( 'Could not create favourite! ' + err );
                 } );
         },
-
         getComments(req, res) {
             if (!req.user) {
                 return res.status(400).send('You need to be logged in!');

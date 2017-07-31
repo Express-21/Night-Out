@@ -65,6 +65,7 @@ describe( 'api controller', () => {
                 },
             };
             controller = init( data );
+            req.body = {};
             return controller.addUser( req, res )
                 .catch( ( err ) => {
                     expect( err.statusCode ).to.equal( 400 );
@@ -111,10 +112,10 @@ describe( 'api controller', () => {
             } );
 
             it( 'expect addUser to fail on existing user', () => {
-                const model = {
+                req.body = {
                     username: usersList[0].username,
                 };
-                return controller.addUser( req, res, model )
+                return controller.addUser( req, res )
                     .then( () => {
                         expect( res.statusCode ).to.equal( 400 );
                         expect( res.body ).to.equal( 'Username already exists!' );
@@ -122,18 +123,18 @@ describe( 'api controller', () => {
             } );
 
             it( 'expect addUser to fail on existing email', () => {
-                const model = {
+                req.body = {
                     email: usersList[0].email,
                 };
-                return controller.addUser( req, res, model )
+                return controller.addUser( req, res )
                     .then( () => {
                         expect( res.statusCode ).to.equal( 400 );
                         expect( res.body ).to.equal( 'Email already used!' );
                     } );
             } );
             it( 'expect addUser to successfully add unique user', () => {
-                const model = {};
-                return controller.addUser( req, res, model )
+                req.body = {};
+                return controller.addUser( req, res )
                     .then( () => {
                         expect( res.statusCode ).to.equal( 200 );
                         expect( res.body ).to.equal( 'User successfully added!' );
