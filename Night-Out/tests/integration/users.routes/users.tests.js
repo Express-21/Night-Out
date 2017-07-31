@@ -1,10 +1,12 @@
 const request = require( 'supertest' );
 const { expect } = require( 'chai' );
+const { MongoClient } = require( 'mongodb' );
 
 describe( '/users tests', () => {
     const testIp = '127.0.0.1';
     let app = null;
     let db = null;
+    let config = null;
 
     const validUsers = [{
         username: 'GoshoIvanov',
@@ -20,11 +22,10 @@ describe( '/users tests', () => {
         }];
 
     before( () => {
-        let config = null;
         return Promise.resolve()
             .then( () => {
                 return require( '../../../server/config/app.config.js' )
-                    .init( testIp, 3010, '(test)' );
+                    .init( testIp, 3020, '(test)' );
             } )
             .then( ( _config ) => {
                 config = _config;
@@ -47,7 +48,13 @@ describe( '/users tests', () => {
     } );
 
     after( () => {
-        return db.dropDatabase();
+        return Promise.all( [
+            db.dropDatabase(),
+            MongoClient.connect( config.sessionStoreName )
+                .then( ( db ) => {
+                    db.dropDatabase();
+                } )
+        ] );
     } );
 
     describe( 'GET /users/register', () => {

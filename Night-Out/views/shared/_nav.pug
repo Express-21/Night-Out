@@ -16,13 +16,13 @@ mixin nav
                     a(href="/")
                         | HOME
                   li
-                    a(href="/places/category/restaurants")
+                    a#nav-btn-restaurants(href="/places/category/restaurants")
                         | RESTAURANTS
                   li
-                    a(href="/places/category/bars")
+                    a#nav-btn-bars(href="/places/category/bars")
                         | BARS & PUBS
                   li
-                    a(href="/places/category/clubs")
+                    a#nav-btn-clubs(href="/places/category/clubs")
                         | CLUBS & MUSIC
     
                 ul(class="nav navbar-nav navbar-right")
@@ -35,26 +35,26 @@ mixin nav
                                 span(class="caret") 
                             ul(class="dropdown-menu navbar-inverse")
                                 li
-                                    a(href="/users/edit/" + user.userId)
+                                    a#nav-btn-user-edit(href="/users/edit/" + user.userId)
                                         i(class="fa fa-pencil-square-o" aria-hidden="true")
                                         | EDIT PROFILE
                                 li
-                                    a(href="/places/create")
+                                    a#nav-btn-place-create(href="/places/create")
                                         i(class="fa fa-plus" aria-hidden="true")
                                         | ADD PLACE
                                 li
-                                    a(href="/users/all")
+                                    a#nav-btn-user-all(href="/users/all")
                                         i(class="fa fa-list" aria-hidden="true")
                                         | ALL USERS
                                 li
-                                    a(href="/users/logout")  
+                                    a#nav-btn-logout(href="/users/logout")
                                         i(class="fa fa-sign-out" aria-hidden="true")
                                         | LOGOUT
                     else
                         li
-                            a(href="/users/login")
+                            a#nav-btn-login(href="/users/login")
                                 | LOGIN
                         li
-                            a(href="/users/register")
+                            a#nav-btn-register(href="/users/register")
                                 | REGISTER 
 
