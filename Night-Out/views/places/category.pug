@@ -9,7 +9,7 @@ block content
         div(class="town-select")
             span(class="town-label")
                 | CHOOSE YOUR CITY:
-            select(name="carlist" form="carform")
+            select#town-select(name="carlist" form="carform")
                 option(value='') All
                 each town in location
                     option(value=town.name) #{town.name}
