@@ -12,7 +12,8 @@ block content
         div(class="place-info")
             div(class="description")
                 =model.description
-                input(type="button" id="fav" class="")
+                if user.loggedIn
+                    input(type="button" id="fav" class="")
             div(class="openning-hours")
                 span(class="labels")
                     | Opening hours: 
