@@ -28,6 +28,13 @@ class Users extends BaseData {
             } );
     }
 
+    updateById( user, hashPass ) {
+        if ( hashPass ) {
+            user.password = hashPassword( user.password );
+        }
+        return super.updateById( user );
+    }
+
     validatePassword( user, password ) {
         return (user.password) === hashPassword(password);
     }

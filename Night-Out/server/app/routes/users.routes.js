@@ -67,7 +67,7 @@ const attach = (app, data) => {
             return res.status( 400 ).redirect( '/users/register' );
         }
 
-        data.users.findUser( model.username )
+        return data.users.findUser( model.username )
             .then( ( user ) => {
                 if ( user ) {
                     return Promise.reject( 'Username already exists!' );
@@ -101,7 +101,7 @@ const attach = (app, data) => {
             return res.status( 403 ).redirect( '/users/login' );
         }
 
-        data.users.getAll()
+        return data.users.getAll()
             .then( ( users ) => {
                 return res.render( 'users/all.pug', {
                     model: users,
@@ -149,26 +149,46 @@ const attach = (app, data) => {
                 req.flash( 'error', message );
                 return res.redirect( '/users/edit/' + req.user.id );
             }
-            data.users.findById( req.user.id )
+
+            return data.users.findById( req.user.id )
                 .then((user) => {
-                    user.stringProfilePicture = req.file.filename;
-                    return data.users.updateById( user );
+                    user.username = req.user.username;
+                    user.email = req.body.email || user.email;
+                    user.password = req.body.password || user.password;
+                    user.nationality = req.body.nationality || user.nationality;
+                    if ( req.file ) {
+                        user.stringProfilePicture = req.file.filename;
+                    }
+                    if ( !data.users.validator.isValid( user ) ) {
+                        return Promise.reject( 'Data does not meet requirements!' );
+                    }
+                    return Promise.all( [user, data.users.filter( {
+                        email: user.email,
+                    } )] );
+                } )
+                .then( ( [validUser, users] ) => {
+                    const index = users
+                        .findIndex( ( user ) => user.id.toString() !== validUser.id.toString() );
+                    if ( index !== -1 ) {
+                        return Promise.reject( 'E-mail already in use!' );
+                    }
+                    return data.users.updateById( validUser, req.body.password );
                 })
                 .then( (user) => {
                     return res.render( 'users/edit.pug', {
-                        model: req.user,
+                        model: user,
                     });
                 } )
                 .catch( ( error ) => {
-                    req.flash( 'error', 'Something went wrong while updating data! ' + error );
-                    return res.status( 500 ).redirect( '/users/edit/' + req.user.id );
+                    req.flash( 'error', error );
+                    return res.redirect( '/users/edit/' + req.user.id );
                 });
         });
     });
 
     app.get('/users/:id', (req, res) => {
         const id = req.params.id;
-        data.users.findById( id )
+        return data.users.findById( id )
             .then( ( user ) => {
                 if ( !user ) {
                     return Promise.reject( 'No such user!' );
