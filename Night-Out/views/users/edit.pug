@@ -13,7 +13,6 @@ block content
                 form( class="container" action="/users/edit/" + user.userId, method='post', enctype='multipart/form-data')
                     div(class="right")
                         input(type='file', name='imageUpload', accept='image/*')
-                        //input(type='submit', name='uploadimage', value='Upload Image')
                         div(class="email")
                             span(class="labels") 
                                 | Email:
@@ -24,20 +23,15 @@ block content
                                 | Nationality: 
                             -let nat=model.nationality
                             input(type="text" name="nationality" value=nat )
+                        div
+                            label(class="labels" for="pass")
+                                | New Password:
+                            input(class="" type="password" name="password" pattern="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$" title="The password must be at least 6 characters long, containing at least 1 numeric type symbol" required="required")
+                        div
+                            label(class="labels" for="pass-confirm")
+                                | Password Confirmation:
+                            input(class="" id="confirm_password" name="password-confirm" type="password" value="" required="required")
                         input(class="save" type="submit" value="Save Changes")
-            //input(class="password-change" type="button" value="Change Password")
-            div(class="pass-container")
-                form(action="/users/edit/" + user.userId, method='post', enctype='multipart/form-data')
-                    div
-                        label(class="labels" for="pass")
-                            | New Password:
-                        input(class="" type="password" name="password" pattern="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$" title="The password must be at least 6 characters long, containing at least 1 numeric type symbol" required="required")
-                    div
-                        label(class="labels" for="pass-confirm")
-                            | Password Confirmation:
-                        input(class="" id="confirm_password" name="password-confirm" type="password" value="" required="required")
-                    input(class="save-pass" type="submit" value="Save Password")
-                    
 block additionalCss
     link(rel="stylesheet" href="/static/styles/edit-profile.css")
 

@@ -85,6 +85,10 @@ const attach = (app, data) => {
         }
         return controller.removeFavourite( req, res );
     } );
+
+    app.get('/api/v1/comments', (req, res) =>{
+        return controller.getComments(req, res);
+    });
 };
 
 module.exports = attach;
