@@ -9,7 +9,12 @@ describe( 'Validator tests', () => {
         'abc', 'abcde', 'a'.repeat( 100 ),
     ];
     const validLongStrings = [
-        '', 'abc', 'abcde', 'a'.repeat( 100 ), 'a'.repeat( 500 ), 'a'.repeat( 1000 ),
+        '',
+        'abc',
+        'abcde',
+        'a'.repeat( 100 ),
+        'a'.repeat( 500 ),
+        'a'.repeat( 1000 ),
     ];
     const validPasswords = [
         'aaaaa1', 'qwert2', 'Asdsad112', '123456', 'a'.repeat( 99 ) + '1',
@@ -141,10 +146,12 @@ describe( 'Validator tests', () => {
         const valid = validLongStrings;
         const invalid = invalidExtremeLongString;
         valid.forEach( ( placeDescription ) => {
-            expect( Validator.placeDescription( placeDescription ) ).to.equal( true );
+            expect(Validator.placeDescription(placeDescription))
+            .to.equal( true );
         } );
         invalid.forEach( ( placeDescription ) => {
-            expect( Validator.placeDescription( placeDescription ) ).to.equal( false );
+            expect(Validator.placeDescription(placeDescription))
+            .to.equal( false );
         } );
     } );
 
@@ -257,7 +264,7 @@ describe( 'Validator tests', () => {
                 }
                 case 1:
                 {
-                    place.description = randomElement( invalidExtremeLongString );
+                    place.description = randomElement(invalidExtremeLongString);
                     break;
                 }
                 case 2:

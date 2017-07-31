@@ -1,3 +1,4 @@
+/* eslint-disable no-undefined*/
 class Validator {
     static default() {
         return {
@@ -31,7 +32,9 @@ class Validator {
     }
 
     static email( email ) {
-        const template = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const template = '/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()'+
+        '\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]'+
+        '{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/';
         return template.test( email );
     }
 
@@ -86,7 +89,15 @@ class Validator {
             Validator.nationality( nationality );
     }
 
-    static validatePlace( { title, description, town, category, address, openingHours, email } ) {
+    static validatePlace( {
+        title,
+        description,
+        town,
+        category,
+        address,
+        openingHours,
+        email,
+     } ) {
         return Validator.placeName( title ) &&
             Validator.placeDescription( description ) &&
             Validator.townName( town ) &&

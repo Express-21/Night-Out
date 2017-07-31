@@ -73,7 +73,8 @@ describe( 'api controller', () => {
             } );
         } );
         describe( 'filter tests', () => {
-            it( 'expect getPlaces to return 500 if fails to retrieve data', () => {
+            it('expect getPlaces to return 500 if fails to retrieve data',
+             () => {
                 data.places.filter = () => {
                     return Promise.reject( items );
                 };

@@ -67,8 +67,9 @@ const init = ( data ) => {
                     if ( req.file ) {
                         user.stringProfilePicture = req.file.filename;
                     }
-                    if ( !data.users.validator.isValid( user ) ) {
-                        return Promise.reject( 'Data does not meet requirements!' );
+                    if (!data.users.validator.isValid(user)) {
+                        return Promise
+                        .reject('Data does not meet requirements!');
                     }
                     return Promise.all( [user, data.users.filter( {
                         email: user.email,
@@ -76,14 +77,16 @@ const init = ( data ) => {
                 } )
                 .then( ( [validUser, users] ) => {
                     const index = users
-                        .findIndex( ( user ) => user.id.toString() !== validUser.id.toString() );
+                        .findIndex((user) =>
+                         user.id.toString() !== validUser.id.toString());
                     if ( index !== -1 ) {
                         return Promise.reject( 'E-mail already in use!' );
                     }
-                    return data.users.updateById( validUser, req.body.password );
+                    return data.users.updateById(validUser, req.body.password);
                 } )
                 .then( ( user ) => {
-                    return res.status( 200 ).send( 'User successfully updated!' );
+                    return res.status(200)
+                    .send( 'User successfully updated!' );
                 } )
                 .catch( ( err ) => {
                     return res.status( 400 ).send( err );
@@ -94,10 +97,11 @@ const init = ( data ) => {
                 return data.places.getAll()
                     .then( ( places ) => {
                         places = places.map( ( place ) => place.title );
-                        return res.status( 200 ).send( places );
+                        return res.status(200).send( places );
                     } )
                     .catch( ( err ) => {
-                        return res.status( 500 ).send( 'Could not retrieve data! ' + err );
+                        return res.status(500)
+                        .send('Could not retrieve data! ' + err);
                     } );
             }
             const filter = {};
@@ -206,7 +210,7 @@ const init = ( data ) => {
                 .then( () => {
                     return Promise.all( [
                         data.users.findUser( req.user.username ),
-                        data.favourites.filter( filter, 1, 5 ),] );
+                        data.favourites.filter( filter, 1, 5 )] );
                 } )
                 .then( ( [user, favourites] ) => {
                     user.favourites = favourites;
@@ -220,12 +224,12 @@ const init = ( data ) => {
                         .send( 'Could not create favourite! ' + err );
                 } );
         },
-        getComments(req, res) {
-            if (!req.user) {
-                return res.status(400).send('You need to be logged in!');
-            }
+        // getComments(req, res) {
+        //    if (!req.user) {
+        //        return res.status(400).send('You need to be logged in!');
+        //    }
             // load more comments logic here
-        },
+        // },
     };
 
     return controller;

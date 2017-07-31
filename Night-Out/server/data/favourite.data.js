@@ -5,7 +5,6 @@ class Favourites extends BaseData {
     constructor( db ) {
         super(db, Favourite, Favourite);
     }
-    
     create(model, places, users) {
         return super.create(model)
             .then( (fav) => {

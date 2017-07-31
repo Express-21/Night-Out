@@ -8,8 +8,8 @@ const User = {
         placeTitle: '',
         placeType: '',
         placeDescr: '',
-    } /* Store only 5, the rest to be loaded via a "see all btn" */],
-}
+    }],
+};
 
 const Favourite = {
     userId: '',
@@ -17,7 +17,7 @@ const Favourite = {
     placeTitle: '',
     placeType: '',
     placeDescr: '',
-}
+};
 
 const Place = {
     title: '',
@@ -35,18 +35,18 @@ const Place = {
         userId: '',
         username: '',
         content: '',
-    } /* Store only 5, the rest to be loaded via a "see all btn" */],
-}
+    }],
+};
 
 const Comment = {
     placeId: '',
     userId: '',
     username: '',
     content: '',
-}
+};
 
 const Town = {
     name: '',
-}
+};
 
 

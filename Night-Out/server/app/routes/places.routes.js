@@ -30,11 +30,12 @@ const attach = (app, data) => {
                 return res.render( 'places/all.pug', {
                     model: places,
                     location: towns,
-                    //type: type,
+                    // type: type,
                 } );
             } )
             .catch( ( err ) => {
-                req.flash( 'error', 'Something went wrong while retrieving data! ' + err );
+                req.flash('error',
+                 'Something went wrong while retrieving data! ' + err);
                 return res.status( 500 ).render( 'general/general-error.pug' );
             } );
     });
@@ -51,7 +52,8 @@ const attach = (app, data) => {
                 });
             })
             .catch( ( err ) => {
-                req.flash( 'error', 'Something went wrong while retrieving data! ' + err );
+                req.flash('error',
+                'Something went wrong while retrieving data! ' + err);
                 return res.status( 500 ).render( 'general/general-error.pug' );
             } );
     });
@@ -102,7 +104,7 @@ const attach = (app, data) => {
                     emptyPlace.comments = [];
                     if ( !data.places.validator.isValid( emptyPlace ) ) {
                         data.places.removeById( emptyPlace );
-                        req.flash( 'error', 'Data does not meet requirements!' );
+                        req.flash('error', 'Data does not meet requirements!');
                         return res.redirect( '/places/create/' );
                     }
                     return data.places.updateById( emptyPlace )
@@ -113,7 +115,8 @@ const attach = (app, data) => {
                 } );
             } )
             .catch( ( err ) => {
-                req.flash( 'error', 'Something went wrong while updating data! ' + err );
+                req.flash('error',
+                 'Something went wrong while updating data! ' + err);
                 return res.status( 500 ).render( 'general/general-error.pug' );
             } );
     });
@@ -130,7 +133,8 @@ const attach = (app, data) => {
                 } );
             } )
             .catch( ( err ) => {
-                req.flash( 'error', 'Something went wrong while retrieving data! ' + err );
+                req.flash('error',
+                 'Something went wrong while retrieving data! ' + err);
                 return res.status( 500 ).render( 'general/general-error.pug' );
             } );
     });
@@ -162,7 +166,8 @@ const attach = (app, data) => {
                 return res.redirect( '/places/' + place.id );
             } )
             .catch( ( err ) => {
-                req.flash( 'error', 'Something went wrong while retrieving data! ' + err );
+                req.flash( 'error',
+                'Something went wrong while retrieving data! ' + err );
                 return res.status( 500 ).render( 'general/general-error.pug' );
             } );
     });

@@ -33,7 +33,8 @@ describe( 'api controller', () => {
                 favourites: {
                     getAll( filter ) {
                         return Promise.resolve(
-                            favs.filter( ( fav ) => fav.userId === filter.userId ) );
+                            favs.filter((fav) =>
+                            fav.userId === filter.userId ) );
                     },
                 },
             };
@@ -54,6 +55,5 @@ describe( 'api controller', () => {
                     } );
                 } );
         } );
-
     } );
 } );

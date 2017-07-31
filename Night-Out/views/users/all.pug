@@ -38,9 +38,8 @@ block content
                                     span(class="nationality")
                                         =user.nationality
                                     span(class="favourites")
-                                        // -const fav=user.favourites.length
-                                        | 5
-                                        //=fav
+                                        -const fav=user.favourites.length
+                                        =fav
                             else
                                 li(class="black")
                                     span

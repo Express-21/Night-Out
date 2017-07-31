@@ -29,7 +29,8 @@ describe( '/users tests', () => {
             } )
             .then( ( _config ) => {
                 config = _config;
-                return require( '../../../server/db' ).init( config.connectionString );
+                return require('../../../server/db')
+                .init(config.connectionString);
             } )
             .then( ( _db ) => {
                 db = _db;
@@ -51,9 +52,9 @@ describe( '/users tests', () => {
         return Promise.all( [
             db.dropDatabase(),
             MongoClient.connect( config.sessionStoreName )
-                .then( ( db ) => {
-                    db.dropDatabase();
-                } )
+                .then((database) => {
+                    database.dropDatabase();
+                }),
         ] );
     } );
 
@@ -199,6 +200,5 @@ describe( '/users tests', () => {
                     } );
                 } );
         } );
-
-    } );
+    });
 } );

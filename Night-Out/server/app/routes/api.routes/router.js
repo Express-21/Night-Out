@@ -35,13 +35,14 @@ const attach = (app, data) => {
                     email: req.user.email,
                 } );
             } );
-        } )( req, res, next );
+        })( req, res, next );
     } );
 
     app.delete( '/api/v1/auth', ( req, res ) => {
         req.logout();
         if ( req.user ) {
-            return res.status( 500 ).send( 'Something went wrong! Still Logged in!' );
+            return res.status(500)
+            .send( 'Something went wrong! Still Logged in!' );
         }
         return res.status( 200 ).send( 'Successfully logged out!' );
     } );

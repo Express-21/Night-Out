@@ -98,7 +98,8 @@ describe( 'api controller', () => {
                             return Promise.resolve( usersList[index] );
                         },
                         filter( filter ) {
-                            return Promise.resolve( usersList.filter( ( user ) => {
+                            return Promise
+                            .resolve( usersList.filter( ( user ) => {
                                 return (user.email === filter.email);
                             } ) );
                         },
@@ -118,7 +119,8 @@ describe( 'api controller', () => {
                 return controller.addUser( req, res )
                     .then( () => {
                         expect( res.statusCode ).to.equal( 400 );
-                        expect( res.body ).to.equal( 'Username already exists!' );
+                        expect( res.body )
+                        .to.equal( 'Username already exists!' );
                     } );
             } );
 
@@ -137,10 +139,10 @@ describe( 'api controller', () => {
                 return controller.addUser( req, res )
                     .then( () => {
                         expect( res.statusCode ).to.equal( 200 );
-                        expect( res.body ).to.equal( 'User successfully added!' );
+                        expect( res.body )
+                        .to.equal( 'User successfully added!' );
                     } );
             } );
-
         } );
     } );
 } );

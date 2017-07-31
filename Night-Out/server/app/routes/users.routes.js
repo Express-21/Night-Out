@@ -108,7 +108,8 @@ const attach = (app, data) => {
                 } );
             } )
             .catch( ( err ) => {
-                req.flash( 'error', 'Something went wrong while retrieving data! ' + err );
+                req.flash('error',
+                'Something went wrong while retrieving data! ' + err );
                 return res.status( 500 ).render( 'general/general-error.pug' );
             });
     });
@@ -160,7 +161,8 @@ const attach = (app, data) => {
                         user.stringProfilePicture = req.file.filename;
                     }
                     if ( !data.users.validator.isValid( user ) ) {
-                        return Promise.reject( 'Data does not meet requirements!' );
+                        return Promise
+                        .reject('Data does not meet requirements!');
                     }
                     return Promise.all( [user, data.users.filter( {
                         email: user.email,
@@ -168,11 +170,13 @@ const attach = (app, data) => {
                 } )
                 .then( ( [validUser, users] ) => {
                     const index = users
-                        .findIndex( ( user ) => user.id.toString() !== validUser.id.toString() );
+                        .findIndex((user) =>
+                        user.id.toString() !== validUser.id.toString());
                     if ( index !== -1 ) {
                         return Promise.reject( 'E-mail already in use!' );
                     }
-                    return data.users.updateById( validUser, req.body.password );
+                    return data.users
+                    .updateById( validUser, req.body.password );
                 })
                 .then( (user) => {
                     return res.render( 'users/edit.pug', {

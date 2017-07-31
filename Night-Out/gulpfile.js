@@ -40,16 +40,7 @@ gulp.task( 'tests:all', ['pre-test', 'test-server:start'], () => {
         .once( 'end', () => {
             gulp.start( 'test-server:stop' );
         } );
-
-} );
-
-//gulp.task('tests:app', ['pre-test'], () => {
-//    return gulp.src('./tests/app/**/*.js')
-//        .pipe( mocha( {
-//            reporter: 'dot',
-//        }))
-//        .pipe(istanbul.writeReports());
-//});
+});
 
 gulp.task('server', ()=>{
     let config = null;

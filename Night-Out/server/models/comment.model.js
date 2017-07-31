@@ -33,8 +33,8 @@ class Comment {
             '/': '&#x2F;',
         };
         let retStr = comment;
-        for ( let char in filter ) {
-            retStr = retStr.replace( new RegExp( char, 'g' ), filter[char] );
+        for (let i = 0; i < filter.length; i++) {
+            retStr = retStr.replace(new RegExp(i, 'g'), filter[i]);
         }
         return retStr;
     }

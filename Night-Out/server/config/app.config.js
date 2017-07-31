@@ -8,6 +8,6 @@ const init = ( mongoIp, port, suffix ) => {
         sessionStoreName,
     };
     return Promise.resolve( config );
-}
+};
 
 module.exports = { init };

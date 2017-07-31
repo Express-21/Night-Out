@@ -26,7 +26,7 @@ describe( 'BaseData tests', () => {
     const findOne = ( filter ) => {
         const id = filter._id.$eq;
         const result = items.filter( ( item ) => {
-                return (item.id == id);
+                return (item.id === id);
             } )[0] || null;
         return Promise.resolve( result );
     };
@@ -34,7 +34,7 @@ describe( 'BaseData tests', () => {
     const updateOne = ( filter, model ) => {
         const id = filter._id;
         items = items.map( ( item ) => {
-            return (item.id == id) ? model : item;
+            return (item.id === id) ? model : item;
         } );
         return Promise.resolve( items );
     };
@@ -42,7 +42,7 @@ describe( 'BaseData tests', () => {
     const deleteOne = ( filter ) => {
         const id = filter._id;
         const index = items.findIndex( ( element ) => {
-            return element.id == id;
+            return element.id === id;
         } );
         items.splice( index, 1, 1 );
         return Promise.resolve( items );
