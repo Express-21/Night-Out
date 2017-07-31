@@ -54,7 +54,7 @@ input[type="file"]{
 div.right{
     position: absolute;
     left:30%;
-    bottom:120px;
+    bottom:260px;
     width:51%
 }
 
@@ -94,7 +94,7 @@ input[type="submit"], input[type="button"]{
 
 @media (max-width: 1198px){
     div.right{
-        top:180px;
+        top:170px;
         height:100%;
         bottom:0;
     }
@@ -106,7 +106,7 @@ input[type="submit"], input[type="button"]{
 @media (max-width: 992px){
     div.right{
         position: absolute;
-        left:40%;
+        left:45%;
         bottom:120px;
         width:51%
     }

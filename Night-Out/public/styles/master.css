@@ -4,6 +4,13 @@ header, body, nav, ul, li, div, p, span, a, footer{
     color:#9d9d9d;
 }
 
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}
+
 main{
     height:100%
 }

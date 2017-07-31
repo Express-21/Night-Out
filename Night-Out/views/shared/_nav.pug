@@ -35,6 +35,10 @@ mixin nav
                                 span(class="caret") 
                             ul(class="dropdown-menu navbar-inverse")
                                 li
+                                    a#nav-btn-user-edit(href="/users/" + user.userId)
+                                        i(class="fa fa-user" aria-hidden="true")
+                                        | MY PROFILE
+                                li
                                     a#nav-btn-user-edit(href="/users/edit/" + user.userId)
                                         i(class="fa fa-pencil-square-o" aria-hidden="true")
                                         | EDIT PROFILE

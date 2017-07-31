@@ -51,8 +51,7 @@ div.inside-info{
 }
 
 div.favourites{
-    position: absolute;
-    top:450px;
+    margin-top:230px;
     font-size: 1.6em;
     font-weight: bold;
 }
