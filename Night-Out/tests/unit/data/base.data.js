@@ -26,13 +26,13 @@ describe( 'BaseData tests', () => {
     const findOne = ( filter ) => {
         const id = filter._id.$eq;
         const result = items.filter( ( item ) => {
-                return (item.id === id);
+                return (item.id === id.toString());
             } )[0] || null;
         return Promise.resolve( result );
     };
 
     const updateOne = ( filter, model ) => {
-        const id = filter._id;
+        const id = filter._id.toString();
         items = items.map( ( item ) => {
             return (item.id === id) ? model : item;
         } );
@@ -40,7 +40,7 @@ describe( 'BaseData tests', () => {
     };
 
     const deleteOne = ( filter ) => {
-        const id = filter._id;
+        const id = filter._id.toString();
         const index = items.findIndex( ( element ) => {
             return element.id === id;
         } );
