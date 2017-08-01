@@ -26,11 +26,11 @@ block content
                         div
                             label(class="labels" for="pass")
                                 | New Password:
-                            input(class="" type="password" name="password" pattern="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$" title="The password must be at least 6 characters long, containing at least 1 numeric type symbol" required="required")
+                            input(class="" type="password" name="password" pattern="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$" title="The password must be at least 6 characters long, containing at least 1 numeric type symbol")
                         div
                             label(class="labels" for="pass-confirm")
                                 | Password Confirmation:
-                            input(class="" id="confirm_password" name="password-confirm" type="password" value="" required="required")
+                            input(class="" id="confirm_password" name="password-confirm" type="password" value="")
                         input(class="save" type="submit" value="Save Changes")
 block additionalCss
     link(rel="stylesheet" href="/static/styles/edit-profile.css")
