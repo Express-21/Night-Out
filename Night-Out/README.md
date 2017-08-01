@@ -21,13 +21,13 @@ The private parts /place creation, user lists, personal profile page, edit perso
 
 ### Client side
 
-The fromt edn is mainly using standart CSS3 and Bootstrap.
+The front edn is mainly using standard CSS3 and Bootstrap.
 The response is accomplished through Bootstrap and CSS3 as well.
 Client side validation prevents input of invalid data states from the public to the server part.
 Invalid input is followed with an appropriate message.
-The user interface is amed to be user friendly and provides an easy functionality for its clients.
+The user interface is aimed to be user friendly and provides an easy functionality for its clients.
 
-### Testing - up to 25%
+### Testing
 
 The stable state of the application is provided through 
   - unit tests
@@ -40,5 +40,5 @@ The application is deployed in AWS using MongoDB from AWS
 http://18.220.80.242/
 
 ##  General Requirements
-As a sourse controll system is used Github
+As a source control system is used Github
 
